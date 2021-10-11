@@ -14,7 +14,7 @@ public class widgetService extends RemoteViewsService {
     class widgetFactory implements RemoteViewsFactory{
         private Context context;
         private int appWidgetId;
-        private String[] classes={"CAO","DAA","DBMS","HCI"};
+        private String[] classes={"CAO","DAA","DBMS","HCI","CAO","DAA","DBMS","HCI"};
         widgetFactory(Context context,Intent intent){
             this.context=context;
             this.appWidgetId=intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,AppWidgetManager.INVALID_APPWIDGET_ID);
