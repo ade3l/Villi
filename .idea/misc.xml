@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable-nodpi/assignments_background_stroke.xml" value="0.2703125" />
+        <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable-nodpi/home_background_stroke.xml" value="0.2703125" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable-nodpi/ic_call.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable-nodpi/ic_photos.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable-nodpi/ic_shop.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable-nodpi/rounded_rect_white.xml" value="0.2703125" />
+        <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable-nodpi/timetable_background_stroke.xml" value="0.2703125" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/layout/widget_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/layout/widget_layout.xml" value="0.4086629001883239" />

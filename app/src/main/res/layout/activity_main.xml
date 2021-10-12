@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/bg">
 
 
 
@@ -12,11 +13,11 @@
         android:id="@+id/equal_navigation_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginRight="18dp"
-        android:layout_marginBottom="18dp"
+        android:layout_marginStart="@dimen/bottomNavBarMargin"
+        android:layout_marginLeft="@dimen/bottomNavBarMargin"
+        android:layout_marginEnd="@dimen/bottomNavBarMargin"
+        android:layout_marginRight="@dimen/bottomNavBarMargin"
+        android:layout_marginBottom="@dimen/bottomNavBarMargin"
         android:background="@drawable/rounded_rect_white"
         android:elevation="8dp"
         android:padding="16dp"
@@ -26,36 +27,37 @@
 
         <com.gauravk.bubblenavigation.BubbleToggleView
             android:id="@+id/m_item_shop"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:bt_colorActive="@color/blue_active"
+            app:bt_colorActive="@color/white"
             app:bt_colorInactive="@color/default_inactive"
             app:bt_icon="@drawable/baseline_book_black_24dp"
-            app:bt_shape="@drawable/shop_background_stroke"
-            app:bt_title="tt" />
+            app:bt_shape="@drawable/assignments_background_stroke"
+            app:bt_title="Assignments" />
 
         <com.gauravk.bubblenavigation.BubbleToggleView
             android:id="@+id/m_item_photos"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:bt_colorActive="@color/purple_active"
+
+            app:bt_colorActive="@color/white"
             app:bt_colorInactive="@color/default_inactive"
             app:bt_icon="@drawable/baseline_home_black_24dp"
-            app:bt_shape="@drawable/photos_background_stroke"
-            app:bt_title="photos" />
+            app:bt_shape="@drawable/home_background_stroke"
+            app:bt_title="Home" />
 
         <com.gauravk.bubblenavigation.BubbleToggleView
             android:id="@+id/m_item_call"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:bt_colorActive="@color/green_active"
+            app:bt_colorActive="@color/white"
             app:bt_colorInactive="@color/default_inactive"
             app:bt_icon="@drawable/baseline_calendar_view_week_black_24dp"
-            app:bt_shape="@drawable/call_background_stroke"
-            app:bt_title="call" />
+            app:bt_shape="@drawable/timetable_background_stroke"
+            app:bt_title="Timetable" />
 
     </com.gauravk.bubblenavigation.BubbleNavigationLinearView>
 

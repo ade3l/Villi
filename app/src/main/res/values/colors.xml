@@ -9,6 +9,14 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#3D3D3D</color>
 
+    <color name="bg">#12131A</color>
+    <color name="navbarGrey">#21242C</color>
+    <color name="selectedBlue">#004DE4</color>
+
+
+
+
+
     <color name="red_active">#f44336</color>
     <color name="purple_active">#9c27b0</color>
     <color name="blue_active">#03a9f4</color>
