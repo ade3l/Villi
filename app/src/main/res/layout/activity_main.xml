@@ -31,9 +31,9 @@
             android:layout_weight="1"
             app:bt_colorActive="@color/blue_active"
             app:bt_colorInactive="@color/default_inactive"
-            app:bt_icon="@drawable/ic_shop"
+            app:bt_icon="@drawable/baseline_book_black_24dp"
             app:bt_shape="@drawable/shop_background_stroke"
-            app:bt_title="shop" />
+            app:bt_title="tt" />
 
         <com.gauravk.bubblenavigation.BubbleToggleView
             android:id="@+id/m_item_photos"
@@ -42,7 +42,7 @@
             android:layout_weight="1"
             app:bt_colorActive="@color/purple_active"
             app:bt_colorInactive="@color/default_inactive"
-            app:bt_icon="@drawable/ic_photos"
+            app:bt_icon="@drawable/baseline_home_black_24dp"
             app:bt_shape="@drawable/photos_background_stroke"
             app:bt_title="photos" />
 
@@ -53,7 +53,7 @@
             android:layout_weight="1"
             app:bt_colorActive="@color/green_active"
             app:bt_colorInactive="@color/default_inactive"
-            app:bt_icon="@drawable/ic_call"
+            app:bt_icon="@drawable/baseline_calendar_view_week_black_24dp"
             app:bt_shape="@drawable/call_background_stroke"
             app:bt_title="call" />
 
