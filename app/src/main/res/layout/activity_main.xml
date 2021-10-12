@@ -8,9 +8,17 @@
     android:background="@color/bg">
 
 
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.gauravk.bubblenavigation.BubbleNavigationLinearView
-        android:id="@+id/equal_navigation_bar"
+        android:id="@+id/navigation_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/bottomNavBarMargin"
@@ -26,7 +34,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.gauravk.bubblenavigation.BubbleToggleView
-            android:id="@+id/m_item_shop"
+            android:id="@+id/m_item_assignment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -37,11 +45,11 @@
             app:bt_title="Assignments" />
 
         <com.gauravk.bubblenavigation.BubbleToggleView
-            android:id="@+id/m_item_photos"
+            android:id="@+id/m_item_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-
+            android:clickable="true"
             app:bt_colorActive="@color/white"
             app:bt_colorInactive="@color/default_inactive"
             app:bt_icon="@drawable/baseline_home_black_24dp"
@@ -49,7 +57,7 @@
             app:bt_title="Home" />
 
         <com.gauravk.bubblenavigation.BubbleToggleView
-            android:id="@+id/m_item_call"
+            android:id="@+id/m_item_timetable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

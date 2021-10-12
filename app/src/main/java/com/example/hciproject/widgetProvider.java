@@ -23,10 +23,10 @@ public class widgetProvider extends AppWidgetProvider {
             serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,appWidgetId);
             serviceIntent.setData(Uri.parse(serviceIntent.toUri(Intent.URI_INTENT_SCHEME)));
             RemoteViews views=new RemoteViews(context.getPackageName(),R.layout.widget_layout);
-            Log.i("mine","before 29");
+//            Log.i("mine","before 29");
             views.setOnClickPendingIntent(R.id.left,getPendingSelfIntent(context, GO_LEFT_TAG));
             views.setOnClickPendingIntent(R.id.right,getPendingSelfIntent(context, GO_RIGHT_TAG));
-            Log.i("mine","after 29");
+//            Log.i("mine","after 29");
             views.setRemoteAdapter(R.id.listView,serviceIntent);
             views.setEmptyView(R.id.listView,R.id.emptyTextView);
             appWidgetManager.updateAppWidget(appWidgetId, views);
@@ -42,7 +42,7 @@ public class widgetProvider extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
-        Log.i("mine","in on receive");
+//        Log.i("mine","in on receive");
 //        TODO: Functions for the arrow buttons
         if(intent.getAction().equals(GO_LEFT_TAG)){
             Toast.makeText(context, "Go back a day", Toast.LENGTH_SHORT).show();
@@ -51,7 +51,7 @@ public class widgetProvider extends AppWidgetProvider {
             Toast.makeText(context, "Go forward a day", Toast.LENGTH_SHORT).show();
         }
 
-        Log.i("mine","out of on receive");
+//        Log.i("mine","out of on receive");
 
     }
 }
