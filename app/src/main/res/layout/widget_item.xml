@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#3D3D3D"
-    android:orientation="vertical">
+    android:orientation="vertical"
+
+    >
 
     <TextView
         android:id="@+id/subjectName"
@@ -24,7 +26,7 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="2dp"/>
+        android:paddingTop="1dp"
+        android:paddingBottom="5dp"/>
 
 </LinearLayout>

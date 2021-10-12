@@ -9,16 +9,22 @@
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content"-->
 <!--        android:text="I'm here" />-->
+
+
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <ListView
             android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:alpha="0.9"
-            android:background="@color/black" />
+            android:background="@color/black"
+            android:paddingLeft="@dimen/listHorizontalPadding"
+            android:paddingRight="@dimen/listHorizontalPadding"
+            />
 
         <TextView
             android:id="@+id/emptyTextView"
