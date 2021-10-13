@@ -2,4 +2,6 @@
     <string name="app_name">HCI Project</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="set_time_table">TIME TABLE</string>
+    <string name="pick_a_day">PICK A DAY</string>
 </resources>
