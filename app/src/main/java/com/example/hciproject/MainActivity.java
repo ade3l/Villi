@@ -30,11 +30,22 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(1,false);
 
-
+        viewPager.setUserInputEnabled(false);
         navBar.setNavigationChangeListener(new BubbleNavigationChangeListener() {
             @Override
             public void onNavigationChanged(View view, int position) {
+                switch(viewPager.getCurrentItem()){
+                    case 0: assignmentsFragment.hideFab();
+                }
                 viewPager.setCurrentItem(position);
+                //It shows up as an error for the first instantiation of the fragment
+                try {
+                    switch(viewPager.getCurrentItem()){
+                        case 0: assignmentsFragment.showFab();
+                    }
+                }
+                catch(Exception e){ }
+
             }
         });
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -45,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        Day mon=new Day("Monday"),
+                tue=new Day("Tueday"),
+                wed=new Day("Wednesday"),
+                thu=new Day("Thursday"),
+                fri=new Day("Friday"),
+                sat=new Day("Saturday"),
+                sun=new Day("Sunday");
+
 
     }
 }

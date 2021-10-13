@@ -14,7 +14,7 @@ import android.widget.Toast;
 public class widgetProvider extends AppWidgetProvider {
     private static final String GO_LEFT_TAG = "Left click";
     private static final String GO_RIGHT_TAG = "Right click";
-
+    RemoteViews views;
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -22,7 +22,7 @@ public class widgetProvider extends AppWidgetProvider {
             Intent serviceIntent=new Intent(context,widgetService.class);
             serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,appWidgetId);
             serviceIntent.setData(Uri.parse(serviceIntent.toUri(Intent.URI_INTENT_SCHEME)));
-            RemoteViews views=new RemoteViews(context.getPackageName(),R.layout.widget_layout);
+            new RemoteViews(context.getPackageName(),R.layout.widget_layout);
 //            Log.i("mine","before 29");
             views.setOnClickPendingIntent(R.id.left,getPendingSelfIntent(context, GO_LEFT_TAG));
             views.setOnClickPendingIntent(R.id.right,getPendingSelfIntent(context, GO_RIGHT_TAG));
