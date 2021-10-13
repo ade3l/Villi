@@ -12,6 +12,7 @@
     <color name="bg">#12131A</color>
     <color name="navbarGrey">#21242C</color>
     <color name="selectedBlue">#004DE4</color>
+    <color name="default_inactive">#818799</color>
 
 
 
@@ -35,7 +36,6 @@
     <color name="orange_inactive">#ffb74d</color>
     <color name="gery_inactive">#e0e0e0</color>
 
-    <color name="default_inactive">#78909c</color>
 
     <color name="red_bg_light">#ffebee</color>
     <color name="purple_bg_light">#f3e5f5</color>

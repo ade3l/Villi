@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:background="@color/bg"
         android:layout_marginHorizontal="@dimen/bottomNavBarMargin"
-        app:cardCornerRadius="16dp"
+        app:cardCornerRadius="@dimen/cornerRadius"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,42 +56,87 @@
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="5dp"
+                android:paddingHorizontal="3dp"
+                >
 
                 <RadioButton
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:button="@android:color/transparent"
+                    android:background="@drawable/radio_selector"
+                    android:textColor="@drawable/radio_text"
+                    android:gravity="center"
+                    android:textSize="20sp"
                     android:text="Mon"/>
+
                 <RadioButton
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:button="@android:color/transparent"
+                    android:background="@drawable/radio_selector"
+                    android:textColor="@drawable/radio_text"
+                    android:gravity="center"
+                    android:textSize="20sp"
                     android:text="Tue"/>
+
                 <RadioButton
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:button="@android:color/transparent"
+                    android:background="@drawable/radio_selector"
+                    android:textColor="@drawable/radio_text"
+                    android:gravity="center"
+                    android:textSize="20sp"
                     android:text="Wed"/>
+
                 <RadioButton
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:button="@android:color/transparent"
+                    android:background="@drawable/radio_selector"
+                    android:textColor="@drawable/radio_text"
+                    android:gravity="center"
+                    android:textSize="20sp"
                     android:text="Thu"/>
                 <RadioButton
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:button="@android:color/transparent"
+                    android:background="@drawable/radio_selector"
+                    android:textColor="@drawable/radio_text"
+                    android:gravity="center"
+                    android:textSize="20sp"
                     android:text="Fri"/>
+
                 <RadioButton
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:button="@android:color/transparent"
+                    android:background="@drawable/radio_selector"
+                    android:textColor="@drawable/radio_text"
+                    android:gravity="center"
+                    android:textSize="20sp"
                     android:text="Sat"/>
+
                 <RadioButton
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                    android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:button="@android:color/transparent"
+                    android:background="@drawable/radio_selector"
+                    android:textColor="@drawable/radio_text"
+                    android:gravity="center"
+                    android:textSize="20sp"
                 android:text="Sun"/>
             </RadioGroup>
 
