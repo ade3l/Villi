@@ -6,16 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:background="@color/bg">
-
+<!--TODO: Change top navigation bar color-->
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/content_frame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/navigation_bar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <com.gauravk.bubblenavigation.BubbleNavigationLinearView
         android:id="@+id/navigation_bar"
