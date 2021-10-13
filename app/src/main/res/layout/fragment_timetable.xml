@@ -71,7 +71,7 @@
                     android:background="@drawable/radio_selector"
                     android:textColor="@drawable/radio_text"
                     android:gravity="center"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/radio_text_size"
                     android:text="Mon"/>
 
                 <RadioButton
@@ -82,7 +82,7 @@
                     android:background="@drawable/radio_selector"
                     android:textColor="@drawable/radio_text"
                     android:gravity="center"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/radio_text_size"
                     android:text="Tue"/>
 
                 <RadioButton
@@ -93,7 +93,7 @@
                     android:background="@drawable/radio_selector"
                     android:textColor="@drawable/radio_text"
                     android:gravity="center"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/radio_text_size"
                     android:text="Wed"/>
 
                 <RadioButton
@@ -104,7 +104,7 @@
                     android:background="@drawable/radio_selector"
                     android:textColor="@drawable/radio_text"
                     android:gravity="center"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/radio_text_size"
                     android:text="Thu"/>
                 <RadioButton
                     android:layout_width="0dp"
@@ -114,7 +114,7 @@
                     android:background="@drawable/radio_selector"
                     android:textColor="@drawable/radio_text"
                     android:gravity="center"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/radio_text_size"
                     android:text="Fri"/>
 
                 <RadioButton
@@ -125,7 +125,7 @@
                     android:background="@drawable/radio_selector"
                     android:textColor="@drawable/radio_text"
                     android:gravity="center"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/radio_text_size"
                     android:text="Sat"/>
 
                 <RadioButton
@@ -136,7 +136,7 @@
                     android:background="@drawable/radio_selector"
                     android:textColor="@drawable/radio_text"
                     android:gravity="center"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/radio_text_size"
                 android:text="Sun"/>
             </RadioGroup>
 
