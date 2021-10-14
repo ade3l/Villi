@@ -41,7 +41,6 @@ public class widgetService extends RemoteViewsService {
             this.appWidgetId=intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,AppWidgetManager.INVALID_APPWIDGET_ID);
             prefs = context.getSharedPreferences("com.example.hciproject",Context.MODE_PRIVATE);
             day=prefs.getInt("day", 0);
-            Log.i("mine", "Factory called");
 
         }
         @Override
@@ -79,11 +78,9 @@ public class widgetService extends RemoteViewsService {
         @Override
         public int getCount() {
             day=prefs.getInt("day", 0);
-            Log.i("mine","getCount="+String.valueOf(day));
             switch(day){
                 case 0:
                     return mon.getSchedule().size();
-
                 case 1:
                     return tue.getSchedule().size();
                 case 2:
@@ -97,7 +94,6 @@ public class widgetService extends RemoteViewsService {
         public RemoteViews getViewAt(int i) {
             RemoteViews view=new RemoteViews(context.getPackageName(),R.layout.widget_item);
             day=prefs.getInt("day", 0);
-            Log.i("mine","getViewAt="+String.valueOf(day));
             LocalTime x;
             SortedMap<LocalTime,String> schedule = new TreeMap<LocalTime,String>();
             switch(day){
