@@ -18,6 +18,8 @@ public class widgetProvider extends AppWidgetProvider {
     private static final String GO_RIGHT_TAG = "Right click";
     private static int day;
     SharedPreferences prefs;
+    String daysList[] = {"Monday", "Tuesday", "Wednesday",
+            "Thursday", "Friday", "Saturday","Sunday"};
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         for(int appWidgetId:appWidgetIds){
@@ -54,16 +56,24 @@ public class widgetProvider extends AppWidgetProvider {
             RemoteViews views=new RemoteViews(context.getPackageName(),R.layout.widget_layout);
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
             int[] appWidgetIds= appWidgetManager.getAppWidgetIds(new ComponentName(context, widgetProvider.class));
-            day--;
-            day%=7;
+            if(day==0) day=6;
+            else day--;
             prefs.edit().putInt("day", day).commit();
             Log.i("mine", String.valueOf(day));
-            views.setTextViewText(R.id.day, String.valueOf(day));
+            views.setTextViewText(R.id.day, daysList[day]);
             appWidgetManager.updateAppWidget(appWidgetIds, views);
 
         }
         else if( intent.getAction().equals(GO_RIGHT_TAG)){
-            Toast.makeText(context, "Go forward a day", Toast.LENGTH_SHORT).show();
+            RemoteViews views=new RemoteViews(context.getPackageName(),R.layout.widget_layout);
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+            int[] appWidgetIds= appWidgetManager.getAppWidgetIds(new ComponentName(context, widgetProvider.class));
+            if(day==6) day=0;
+            else day++;
+            prefs.edit().putInt("day", day).commit();
+            Log.i("mine", String.valueOf(day));
+            views.setTextViewText(R.id.day, daysList[day]);
+            appWidgetManager.updateAppWidget(appWidgetIds, views);
         }
 
 
