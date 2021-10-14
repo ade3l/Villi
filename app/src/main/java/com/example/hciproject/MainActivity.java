@@ -35,13 +35,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onNavigationChanged(View view, int position) {
                 switch(viewPager.getCurrentItem()){
-                    case 0: assignmentsFragment.hideFab();
+                    case 0: assignmentsFragment.hideFab();break;
                 }
                 viewPager.setCurrentItem(position);
                 //It shows up as an error for the first instantiation of the fragment
                 try {
                     switch(viewPager.getCurrentItem()){
-                        case 0: assignmentsFragment.showFab();
+                        case 0: assignmentsFragment.showFab();break;
                     }
                 }
                 catch(Exception e){ }
@@ -56,13 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        Day mon=new Day("Monday"),
-                tue=new Day("Tueday"),
-                wed=new Day("Wednesday"),
-                thu=new Day("Thursday"),
-                fri=new Day("Friday"),
-                sat=new Day("Saturday"),
-                sun=new Day("Sunday");
+
 
 
     }

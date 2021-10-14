@@ -3,16 +3,18 @@ package com.example.hciproject;
 import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 public class Day {
-    String dayName;
-    Map<String, LocalTime> schedule = new HashMap<String, LocalTime>() ;
+    public String dayName;
+    public SortedMap<LocalTime,String> schedule = new TreeMap<LocalTime,String>();
 
     public Day(String dayName) {
         this.dayName = dayName;
     }
 
-    public Day(String dayName, Map<String, LocalTime> schedule) {
+    public Day(String dayName, SortedMap<LocalTime,String> schedule) {
         this.dayName = dayName;
         this.schedule = schedule;
     }
@@ -25,13 +27,13 @@ public class Day {
         this.dayName = dayName;
     }
 
-    public Map<String, LocalTime> getSchedule() {
+    public SortedMap<LocalTime,String> getSchedule() {
         return schedule;
     }
 
-    public void setSchedule(Map<String, LocalTime> schedule) {
+    public void setSchedule(SortedMap<LocalTime,String> schedule) {
         this.schedule = schedule;
     }
-
+    public  void addToSchedule( LocalTime t,String s){ schedule.put(t,s); }
 
 }
