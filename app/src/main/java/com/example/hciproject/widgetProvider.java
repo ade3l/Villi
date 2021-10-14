@@ -24,15 +24,16 @@ public class widgetProvider extends AppWidgetProvider {
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         for(int appWidgetId:appWidgetIds){
             prefs = context.getSharedPreferences("com.example.hciproject",Context.MODE_PRIVATE);
-            day=prefs.getInt("day", 0);
+            day=prefs.getInt("day", day);
             Intent serviceIntent=new Intent(context,widgetService.class);
             serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,appWidgetId);
+            serviceIntent.putExtra("Day",0);
             serviceIntent.setData(Uri.parse(serviceIntent.toUri(Intent.URI_INTENT_SCHEME)));
             RemoteViews views=new RemoteViews(context.getPackageName(),R.layout.widget_layout);
-            Log.i("mine","before 29");
+//            Log.i("mine","before 29");
             views.setOnClickPendingIntent(R.id.left,getPendingSelfIntent(context, GO_LEFT_TAG));
             views.setOnClickPendingIntent(R.id.right,getPendingSelfIntent(context, GO_RIGHT_TAG));
-            Log.i("mine","after 29");
+//            Log.i("mine","after 29");
             views.setRemoteAdapter(R.id.listView,serviceIntent);
             views.setEmptyView(R.id.listView,R.id.emptyTextView);
             appWidgetManager.updateAppWidget(appWidgetId, views);
@@ -40,11 +41,6 @@ public class widgetProvider extends AppWidgetProvider {
 
     }
 
-    protected PendingIntent getPendingSelfIntent(Context context, String action) {
-        Intent intent = new Intent(context, getClass());
-        intent.setAction(action);
-        return PendingIntent.getBroadcast(context, 0, intent, 0);
-    }
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
@@ -52,30 +48,45 @@ public class widgetProvider extends AppWidgetProvider {
         day=prefs.getInt("day", 0);
 //        TODO: Functions for the arrow buttons
         if(intent.getAction().equals(GO_LEFT_TAG)){
-            Toast.makeText(context, "Go back a day", Toast.LENGTH_SHORT).show();
-            RemoteViews views=new RemoteViews(context.getPackageName(),R.layout.widget_layout);
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-            int[] appWidgetIds= appWidgetManager.getAppWidgetIds(new ComponentName(context, widgetProvider.class));
             if(day==0) day=6;
             else day--;
             prefs.edit().putInt("day", day).commit();
-            Log.i("mine", String.valueOf(day));
-            views.setTextViewText(R.id.day, daysList[day]);
-            appWidgetManager.updateAppWidget(appWidgetIds, views);
-
+            updateTT(context, intent);
         }
         else if( intent.getAction().equals(GO_RIGHT_TAG)){
-            RemoteViews views=new RemoteViews(context.getPackageName(),R.layout.widget_layout);
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-            int[] appWidgetIds= appWidgetManager.getAppWidgetIds(new ComponentName(context, widgetProvider.class));
             if(day==6) day=0;
             else day++;
             prefs.edit().putInt("day", day).commit();
-            Log.i("mine", String.valueOf(day));
-            views.setTextViewText(R.id.day, daysList[day]);
-            appWidgetManager.updateAppWidget(appWidgetIds, views);
+
+            updateTT(context,intent);
+//            RemoteViews views=new RemoteViews(context.getPackageName(),R.layout.widget_layout);
+//            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+//            int[] appWidgetIds= appWidgetManager.getAppWidgetIds(new ComponentName(context, widgetProvider.class));
+//            
+//            prefs.edit().putInt("day", day).commit();
+//            Log.i("mine", String.valueOf(day));
+//            views.setTextViewText(R.id.day, daysList[day]);
+//            appWidgetManager.updateAppWidget(appWidgetIds, views);
         }
 
 
+    }
+    void updateTT(Context context, Intent intent){
+        RemoteViews views=new RemoteViews(context.getPackageName(),R.layout.widget_layout);
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        int[] appWidgetIds= appWidgetManager.getAppWidgetIds(new ComponentName(context, widgetProvider.class));
+        Intent serviceIntent=new Intent(context,widgetService.class);
+        serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,appWidgetIds[0]);
+        serviceIntent.putExtra("Day",day);
+        Log.i("mine","sending"+String.valueOf(day));
+        serviceIntent.setData(Uri.parse(serviceIntent.toUri(Intent.URI_INTENT_SCHEME)));
+        views.setRemoteAdapter(R.id.listView,serviceIntent);
+        views.setTextViewText(R.id.day, daysList[day]);
+        appWidgetManager.updateAppWidget(appWidgetIds, views);
+    }
+    protected PendingIntent getPendingSelfIntent(Context context, String action) {
+        Intent intent = new Intent(context, getClass());
+        intent.setAction(action);
+        return PendingIntent.getBroadcast(context, 0, intent, 0);
     }
 }
