@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/grey"
+    android:background="@drawable/rounded_rect_widget_item"
     android:orientation="vertical"
-
+    android:layout_marginTop="2dp"
     >
 
     <TextView
