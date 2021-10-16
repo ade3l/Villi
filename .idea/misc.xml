@@ -11,6 +11,8 @@
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable-nodpi/rounded_rect_white.xml" value="0.2703125" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable-nodpi/timetable_background_stroke.xml" value="0.2703125" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable/baseline_add_task_white_24dp.xml" value="0.2703125" />
+        <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable/baseline_book_black_24dp.xml" value="0.2526041666666667" />
+        <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable/baseline_calendar_view_week_black_24dp.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable/radio_normal.xml" value="0.2703125" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable/radio_selected.xml" value="0.2703125" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable/radio_selector.xml" value="0.2703125" />
@@ -19,6 +21,8 @@
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable/rounded_rect_widget.xml" value="0.2703125" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable/rounded_rect_widget_day.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable/rounded_rect_widget_item.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable/rounded_rect_widget_option.xml" value="0.2526041666666667" />
+        <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable/rounded_rect_widget_top.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable/top_rounded_rect.xml" value="0.21851851851851853" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/layout/fragment_assignements.xml" value="0.24010416666666667" />
