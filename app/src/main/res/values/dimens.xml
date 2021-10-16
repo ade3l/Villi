@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="listHorizontalPadding">10dp</dimen>
+    <dimen name="listHorizontalPadding">24dp</dimen>
     <dimen name="bottomNavBarMargin">10dp</dimen>
     <dimen name="cornerRadius">16dp</dimen>
     <dimen name="radio_text_size">15sp</dimen>

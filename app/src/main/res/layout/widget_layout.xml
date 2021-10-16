@@ -2,51 +2,65 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/rounded_rect_widget"
+    >
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@color/grey"
-
-
+        android:layout_height="40dp"
+        android:background="@drawable/rounded_rect_widget_day"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         >
-
-        <TextView
+<!--I'm trying to hard align the image because it has a drop shadow-->
+<!--        TODO: Check whether arrows align properly on all screen sizes-->
+        <ImageView
             android:id="@+id/left"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="&lt;"
-            android:gravity="left"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
             android:clickable="true"
-            android:textSize="50dp"
+            android:fontFamily="@font/montserrat"
+            android:paddingStart="10dp"
+            android:paddingTop="8dp"
+            android:src="@drawable/arrow_left"
+            android:text="@string/lt"
             android:textColor="@color/white"
-            android:paddingLeft="10dp"
-            android:layout_gravity="left"
-            android:layout_alignParentStart="true"/>
+            android:textSize="50dp"
+
+            />
+
         <TextView
             android:id="@+id/day"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Monday"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:clickable="false"
-            android:autoSizeTextType="uniform"
             android:layout_centerHorizontal="true"
+            android:autoSizeTextType="uniform"
+            android:clickable="false"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
             android:maxLines="1"
-            />
-        <TextView
+            android:text="Monday"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+        <ImageView
             android:id="@+id/right"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
             android:clickable="true"
             android:paddingRight="10dp"
             android:text="&gt;"
             android:textColor="@color/white"
             android:textSize="50dp"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/arrow_right"
+            android:layout_centerVertical="true"
+            android:paddingTop="8dp"
+            android:layout_marginRight="10dp"
+            />
 
     </RelativeLayout>
 
@@ -54,7 +68,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#E6000000"
+        android:background="@android:color/transparent"
         >
 
         <ListView
@@ -64,6 +78,7 @@
             android:background="@android:color/transparent"
             android:paddingLeft="@dimen/listHorizontalPadding"
             android:paddingRight="@dimen/listHorizontalPadding"
+            android:scrollbars="none"
             />
 
         <TextView
