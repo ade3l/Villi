@@ -15,6 +15,10 @@
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable/radio_selected.xml" value="0.2703125" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable/radio_selector.xml" value="0.2703125" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable/radio_text.xml" value="0.2703125" />
+        <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable/rounded_rect_grey.xml" value="0.2703125" />
+        <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable/rounded_rect_widget.xml" value="0.2703125" />
+        <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable/rounded_rect_widget_day.xml" value="0.2526041666666667" />
+        <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable/rounded_rect_widget_item.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/drawable/top_rounded_rect.xml" value="0.21851851851851853" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/layout/fragment_assignements.xml" value="0.24010416666666667" />
@@ -23,7 +27,7 @@
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/layout/fragment_main.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/layout/fragment_timetable.xml" value="0.1" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/layout/widget_item.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/layout/widget_layout.xml" value="0.4086629001883239" />
+        <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/layout/widget_layout.xml" value="0.2562358276643991" />
         <entry key="..\:/Users/adeel/AndroidStudioProjects/HCI-Project/app/src/main/res/xml/widget_info.xml" value="0.13020833333333334" />
       </map>
     </option>
