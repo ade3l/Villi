@@ -4,4 +4,5 @@
     <dimen name="bottomNavBarMargin">10dp</dimen>
     <dimen name="cornerRadius">16dp</dimen>
     <dimen name="radio_text_size">15sp</dimen>
+    <dimen name="widget_corners">22dp</dimen>
 </resources>
