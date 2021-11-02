@@ -5,6 +5,8 @@
     android:orientation="vertical"
     android:background="@drawable/rounded_rect_widget"
     >
+<!--    TODO: add more margin to day-->
+<!--    TODO: fix bottom nav bar -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"

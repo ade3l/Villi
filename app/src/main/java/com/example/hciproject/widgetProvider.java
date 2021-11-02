@@ -40,7 +40,7 @@ public class widgetProvider extends AppWidgetProvider {
         }
 
     }
-
+//TODO: If no classes then show "No events"
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
