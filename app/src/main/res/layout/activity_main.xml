@@ -29,7 +29,8 @@
         android:layout_marginBottom="@dimen/bottomNavBarMargin"
         android:background="@drawable/rounded_rect_grey"
         android:elevation="8dp"
-        android:padding="16dp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
