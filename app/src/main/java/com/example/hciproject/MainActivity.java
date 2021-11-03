@@ -13,13 +13,18 @@ import android.widget.Adapter;
 import com.gauravk.bubblenavigation.BubbleNavigationLinearView;
 import com.gauravk.bubblenavigation.listener.BubbleNavigationChangeListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
+    static List<String> subs=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        populateSubs();
         ViewPager2 viewPager = findViewById(R.id.content_frame);
         BubbleNavigationLinearView navBar=findViewById(R.id.navigation_bar);
         navBar.setCurrentActiveItem(1);
@@ -59,5 +64,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+    void populateSubs(){
+        subs.clear();
+//        TODO: Populate the subs array with data from sqldb
+        subs.add("CAO");
+        subs.add("DAA");
+        subs.add("HCI");
+        subs.add("DBMS");
+        subs.add("Chinese");
+        subs.add("OS");
     }
 }

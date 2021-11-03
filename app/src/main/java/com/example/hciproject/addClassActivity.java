@@ -5,6 +5,13 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class addClassActivity extends AppCompatActivity {
 
@@ -16,6 +23,10 @@ public class addClassActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Add a class");
+
+        AutoCompleteTextView at= findViewById(R.id.autoCompleteListView);
+        ArrayAdapter adapter=new ArrayAdapter(this,R.layout.list_subject, MainActivity.subs);
+        at.setAdapter(adapter);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
