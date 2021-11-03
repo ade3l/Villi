@@ -149,16 +149,15 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-
     </LinearLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_task"
+        android:id="@+id/add_class"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="12dp"
-        android:src="@drawable/baseline_add_task_white_24dp"
+        android:src="@drawable/baseline_add_white_24dp"
         app:fabSize="auto"
         app:backgroundTint="@color/selectedBlue"
         app:tint="@color/white"
