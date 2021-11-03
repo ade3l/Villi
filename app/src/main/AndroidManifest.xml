@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HCIProject">
         <activity
+            android:name=".addClassActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -18,16 +21,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".widgetProvider"
+
+        <receiver
+            android:name=".widgetProvider"
             android:exported="false">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
-                android:resource="@xml/widget_info"/>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
         </receiver>
-        <service android:name=".widgetService"
-            android:permission="android.permission.BIND_REMOTEVIEWS"/>
+
+        <service
+            android:name=".widgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

@@ -1,5 +1,6 @@
 package com.example.hciproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -32,6 +33,7 @@ public class timetableFragment extends Fragment {
     }
 
     void addClass(){
-        
+        Intent intent = new Intent(getContext(),addClassActivity.class);
+        startActivity(intent);
     }
 }
