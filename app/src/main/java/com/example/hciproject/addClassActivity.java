@@ -58,7 +58,16 @@ public class addClassActivity extends AppCompatActivity {
         binding.addSubject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createDialog();
+                createAddSubjectDialog();
+            }
+        });
+        binding.SubjectautoCompleteListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                InputMethodManager inputMethodManager= (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
+                binding.daysAutoCompleteListView.requestFocus();
             }
         });
         binding.SubjectautoCompleteListView.setOnKeyListener(new View.OnKeyListener() {
@@ -67,6 +76,7 @@ public class addClassActivity extends AppCompatActivity {
                 if(keyEvent.getKeyCode()==KeyEvent.KEYCODE_ENTER){
                     InputMethodManager inputMethodManager= (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
+                    binding.daysAutoCompleteListView.requestFocus();
                     return true;
                 }
                 return false;
@@ -74,7 +84,7 @@ public class addClassActivity extends AppCompatActivity {
         });
         binding.SubjectautoCompleteListView.setOnFocusChangeListener(focusChangeListener);
     }
-    void createDialog(){
+    void createAddSubjectDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.dialogTheme);
         builder.setTitle("Enter subject details");
         View inflatedView= LayoutInflater.from(this).inflate(R.layout.dialog_add_class,(ViewGroup) findViewById(android.R.id.content),false);
@@ -95,7 +105,7 @@ public class addClassActivity extends AppCompatActivity {
             if(!binding.SubjectautoCompleteListView.hasFocus()){
                 InputMethodManager inputMethodManager= (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
-                binding.SubjectautoCompleteListView.setOnFocusChangeListener(null);
+//                binding.SubjectautoCompleteListView.setOnFocusChangeListener(null);
             }
         }
     };
