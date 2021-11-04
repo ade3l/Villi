@@ -24,9 +24,10 @@
 
 <!--        TODO: Theme the text view-->
         <AutoCompleteTextView
-            android:id="@+id/autoCompleteListView"
+            android:id="@+id/SubjectautoCompleteListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:inputType="text"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -45,5 +46,20 @@
         app:iconTint="@color/selectedBlue"
         app:rippleColor="@color/grey"
         />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_marginTop="25dp"
+        android:layout_marginHorizontal="10dp"
+        android:hint="Pick a day">
+
+        <!--        TODO: Theme the text view-->
+        <AutoCompleteTextView
+            android:id="@+id/daysAutoCompleteListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="none"            />
+    </com.google.android.material.textfield.TextInputLayout>
 
   </LinearLayout>

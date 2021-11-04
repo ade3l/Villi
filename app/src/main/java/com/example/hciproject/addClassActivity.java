@@ -4,19 +4,24 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ListAdapter;
 
 import com.example.hciproject.data.DataSource;
 import com.example.hciproject.databinding.ActivityAddClassBinding;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,17 +35,9 @@ public class addClassActivity extends AppCompatActivity {
         View view=binding.getRoot();
         setContentView(view);
         setUpToolBar();
+        subjectPickerInit();
+        dayPickerInit();
 
-        AutoCompleteTextView at= binding.autoCompleteListView;
-        ArrayAdapter adapter=new ArrayAdapter(this,R.layout.list_subject, DataSource.getSubjects());
-        at.setAdapter(adapter);
-
-        binding.addSubject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createDialog();
-            }
-        });
     }
 
     void setUpToolBar(){
@@ -55,6 +52,28 @@ public class addClassActivity extends AppCompatActivity {
             }
         });
     }
+    private void subjectPickerInit() {
+        ArrayAdapter adapter=new ArrayAdapter(this,R.layout.list_subject, DataSource.getSubjects());
+        binding.SubjectautoCompleteListView.setAdapter(adapter);
+        binding.addSubject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createDialog();
+            }
+        });
+        binding.SubjectautoCompleteListView.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if(keyEvent.getKeyCode()==KeyEvent.KEYCODE_ENTER){
+                    InputMethodManager inputMethodManager= (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
+                    return true;
+                }
+                return false;
+            }
+        });
+        binding.SubjectautoCompleteListView.setOnFocusChangeListener(focusChangeListener);
+    }
     void createDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.dialogTheme);
         builder.setTitle("Enter subject details");
@@ -65,4 +84,19 @@ public class addClassActivity extends AppCompatActivity {
         AlertDialog dialog=builder.create();
         dialog.show();
     }
+    private void dayPickerInit() {
+        AutoCompleteTextView subjectTV= binding.daysAutoCompleteListView;
+        ArrayAdapter adapter=new ArrayAdapter(this,R.layout.list_subject, DataSource.getDays());
+        subjectTV.setAdapter(adapter);
+    }
+    View.OnFocusChangeListener focusChangeListener = new View.OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View view, boolean b) {
+            if(!binding.SubjectautoCompleteListView.hasFocus()){
+                InputMethodManager inputMethodManager= (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
+                binding.SubjectautoCompleteListView.setOnFocusChangeListener(null);
+            }
+        }
+    };
 }
