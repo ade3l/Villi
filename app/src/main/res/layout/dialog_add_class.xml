@@ -3,8 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
-    android:padding="25dp">
+    android:paddingVertical="25dp"
+    >
 
 <!--    TODO: Box stroke color "app:boxStrokeColor"-->
     <com.google.android.material.textfield.TextInputLayout
@@ -15,7 +15,7 @@
             android:id="@+id/subjectNameIp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Add class" />
+            android:hint="Subject name" />
     </com.google.android.material.textfield.TextInputLayout>
 
 </LinearLayout>

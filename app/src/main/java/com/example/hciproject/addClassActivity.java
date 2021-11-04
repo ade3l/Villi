@@ -62,7 +62,5 @@ public class addClassActivity extends AppCompatActivity {
         builder.setNegativeButton("Cancel",null);
         AlertDialog dialog=builder.create();
         dialog.show();
-
-
     }
 }
