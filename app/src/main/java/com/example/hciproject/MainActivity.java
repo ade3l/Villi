@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
 
+import com.example.hciproject.data.DataSource;
 import com.gauravk.bubblenavigation.BubbleNavigationLinearView;
 import com.gauravk.bubblenavigation.listener.BubbleNavigationChangeListener;
 
@@ -18,13 +19,17 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    static List<String> subs=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        populateSubs();
+        DataSource.refreshSubjects();
+        setUpNavigation();
+    }
+
+
+    void setUpNavigation(){
         ViewPager2 viewPager = findViewById(R.id.content_frame);
         BubbleNavigationLinearView navBar=findViewById(R.id.navigation_bar);
         navBar.setCurrentActiveItem(1);
@@ -39,17 +44,19 @@ public class MainActivity extends AppCompatActivity {
         navBar.setNavigationChangeListener(new BubbleNavigationChangeListener() {
             @Override
             public void onNavigationChanged(View view, int position) {
-                switch(viewPager.getCurrentItem()){
-                    case 0: assignmentsFragment.hideFab();break;
+                if (viewPager.getCurrentItem() == 0 ) {
+//                    TODO: hide fab for time table fragment too
+                    assignmentsFragment.hideFab();
                 }
                 viewPager.setCurrentItem(position);
                 //It shows up as an error for the first instantiation of the fragment
                 try {
-                    switch(viewPager.getCurrentItem()){
-                        case 0: assignmentsFragment.showFab();break;
+//                    TODO: show fab for time table fragment too
+                    if (viewPager.getCurrentItem() == 0) {
+                        assignmentsFragment.showFab();
                     }
                 }
-                catch(Exception e){ }
+                catch(Exception ignored){ }
 
             }
         });
@@ -61,18 +68,5 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-    }
-    void populateSubs(){
-        subs.clear();
-//        TODO: Populate the subs array with data from sqldb
-        subs.add("CAO");
-        subs.add("DAA");
-        subs.add("HCI");
-        subs.add("DBMS");
-        subs.add("Chinese");
-        subs.add("OS");
     }
 }
