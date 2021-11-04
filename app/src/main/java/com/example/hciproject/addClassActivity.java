@@ -16,24 +16,26 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 
 import com.example.hciproject.data.DataSource;
+import com.example.hciproject.databinding.ActivityAddClassBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class addClassActivity extends AppCompatActivity {
-
+    private ActivityAddClassBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_class);
+        binding = ActivityAddClassBinding.inflate(getLayoutInflater());
+        View view=binding.getRoot();
+        setContentView(view);
         setUpToolBar();
 
-        AutoCompleteTextView at= findViewById(R.id.autoCompleteListView);
+        AutoCompleteTextView at= binding.autoCompleteListView;
         ArrayAdapter adapter=new ArrayAdapter(this,R.layout.list_subject, DataSource.getSubjects());
         at.setAdapter(adapter);
 
-        Button addNewSub= findViewById(R.id.addSubject);
-        addNewSub.setOnClickListener(new View.OnClickListener() {
+        binding.addSubject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 createDialog();

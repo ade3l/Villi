@@ -60,6 +60,7 @@
                     android:layout_marginTop="4dp"/>
 
                 <RadioGroup
+                    android:id="@+id/dayRadioGrp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -67,9 +68,11 @@
                     android:layout_marginTop="7dp"
                     android:layout_marginBottom="5dp"
                     android:paddingHorizontal="3dp"
+                    android:checkedButton="@id/monday"
                     >
 
                     <RadioButton
+                        android:id="@+id/monday"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -81,6 +84,7 @@
                         android:text="Mon"/>
 
                     <RadioButton
+                        android:id="@+id/tuesday"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -92,6 +96,7 @@
                         android:text="Tue"/>
 
                     <RadioButton
+                        android:id="@+id/wednesday"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -103,6 +108,7 @@
                         android:text="Wed"/>
 
                     <RadioButton
+                        android:id="@+id/thursday"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -113,6 +119,7 @@
                         android:textSize="@dimen/radio_text_size"
                         android:text="Thu"/>
                     <RadioButton
+                        android:id="@+id/friday"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -124,6 +131,7 @@
                         android:text="Fri"/>
 
                     <RadioButton
+                        android:id="@+id/saturday"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -135,10 +143,11 @@
                         android:text="Sat"/>
 
                     <RadioButton
-                    android:layout_width="0dp"
+                        android:id="@+id/sunday"
+                        android:layout_width="0dp"
                         android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:button="@android:color/transparent"
+                        android:layout_height="wrap_content"
+                        android:button="@android:color/transparent"
                         android:background="@drawable/radio_selector"
                         android:textColor="@drawable/radio_text"
                         android:gravity="center"
