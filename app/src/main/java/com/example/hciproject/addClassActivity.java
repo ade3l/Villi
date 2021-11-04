@@ -1,10 +1,14 @@
 package com.example.hciproject;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -32,7 +36,7 @@ public class addClassActivity extends AppCompatActivity {
         addNewSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+                createDialog();
             }
         });
     }
@@ -48,5 +52,17 @@ public class addClassActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    void createDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.dialogTheme);
+        builder.setTitle("Enter subject details");
+        View inflatedView= LayoutInflater.from(this).inflate(R.layout.dialog_add_class,(ViewGroup) findViewById(android.R.id.content),false);
+        builder.setView(inflatedView);
+        builder.setPositiveButton("Add", null);
+        builder.setNegativeButton("Cancel",null);
+        AlertDialog dialog=builder.create();
+        dialog.show();
+
+
     }
 }
