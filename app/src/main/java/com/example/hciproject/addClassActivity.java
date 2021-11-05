@@ -61,7 +61,7 @@ public class addClassActivity extends AppCompatActivity {
         }
         return super.dispatchTouchEvent( event );
     }
-    void setUpToolBar(){
+    void setUpToolBar(){ 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
@@ -153,12 +153,21 @@ public class addClassActivity extends AppCompatActivity {
             finish();
         }
         else{
-            new MaterialAlertDialogBuilder(this,R.style.cancelDialogTheme)
+            AlertDialog.Builder builder= new MaterialAlertDialogBuilder(this,R.style.cancelDialogTheme)
                     .setTitle("Delete this draft?")
                     .setMessage("You will lose the class data that you have filled. \n\nNewly created subjects will not be deleted and can be deleted by visiting My Subjects")
                     .setPositiveButton("Cancel", null)
-                    .setNegativeButton("Ok", (dialogInterface, i) -> finish())
-                    .show();
+                    .setNegativeButton("Ok",  null)
+                    ;
+            AlertDialog dialog=builder.create();
+            dialog.show();
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(new View.OnClickListener() {
+                         @Override
+                         public void onClick(View view) {
+                            finish();
+                         }
+                     }
+                    );
         }
     }
 }
