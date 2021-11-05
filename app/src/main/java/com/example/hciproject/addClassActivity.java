@@ -1,6 +1,7 @@
 package com.example.hciproject;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.hciproject.data.DataSource;
 import com.example.hciproject.databinding.ActivityAddClassBinding;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
@@ -35,6 +37,7 @@ public class addClassActivity extends AppCompatActivity {
         subjectPickerInit();
         dayPickerInit();
         timePickerInit();
+        formCTAbuttonsinit();
 
     }
 
@@ -70,6 +73,7 @@ public class addClassActivity extends AppCompatActivity {
         });
         binding.SubjectautoCompleteListView.setOnFocusChangeListener(focusChangeListener);
     }
+
     void createAddSubjectDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.dialogTheme);
         builder.setTitle("Enter subject details");
@@ -106,6 +110,9 @@ public class addClassActivity extends AppCompatActivity {
         picker.addOnPositiveButtonClickListener(view -> editText.setText(String.valueOf(picker.getHour())+":"+String.valueOf(picker.getMinute())));
         picker.show(getSupportFragmentManager(),"tag");
     }
+    private void formCTAbuttonsinit() {
+        binding.cancel.setOnClickListener(view -> cancel());
+    }
     View.OnFocusChangeListener focusChangeListener = new View.OnFocusChangeListener() {
         @Override
         public void onFocusChange(View view, boolean b) {
@@ -116,4 +123,27 @@ public class addClassActivity extends AppCompatActivity {
             }
         }
     };
+    void cancel(){
+        if(
+                binding.SubjectautoCompleteListView.getText().toString().equals("")
+                && binding.daysAutoCompleteListView.getText().toString().equals("")
+                && binding.startTime.getText().toString().equals("")
+                && binding.endTime.getText().toString().equals("")
+        ){
+            finish();
+        }
+        else{
+            new MaterialAlertDialogBuilder(this,R.style.cancelDialogTheme)
+                    .setTitle("Delete this draft?")
+                    .setMessage("You will lose the class data that you have filled. \n\nNewly created subjects will not be deleted and can be deleted by visiting My Subjects")
+                    .setPositiveButton("Cancel", null)
+                    .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
+                        }
+                    })
+                    .show();
+        }
+    }
 }

@@ -25,15 +25,25 @@
         <item name="android:paddingHorizontal">5dp</item>
         <item name="android:backgroundDimAmount">0.83</item>
     </style>
+    <style name="cancelDialogTheme" parent="dialogTheme">
+        <item name="buttonBarNegativeButtonStyle">@style/deleteButton</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.MaterialComponents.Button.TextButton.Dialog</item>
+        <item name="android:textColorPrimary">@color/white</item>
+    </style>
 
     <style name="negButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
         <item name="android:textColor">@color/white</item>
         <item name="android:layout_gravity">left</item>
+        <item name="android:padding">10dp</item>
     </style>
 
     <style name="posButtonStyle">
         <item name="android:textColor">@color/white</item>
         <item name="backgroundTint">@color/green_active</item>
         <item name="android:layout_marginLeft">25dp</item>
+    </style>
+
+    <style name="deleteButton" parent="posButtonStyle">
+        <item name="backgroundTint">@color/red_active</item>
     </style>
 </resources>
