@@ -2,9 +2,11 @@ package com.example.hciproject;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -39,8 +41,26 @@ public class addClassActivity extends AppCompatActivity {
         timePickerInit();
         formCTAbuttonsinit();
 
-    }
 
+
+    }
+    //Code to remove focus from the edit texts when clicked outside
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if (v instanceof EditText) {
+                Rect outRect = new Rect();
+                v.getGlobalVisibleRect(outRect);
+                if (!outRect.contains((int)event.getRawX(), (int)event.getRawY())) {
+                    v.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        }
+        return super.dispatchTouchEvent( event );
+    }
     void setUpToolBar(){
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -137,12 +157,7 @@ public class addClassActivity extends AppCompatActivity {
                     .setTitle("Delete this draft?")
                     .setMessage("You will lose the class data that you have filled. \n\nNewly created subjects will not be deleted and can be deleted by visiting My Subjects")
                     .setPositiveButton("Cancel", null)
-                    .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            finish();
-                        }
-                    })
+                    .setNegativeButton("Ok", (dialogInterface, i) -> finish())
                     .show();
         }
     }
