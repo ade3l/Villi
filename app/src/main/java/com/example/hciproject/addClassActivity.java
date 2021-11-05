@@ -43,7 +43,11 @@ public class addClassActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Add a class");
-        toolbar.setNavigationOnClickListener(view -> finish());
+        toolbar.setNavigationOnClickListener(view -> {
+//                  TODO: Confirmation message whether to leave and lose all data
+                    finish();
+                }
+        );
     }
 
     private void subjectPickerInit() {
