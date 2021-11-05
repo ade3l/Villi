@@ -3,10 +3,12 @@ package com.example.hciproject;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +19,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListAdapter;
+import android.widget.Toast;
 
 import com.example.hciproject.data.DataSource;
 import com.example.hciproject.databinding.ActivityAddClassBinding;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +43,7 @@ public class addClassActivity extends AppCompatActivity {
         setUpToolBar();
         subjectPickerInit();
         dayPickerInit();
+        timePickerInit();
 
     }
 
@@ -52,6 +59,7 @@ public class addClassActivity extends AppCompatActivity {
             }
         });
     }
+
     private void subjectPickerInit() {
         ArrayAdapter adapter=new ArrayAdapter(this,R.layout.list_subject, DataSource.getSubjects());
         binding.SubjectautoCompleteListView.setAdapter(adapter);
@@ -98,6 +106,33 @@ public class addClassActivity extends AppCompatActivity {
         AutoCompleteTextView subjectTV= binding.daysAutoCompleteListView;
         ArrayAdapter adapter=new ArrayAdapter(this,R.layout.list_subject, DataSource.getDays());
         subjectTV.setAdapter(adapter);
+    }
+    private void timePickerInit() {
+        binding.startTime.setShowSoftInputOnFocus(false);
+        binding.endTime.setShowSoftInputOnFocus(false);
+        binding.startTime.setOnClickListener(view -> {
+            createTimePicker(binding.startTime,"Select start time");
+        });
+        binding.endTime.setOnClickListener(view ->{
+            createTimePicker(binding.endTime,"Select end time");
+        });
+    }
+    private void createTimePicker(EditText editText, String title){
+        int hour=12, minute=10;
+        if(editText.getText()!=null && !editText.getText().toString().equals("") ){
+            hour=Integer.parseInt(editText.getText().toString().split(":")[0]);
+            minute=Integer.parseInt(editText.getText().toString().split(":")[1]);
+        }
+        MaterialTimePicker picker =new MaterialTimePicker.Builder()
+                .setTimeFormat(TimeFormat.CLOCK_12H)
+                .setHour(hour)
+                .setMinute(minute)
+                .setTitleText(title)
+                .build();
+        picker.addOnPositiveButtonClickListener(view ->{
+            editText.setText(String.valueOf(picker.getHour())+":"+String.valueOf(picker.getMinute()));
+        });
+        picker.show(getSupportFragmentManager(),"tag");
     }
     View.OnFocusChangeListener focusChangeListener = new View.OnFocusChangeListener() {
         @Override
