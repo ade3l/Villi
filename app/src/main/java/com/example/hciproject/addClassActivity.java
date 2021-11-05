@@ -1,36 +1,27 @@
 package com.example.hciproject;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
-
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.hciproject.data.DataSource;
 import com.example.hciproject.databinding.ActivityAddClassBinding;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 public class addClassActivity extends AppCompatActivity {
     private ActivityAddClassBinding binding;
@@ -50,45 +41,28 @@ public class addClassActivity extends AppCompatActivity {
     void setUpToolBar(){
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Add a class");
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        toolbar.setNavigationOnClickListener(view -> finish());
     }
 
     private void subjectPickerInit() {
         ArrayAdapter adapter=new ArrayAdapter(this,R.layout.list_subject, DataSource.getSubjects());
         binding.SubjectautoCompleteListView.setAdapter(adapter);
-        binding.addSubject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createAddSubjectDialog();
-            }
+        binding.addSubject.setOnClickListener(view -> createAddSubjectDialog());
+        binding.SubjectautoCompleteListView.setOnItemClickListener((adapterView, view, i, l) -> {
+            InputMethodManager inputMethodManager= (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
+            binding.daysAutoCompleteListView.requestFocus();
         });
-        binding.SubjectautoCompleteListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        binding.SubjectautoCompleteListView.setOnKeyListener((view, i, keyEvent) -> {
+            if(keyEvent.getKeyCode()==KeyEvent.KEYCODE_ENTER){
                 InputMethodManager inputMethodManager= (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
                 binding.daysAutoCompleteListView.requestFocus();
+                return true;
             }
-        });
-        binding.SubjectautoCompleteListView.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                if(keyEvent.getKeyCode()==KeyEvent.KEYCODE_ENTER){
-                    InputMethodManager inputMethodManager= (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
-                    binding.daysAutoCompleteListView.requestFocus();
-                    return true;
-                }
-                return false;
-            }
+            return false;
         });
         binding.SubjectautoCompleteListView.setOnFocusChangeListener(focusChangeListener);
     }
@@ -110,12 +84,8 @@ public class addClassActivity extends AppCompatActivity {
     private void timePickerInit() {
         binding.startTime.setShowSoftInputOnFocus(false);
         binding.endTime.setShowSoftInputOnFocus(false);
-        binding.startTime.setOnClickListener(view -> {
-            createTimePicker(binding.startTime,"Select start time");
-        });
-        binding.endTime.setOnClickListener(view ->{
-            createTimePicker(binding.endTime,"Select end time");
-        });
+        binding.startTime.setOnClickListener(view -> createTimePicker(binding.startTime,"Select start time"));
+        binding.endTime.setOnClickListener(view -> createTimePicker(binding.endTime,"Select end time"));
     }
     private void createTimePicker(EditText editText, String title){
         int hour=12, minute=10;
@@ -129,9 +99,7 @@ public class addClassActivity extends AppCompatActivity {
                 .setMinute(minute)
                 .setTitleText(title)
                 .build();
-        picker.addOnPositiveButtonClickListener(view ->{
-            editText.setText(String.valueOf(picker.getHour())+":"+String.valueOf(picker.getMinute()));
-        });
+        picker.addOnPositiveButtonClickListener(view -> editText.setText(String.valueOf(picker.getHour())+":"+String.valueOf(picker.getMinute())));
         picker.show(getSupportFragmentManager(),"tag");
     }
     View.OnFocusChangeListener focusChangeListener = new View.OnFocusChangeListener() {
