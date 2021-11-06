@@ -76,7 +76,7 @@ public class addClassActivity extends AppCompatActivity {
     private void subjectPickerInit() {
         ArrayAdapter adapter=new ArrayAdapter(this,R.layout.list_subject, DataSource.getSubjects());
         binding.SubjectautoCompleteListView.setAdapter(adapter);
-        binding.addSubject.setOnClickListener(view -> createAddSubjectDialog());
+        binding.addSubject.setOnClickListener(view -> createAddSubjectDialog(adapter));
         binding.SubjectautoCompleteListView.setOnItemClickListener((adapterView, view, i, l) -> {
             InputMethodManager inputMethodManager= (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
@@ -94,12 +94,26 @@ public class addClassActivity extends AppCompatActivity {
         binding.SubjectautoCompleteListView.setOnFocusChangeListener(focusChangeListener);
     }
 
-    void createAddSubjectDialog(){
+    void createAddSubjectDialog(ArrayAdapter adapter){
         AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.dialogTheme);
         builder.setTitle("Enter subject details");
         View inflatedView= LayoutInflater.from(this).inflate(R.layout.dialog_add_class,(ViewGroup) findViewById(android.R.id.content),false);
         builder.setView(inflatedView);
-        builder.setPositiveButton("Add", null);
+        builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                EditText subjectNameTV= inflatedView.findViewById(R.id.subjectNameIp);
+                String subjectName=subjectNameTV.getText().toString();
+                if(subjectName.equals("")){
+                    subjectNameTV.setError("This field cannot be empty");
+                }
+                else{
+                    DataSource.addSubject(subjectName);
+                    adapter.notifyDataSetChanged();
+                    binding.SubjectautoCompleteListView.setText(subjectName);
+                }
+            }
+        });
         builder.setNegativeButton("Cancel",null);
         AlertDialog dialog=builder.create();
         dialog.show();
@@ -164,7 +178,7 @@ public class addClassActivity extends AppCompatActivity {
             dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(new View.OnClickListener() {
                          @Override
                          public void onClick(View view) {
-                            finish();
+                             finish(); dialog.cancel();
                          }
                      }
                     );
