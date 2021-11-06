@@ -4,14 +4,16 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class DataSource {
     static List<String> subs=new ArrayList<>();
-    private static SQLiteDatabase subjectsDb;
-    public static void refreshSubjects(Context context){
+    private static SQLiteDatabase subjectsDb, classesDb;
+    public static void initSubjects(Context context){
         subs.clear();
 //        TODO: Populate the subs array with data from sqldb
         subjectsDb = context.openOrCreateDatabase("subjects",Context.MODE_PRIVATE,null);
@@ -34,6 +36,15 @@ public class DataSource {
     public static void addSubject(String subjectName){
         subjectsDb.execSQL("INSERT INTO subjects (subjectName) VALUES ('"+subjectName+"')");
         subs.add(subjectName);
+    }
+
+    public static void initClasses(Context context){
+        classesDb= context.openOrCreateDatabase("classes",Context.MODE_PRIVATE,null);
+        classesDb.execSQL("CREATE TABLE IF NOT EXISTS classes(day VARCHAR, subjectName VARCHAR, startTime INTEGER, endTime INTEGER)");
+    }
+    public static boolean addClass(String day, String subjectName, Time startTime, Time endTime){
+        classesDb.execSQL("INSERT INTO classes VALUES('"+day+"','"+subjectName+"','"+startTime+"','"+endTime+"')");
+        return true;
     }
 
 
