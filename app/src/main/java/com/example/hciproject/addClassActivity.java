@@ -23,6 +23,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.hciproject.data.DataSource;
 import com.example.hciproject.databinding.ActivityAddClassBinding;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
@@ -104,10 +105,20 @@ public class addClassActivity extends AppCompatActivity {
         builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        builder.setNegativeButton("Cancel",null);
+        AlertDialog dialog=builder.create();
+        dialog.show();
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 EditText subjectNameTV= inflatedView.findViewById(R.id.subjectNameIp);
                 String subjectName=subjectNameTV.getText().toString();
+                TextInputLayout subjectNameParent=inflatedView.findViewById(R.id.subjectNameIpLayout);
                 if(subjectName.equals("")){
-                    subjectNameTV.setError("This field cannot be empty");
+                    subjectNameParent.setError("Enter a subject name");
                 }
                 else{
                     DataSource.addSubject(subjectName);
@@ -116,9 +127,6 @@ public class addClassActivity extends AppCompatActivity {
                 }
             }
         });
-        builder.setNegativeButton("Cancel",null);
-        AlertDialog dialog=builder.create();
-        dialog.show();
     }
     private void dayPickerInit() {
         AutoCompleteTextView subjectTV= binding.daysAutoCompleteListView;
@@ -160,29 +168,27 @@ public class addClassActivity extends AppCompatActivity {
         String endTime=binding.endTime.getText().toString();
         boolean isValid=true;
         if(day.equals("")){
-            binding.dayTIlayout.setError("Cannot be empty");
+            binding.dayTIlayout.setError("Enter a day");
             isValid=false;
         }
-        if(!DataSource.getDays().contains(day)){
+        else if(!DataSource.getDays().contains(day)){
             binding.dayTIlayout.setError("Please select a valid day");
             isValid=false;
         }
         if(subjectName.equals("")){
-            binding.subjectTIlayout.setError("Cannot be empty");
+            binding.subjectTIlayout.setError("Enter a subject");
             isValid=false;
         }
-        if(!DataSource.getSubjects().contains(subjectName)){
-            binding.subjectTIlayout.setError("Given subject does not exist");
+        else if(!DataSource.getSubjects().contains(subjectName)){
+            binding.subjectTIlayout.setError("Could not find the subject");
             isValid=false;
-        }
-        else{            Log.i("mine"," not contains");
         }
         if(startTime.equals("")){
-            binding.startTimeTIlayout.setError("Please select a valid time");
+            binding.startTimeTIlayout.setError("Enter a start time");
             isValid=false;
         }
         if(endTime.equals("")){
-            binding.endTimeTIlayout.setError("Please select a valid time");
+            binding.endTimeTIlayout.setError("Enter an end time");
             isValid=false;
         }
         if(!startTime.equals("")&&!endTime.equals("")){
@@ -191,6 +197,7 @@ public class addClassActivity extends AppCompatActivity {
             //i.e 08:00 = 0800. Then comparing them
             if(Integer.parseInt(startTime.replace(":",""))>Integer.parseInt(endTime.replace(":",""))){
                 binding.endTimeTIlayout.setError("End time must be after start time");
+                isValid=false;
             }
         }
         return isValid;
