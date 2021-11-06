@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -81,6 +82,7 @@ public class addClassActivity extends AppCompatActivity {
             InputMethodManager inputMethodManager= (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
             binding.daysAutoCompleteListView.requestFocus();
+//            binding.subjectTIlayout.setError(null);
         });
         binding.SubjectautoCompleteListView.setOnKeyListener((view, i, keyEvent) -> {
             if(keyEvent.getKeyCode()==KeyEvent.KEYCODE_ENTER){
@@ -146,14 +148,60 @@ public class addClassActivity extends AppCompatActivity {
     }
     private void formCTAbuttonsinit() {
         binding.cancel.setOnClickListener(view -> cancel());
+        binding.addClass.setOnClickListener(view -> {
+            validateForm();
+        });
     }
+
+    private boolean validateForm() {
+        String day=binding.daysAutoCompleteListView.getText().toString();
+        String subjectName=binding.SubjectautoCompleteListView.getText().toString();
+        String startTime=binding.startTime.getText().toString();
+        String endTime=binding.endTime.getText().toString();
+        boolean isValid=true;
+        if(day.equals("")){
+            binding.dayTIlayout.setError("Cannot be empty");
+            isValid=false;
+        }
+        if(!DataSource.getDays().contains(day)){
+            binding.dayTIlayout.setError("Please select a valid day");
+            isValid=false;
+        }
+        if(subjectName.equals("")){
+            binding.subjectTIlayout.setError("Cannot be empty");
+            isValid=false;
+        }
+        if(!DataSource.getSubjects().contains(subjectName)){
+            binding.subjectTIlayout.setError("Given subject does not exist");
+            isValid=false;
+        }
+        else{            Log.i("mine"," not contains");
+        }
+        if(startTime.equals("")){
+            binding.startTimeTIlayout.setError("Please select a valid time");
+            isValid=false;
+        }
+        if(endTime.equals("")){
+            binding.endTimeTIlayout.setError("Please select a valid time");
+            isValid=false;
+        }
+        if(!startTime.equals("")&&!endTime.equals("")){
+            //Make sure that end time is after start time
+            //This is done be converting the times to an integer
+            //i.e 08:00 = 0800. Then comparing them
+            if(Integer.parseInt(startTime.replace(":",""))>Integer.parseInt(endTime.replace(":",""))){
+                binding.endTimeTIlayout.setError("End time must be after start time");
+            }
+        }
+        return isValid;
+    }
+
     View.OnFocusChangeListener focusChangeListener = new View.OnFocusChangeListener() {
         @Override
         public void onFocusChange(View view, boolean b) {
             if(!binding.SubjectautoCompleteListView.hasFocus()){
                 InputMethodManager inputMethodManager= (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
-//                binding.SubjectautoCompleteListView.setOnFocusChangeListener(null);
             }
         }
     };
