@@ -15,11 +15,13 @@
         android:background="@color/navbarGrey"/>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/subjectTIlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_marginTop="25dp"
         android:layout_marginHorizontal="10dp"
+        app:errorEnabled="true"
         android:hint="Pick a subject">
 
 <!--        TODO: Theme the text view-->
@@ -47,6 +49,7 @@
         app:rippleColor="@color/grey"
         />
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/dayTIlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -59,6 +62,7 @@
             android:id="@+id/daysAutoCompleteListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:errorEnabled="true"
             android:inputType="none"            />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,10 +73,12 @@
         android:layout_marginTop="25dp"
         android:weightSum="2">
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/startTimeTIlayout"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:hint="Start time"
+            app:errorEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_marginHorizontal="10dp">
             <com.google.android.material.textfield.TextInputEditText
@@ -88,10 +94,12 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/endTimeTIlayout"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:hint="End time"
+            app:errorEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_marginHorizontal="10dp">
             <com.google.android.material.textfield.TextInputEditText
@@ -121,7 +129,7 @@
             android:layout_marginHorizontal="10dp"
             android:textColor="@color/white"/>
         <Button
-            android:id="@+id/add"
+            android:id="@+id/add_class"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"

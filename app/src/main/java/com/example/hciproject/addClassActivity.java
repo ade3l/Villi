@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -22,6 +23,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.hciproject.data.DataSource;
 import com.example.hciproject.databinding.ActivityAddClassBinding;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
@@ -76,11 +78,12 @@ public class addClassActivity extends AppCompatActivity {
     private void subjectPickerInit() {
         ArrayAdapter adapter=new ArrayAdapter(this,R.layout.list_subject, DataSource.getSubjects());
         binding.SubjectautoCompleteListView.setAdapter(adapter);
-        binding.addSubject.setOnClickListener(view -> createAddSubjectDialog());
+        binding.addSubject.setOnClickListener(view -> createAddSubjectDialog(adapter));
         binding.SubjectautoCompleteListView.setOnItemClickListener((adapterView, view, i, l) -> {
             InputMethodManager inputMethodManager= (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
             binding.daysAutoCompleteListView.requestFocus();
+//            binding.subjectTIlayout.setError(null);
         });
         binding.SubjectautoCompleteListView.setOnKeyListener((view, i, keyEvent) -> {
             if(keyEvent.getKeyCode()==KeyEvent.KEYCODE_ENTER){
@@ -94,15 +97,36 @@ public class addClassActivity extends AppCompatActivity {
         binding.SubjectautoCompleteListView.setOnFocusChangeListener(focusChangeListener);
     }
 
-    void createAddSubjectDialog(){
+    void createAddSubjectDialog(ArrayAdapter adapter){
         AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.dialogTheme);
         builder.setTitle("Enter subject details");
         View inflatedView= LayoutInflater.from(this).inflate(R.layout.dialog_add_class,(ViewGroup) findViewById(android.R.id.content),false);
         builder.setView(inflatedView);
-        builder.setPositiveButton("Add", null);
+        builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
         builder.setNegativeButton("Cancel",null);
         AlertDialog dialog=builder.create();
         dialog.show();
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText subjectNameTV= inflatedView.findViewById(R.id.subjectNameIp);
+                String subjectName=subjectNameTV.getText().toString();
+                TextInputLayout subjectNameParent=inflatedView.findViewById(R.id.subjectNameIpLayout);
+                if(subjectName.equals("")){
+                    subjectNameParent.setError("Enter a subject name");
+                }
+                else{
+                    DataSource.addSubject(subjectName);
+                    adapter.notifyDataSetChanged();
+                    binding.SubjectautoCompleteListView.setText(subjectName);
+                }
+            }
+        });
     }
     private void dayPickerInit() {
         AutoCompleteTextView subjectTV= binding.daysAutoCompleteListView;
@@ -132,14 +156,59 @@ public class addClassActivity extends AppCompatActivity {
     }
     private void formCTAbuttonsinit() {
         binding.cancel.setOnClickListener(view -> cancel());
+        binding.addClass.setOnClickListener(view -> {
+            validateForm();
+        });
     }
+
+    private boolean validateForm() {
+        String day=binding.daysAutoCompleteListView.getText().toString();
+        String subjectName=binding.SubjectautoCompleteListView.getText().toString();
+        String startTime=binding.startTime.getText().toString();
+        String endTime=binding.endTime.getText().toString();
+        boolean isValid=true;
+        if(day.equals("")){
+            binding.dayTIlayout.setError("Enter a day");
+            isValid=false;
+        }
+        else if(!DataSource.getDays().contains(day)){
+            binding.dayTIlayout.setError("Please select a valid day");
+            isValid=false;
+        }
+        if(subjectName.equals("")){
+            binding.subjectTIlayout.setError("Enter a subject");
+            isValid=false;
+        }
+        else if(!DataSource.getSubjects().contains(subjectName)){
+            binding.subjectTIlayout.setError("Could not find the subject");
+            isValid=false;
+        }
+        if(startTime.equals("")){
+            binding.startTimeTIlayout.setError("Enter a start time");
+            isValid=false;
+        }
+        if(endTime.equals("")){
+            binding.endTimeTIlayout.setError("Enter an end time");
+            isValid=false;
+        }
+        if(!startTime.equals("")&&!endTime.equals("")){
+            //Make sure that end time is after start time
+            //This is done be converting the times to an integer
+            //i.e 08:00 = 0800. Then comparing them
+            if(Integer.parseInt(startTime.replace(":",""))>Integer.parseInt(endTime.replace(":",""))){
+                binding.endTimeTIlayout.setError("End time must be after start time");
+                isValid=false;
+            }
+        }
+        return isValid;
+    }
+
     View.OnFocusChangeListener focusChangeListener = new View.OnFocusChangeListener() {
         @Override
         public void onFocusChange(View view, boolean b) {
             if(!binding.SubjectautoCompleteListView.hasFocus()){
                 InputMethodManager inputMethodManager= (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
-//                binding.SubjectautoCompleteListView.setOnFocusChangeListener(null);
             }
         }
     };
@@ -164,7 +233,7 @@ public class addClassActivity extends AppCompatActivity {
             dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(new View.OnClickListener() {
                          @Override
                          public void onClick(View view) {
-                            finish();
+                             finish(); dialog.cancel();
                          }
                      }
                     );
