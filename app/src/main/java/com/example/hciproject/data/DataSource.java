@@ -42,11 +42,10 @@ public class DataSource {
         classesDb= context.openOrCreateDatabase("classes",Context.MODE_PRIVATE,null);
         classesDb.execSQL("CREATE TABLE IF NOT EXISTS classes(day VARCHAR, subjectName VARCHAR, startTime INTEGER, endTime INTEGER)");
     }
-    public static boolean addClass(String day, String subjectName, Time startTime, Time endTime){
+    public static boolean addClass(String day, String subjectName, String startTime, String endTime){
         classesDb.execSQL("INSERT INTO classes VALUES('"+day+"','"+subjectName+"','"+startTime+"','"+endTime+"')");
         return true;
     }
-
 
     public static List<String> getSubjects(){
         return subs;
