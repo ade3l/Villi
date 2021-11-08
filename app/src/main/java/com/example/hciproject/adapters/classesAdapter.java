@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hciproject.R;
@@ -36,6 +37,7 @@ public class classesAdapter extends RecyclerView.Adapter<classesAdapter.classesI
         Classes myClass =classes.get(position);
         holder.subjectTV.setText(myClass.getSubject());
         holder.timeTV.setText(String.format("%s - %s",myClass.getStartTime(),myClass.getEndTime()));
+        holder.classId.setText(myClass.getClassId());
     }
 
     @Override
@@ -44,12 +46,14 @@ public class classesAdapter extends RecyclerView.Adapter<classesAdapter.classesI
     }
 
     static class classesItemViewHolder extends RecyclerView.ViewHolder{
-        TextView subjectTV,timeTV;
+        TextView subjectTV,timeTV,classId;
+        CardView item;
         public classesItemViewHolder(@NonNull View itemView) {
             super(itemView);
             subjectTV= itemView.findViewById(R.id.subject);
             timeTV= itemView.findViewById(R.id.time);
-
+            item=itemView.findViewById(R.id.item);
+            classId=itemView.findViewById(R.id.classId);
         }
     }
 }

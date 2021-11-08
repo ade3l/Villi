@@ -42,10 +42,10 @@ public class DataSource {
 
     public static void initClasses(Context context){
         classesDb= context.openOrCreateDatabase("classes",Context.MODE_PRIVATE,null);
-        classesDb.execSQL("CREATE TABLE IF NOT EXISTS classes(day VARCHAR, subjectName VARCHAR, startTime INTEGER, endTime INTEGER)");
+        classesDb.execSQL("CREATE TABLE IF NOT EXISTS classes(classId VARCHAR,day VARCHAR, subjectName VARCHAR, startTime INTEGER, endTime INTEGER)");
     }
-    public static boolean addClass(String day, String subjectName, String startTime, String endTime){
-        classesDb.execSQL("INSERT INTO classes VALUES('"+day+"','"+subjectName+"','"+startTime+"','"+endTime+"')");
+    public static boolean addClass(String classId,String day, String subjectName, String startTime, String endTime){
+        classesDb.execSQL("INSERT INTO classes VALUES('"+classId+"','"+day+"','"+subjectName+"','"+startTime+"','"+endTime+"')");
         return true;
     }
 
@@ -57,12 +57,14 @@ public class DataSource {
         int subName=c.getColumnIndex("subjectName");
         int start=c.getColumnIndex("startTime");
         int end=c.getColumnIndex("endTime");
+        int id=c.getColumnIndex("classId");
         try {
             while (!c.isAfterLast()) {
                 String subjectName=c.getString(subName),
                         startTime=c.getString(start),
-                        endTime=c.getString(end);
-                listOfClasses.add(new Classes(subjectName,startTime,endTime));
+                        endTime=c.getString(end),
+                        classId=c.getString(id);
+                listOfClasses.add(new Classes(subjectName,startTime,endTime,classId));
                 c.moveToNext();
             }
         }

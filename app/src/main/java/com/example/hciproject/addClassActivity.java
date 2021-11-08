@@ -2,6 +2,7 @@ package com.example.hciproject;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -30,18 +31,19 @@ import java.util.Objects;
 
 public class addClassActivity extends AppCompatActivity {
     private ActivityAddClassBinding binding;
+    SharedPreferences pref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAddClassBinding.inflate(getLayoutInflater());
         View view=binding.getRoot();
+        pref=this.getSharedPreferences("com.example.villi",Context.MODE_PRIVATE);
         setContentView(view);
         setUpToolBar();
         subjectPickerInit();
         dayPickerInit();
         timePickerInit();
         formCTAbuttonsinit();
-
 
 
     }
@@ -156,7 +158,10 @@ public class addClassActivity extends AppCompatActivity {
             String startTime= Objects.requireNonNull(binding.startTime.getText()).toString();
             String endTime= Objects.requireNonNull(binding.endTime.getText()).toString();
             if(validateForm(day,subjectName,startTime,endTime)){
-                DataSource.addClass(day,subjectName,startTime,endTime);
+                int classId=pref.getInt("class id",1000);
+                DataSource.addClass(String.valueOf(classId),day,subjectName,startTime,endTime);
+                classId+=1;
+                pref.edit().putInt("class id",classId).apply();
                 Toast.makeText(this, "Added class", Toast.LENGTH_SHORT).show();
                 finish();
             }
