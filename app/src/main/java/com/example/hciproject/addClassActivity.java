@@ -70,8 +70,7 @@ public class addClassActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Add a class");
         toolbar.setNavigationOnClickListener(view -> {
-//                  TODO: Confirmation message whether to leave and lose all data
-                    finish();
+                    cancel();
                 }
         );
     }

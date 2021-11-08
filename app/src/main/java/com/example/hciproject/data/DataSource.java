@@ -16,7 +16,6 @@ public class DataSource {
     private static SQLiteDatabase subjectsDb, classesDb;
     public static void initSubjects(Context context){
         subs.clear();
-//        TODO: Populate the subs array with data from sqldb
         subjectsDb = context.openOrCreateDatabase("subjects",Context.MODE_PRIVATE,null);
         subjectsDb.execSQL("CREATE TABLE IF NOT EXISTS subjects(subjectName VARCHAR)");
         Cursor c=subjectsDb.rawQuery("SELECT * FROM subjects",null);
