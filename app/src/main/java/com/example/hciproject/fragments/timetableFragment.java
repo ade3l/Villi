@@ -3,10 +3,10 @@ package com.example.hciproject.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,16 +19,14 @@ import com.example.hciproject.addClassActivity;
 import com.example.hciproject.data.DataSource;
 import com.example.hciproject.databinding.FragmentTimetableBinding;
 import com.example.hciproject.objects.Classes;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
 public class timetableFragment extends Fragment {
-    FloatingActionButton addClassButton;
     View view;
     private FragmentTimetableBinding binding;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding=FragmentTimetableBinding.inflate(inflater, container, false);
         view=binding.getRoot();
@@ -49,27 +47,21 @@ public class timetableFragment extends Fragment {
 
     private int getRadioButton(int i) {
         if (binding.monday.equals(view.findViewById(i))) {
-            Log.i("mine","monday selected");
             return 0;
         }
         if (binding.tuesday.equals(view.findViewById(i))) {
-            Log.i("mine","monday selected");
             return 1;
         }
         if (binding.wednesday.equals(view.findViewById(i))) {
-            Log.i("mine","monday selected");
             return 2;
         }
         if (binding.thursday.equals(view.findViewById(i))) {
-            Log.i("mine","monday selected");
             return 3;
         }
         if (binding.friday.equals(view.findViewById(i))) {
-            Log.i("mine","monday selected");
             return 4;
         }
         if (binding.saturday.equals(view.findViewById(i))) {
-            Log.i("mine","monday selected");
             return 5;
         }
         return 6;

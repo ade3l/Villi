@@ -42,7 +42,7 @@ public class classesAdapter extends RecyclerView.Adapter<classesAdapter.classesI
         return classes.size();
     }
 
-    class classesItemViewHolder extends RecyclerView.ViewHolder{
+    static class classesItemViewHolder extends RecyclerView.ViewHolder{
         TextView subjectTV,timeTV;
         public classesItemViewHolder(@NonNull View itemView) {
             super(itemView);

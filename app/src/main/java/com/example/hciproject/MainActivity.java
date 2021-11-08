@@ -40,24 +40,21 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setCurrentItem(1,false);
 
         viewPager.setUserInputEnabled(false);
-        navBar.setNavigationChangeListener(new BubbleNavigationChangeListener() {
-            @Override
-            public void onNavigationChanged(View view, int position) {
-                if (viewPager.getCurrentItem() == 0 ) {
+        navBar.setNavigationChangeListener((view, position) -> {
+            if (viewPager.getCurrentItem() == 0 ) {
 //                    TODO: hide fab for time table fragment too
-                    assignmentsFragment.hideFab();
-                }
-                viewPager.setCurrentItem(position);
-                //It shows up as an error for the first instantiation of the fragment
-                try {
-//                    TODO: show fab for time table fragment too
-                    if (viewPager.getCurrentItem() == 0) {
-                        assignmentsFragment.showFab();
-                    }
-                }
-                catch(Exception ignored){ }
-
+                assignmentsFragment.hideFab();
             }
+            viewPager.setCurrentItem(position);
+            //It shows up as an error for the first instantiation of the fragment
+            try {
+//                    TODO: show fab for time table fragment too
+                if (viewPager.getCurrentItem() == 0) {
+                    assignmentsFragment.showFab();
+                }
+            }
+            catch(Exception ignored){ }
+
         });
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
