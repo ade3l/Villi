@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:background="@color/bg">
-<!--TODO: Change top navigation bar color-->
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/content_frame"
