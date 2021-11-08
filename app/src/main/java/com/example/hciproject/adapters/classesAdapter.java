@@ -35,6 +35,7 @@ public class classesAdapter extends RecyclerView.Adapter<classesAdapter.classesI
     public void onBindViewHolder(@NonNull classesItemViewHolder holder, int position) {
         Classes myClass =classes.get(position);
         holder.subjectTV.setText(myClass.getSubject());
+        holder.timeTV.setText(String.format("%s - %s",myClass.getStartTime(),myClass.getEndTime()));
     }
 
     @Override

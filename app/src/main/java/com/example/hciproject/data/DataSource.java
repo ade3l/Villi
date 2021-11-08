@@ -52,12 +52,17 @@ public class DataSource {
 
     public static List<Classes> getClasses(String day){
         List<Classes> listOfClasses=new ArrayList<>();
-        Cursor c=classesDb.rawQuery("SELECT * FROM classes where day='"+day+"'",null);
+        Cursor c=classesDb.rawQuery("SELECT * FROM classes where day='"+day+"' ORDER BY startTime",null);
         c.moveToFirst();
-        int classesIndex=c.getColumnIndex("subjectName");
+        int subName=c.getColumnIndex("subjectName");
+        int start=c.getColumnIndex("startTime");
+        int end=c.getColumnIndex("endTime");
         try {
             while (!c.isAfterLast()) {
-                listOfClasses.add(new Classes(c.getString(classesIndex),"00:00","00:00"));
+                String subjectName=c.getString(subName),
+                        startTime=c.getString(start),
+                        endTime=c.getString(end);
+                listOfClasses.add(new Classes(subjectName,startTime,endTime));
                 c.moveToNext();
             }
         }
