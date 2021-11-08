@@ -159,8 +159,7 @@
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingHorizontal="12dp"
@@ -168,31 +167,36 @@
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/day"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Monday"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"/>
-            <TextView
-                android:id="@+id/numberOfClasses"
+            app:cardCornerRadius="6dp">
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="5 classes"
-                android:textColor="@color/white"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/classesRV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:listitem="@layout/item_classes"
-                android:layout_marginTop="10dp"
-                android:overScrollMode="never"/>
-        </LinearLayout>
-
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_rect_classes_layout"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Monday"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"/>
+                <TextView
+                    android:id="@+id/numberOfClasses"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="5 classes"
+                    android:textColor="@color/white"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/classesRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/item_classes"
+                    android:layout_marginTop="10dp"
+                    android:overScrollMode="never"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_class"
