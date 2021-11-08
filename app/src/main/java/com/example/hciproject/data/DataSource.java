@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.example.hciproject.objects.Classes;
+
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,7 +24,7 @@ public class DataSource {
         int subjectsNameIndex=c.getColumnIndex("subjectName");
         c.moveToFirst();
         try {
-            while (c != null) {
+            while (!c.isAfterLast()) {
                 subs.add(c.getString(subjectsNameIndex));
                 c.moveToNext();
             }
@@ -47,10 +49,30 @@ public class DataSource {
         return true;
     }
 
+
+    public static List<Classes> getClasses(String day){
+        List<Classes> listOfClasses=new ArrayList<>();
+        Log.i("mine",day);
+        Cursor c=classesDb.rawQuery("SELECT * FROM classes where day='"+day+"'",null);
+        c.moveToFirst();
+        int classesIndex=c.getColumnIndex("subjectName");
+        try {
+            while (!c.isAfterLast()) {
+                listOfClasses.add(new Classes(c.getString(classesIndex),"00:00","00:00"));
+                c.moveToNext();
+            }
+        }
+        catch (Exception e){
+            Log.i("mine","SQL error 2");
+            e.printStackTrace();
+        }
+        return listOfClasses;
+    }
+
     public static List<String> getSubjects(){
         return subs;
     }
-    static List<String> days= Arrays.asList("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
+    static List<String> days= Arrays.asList("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday");
 
     public static List<String> getDays(){
         return days;
