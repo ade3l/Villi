@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -123,6 +124,7 @@ public class addClassActivity extends AppCompatActivity {
                 else{
                     DataSource.addSubject(subjectName);
                     adapter.notifyDataSetChanged();
+                    dialog.dismiss();
                     binding.SubjectautoCompleteListView.setText(subjectName);
                 }
             }
@@ -157,15 +159,20 @@ public class addClassActivity extends AppCompatActivity {
     private void formCTAbuttonsinit() {
         binding.cancel.setOnClickListener(view -> cancel());
         binding.addClass.setOnClickListener(view -> {
-            validateForm();
+            String day=binding.daysAutoCompleteListView.getText().toString();
+            String subjectName=binding.SubjectautoCompleteListView.getText().toString();
+            String startTime=binding.startTime.getText().toString();
+            String endTime=binding.endTime.getText().toString();
+            if(validateForm(day,subjectName,startTime,endTime)){
+                DataSource.addClass(day,subjectName,startTime,endTime);
+                Toast.makeText(this, "Added class", Toast.LENGTH_SHORT).show();
+                finish();
+            }
         });
     }
 
-    private boolean validateForm() {
-        String day=binding.daysAutoCompleteListView.getText().toString();
-        String subjectName=binding.SubjectautoCompleteListView.getText().toString();
-        String startTime=binding.startTime.getText().toString();
-        String endTime=binding.endTime.getText().toString();
+    private boolean validateForm(String day,String subjectName,String startTime,String endTime) {
+
         boolean isValid=true;
         if(day.equals("")){
             binding.dayTIlayout.setError("Enter a day");

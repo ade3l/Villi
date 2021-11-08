@@ -8,4 +8,5 @@
 
     <string name="assignments">ASSIGNMENTS</string>
     <string name="lt"><![CDATA[<]]></string>
+    <string name="numClass">You have %d classes today</string>
 </resources>
