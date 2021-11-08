@@ -22,7 +22,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginHorizontal="10dp"
         app:errorEnabled="true"
-        android:hint="Pick a subject">
+        android:hint="@string/pick_a_subject">
 
 <!--        TODO: Theme the text view-->
         <AutoCompleteTextView
@@ -37,12 +37,12 @@
         android:id="@+id/addSubject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add a new subject"
+        android:text="@string/add_a_new_subject"
         android:layout_marginEnd="10dp"
         android:layout_marginTop="2dp"
         android:padding="5dp"
         style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_gravity="right"
+        android:layout_gravity="end"
         android:textColor="@color/white"
         app:icon="@drawable/baseline_add_white_24dp"
         app:iconTint="@color/selectedBlue"
@@ -55,7 +55,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_marginTop="25dp"
         android:layout_marginHorizontal="10dp"
-        android:hint="Pick a day">
+        android:hint="@string/pick_a_day">
 
         <!--        TODO: Theme the text view-->
         <AutoCompleteTextView
@@ -71,13 +71,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="25dp"
-        android:weightSum="2">
+        android:weightSum="2"
+        android:baselineAligned="false">
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/startTimeTIlayout"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:hint="Start time"
+            android:hint="@string/start_time"
             app:errorEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_marginHorizontal="10dp">
@@ -98,7 +99,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:hint="End time"
+            android:hint="@string/end_time"
             app:errorEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_marginHorizontal="10dp">
@@ -124,7 +125,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="cancel"
+            android:text="@android:string/cancel"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_marginHorizontal="10dp"
             android:textColor="@color/white"/>
@@ -133,7 +134,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:text="Add class"
+            android:text="@string/add_class"
             android:layout_marginHorizontal="10dp"
             android:backgroundTint="@color/green_active"/>
 

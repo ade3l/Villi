@@ -7,11 +7,11 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
-import android.view.View;
 
+import com.example.hciproject.adapters.pagerAdapter;
 import com.example.hciproject.data.DataSource;
+import com.example.hciproject.fragments.assignmentsFragment;
 import com.gauravk.bubblenavigation.BubbleNavigationLinearView;
-import com.gauravk.bubblenavigation.listener.BubbleNavigationChangeListener;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -39,24 +39,21 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setCurrentItem(1,false);
 
         viewPager.setUserInputEnabled(false);
-        navBar.setNavigationChangeListener(new BubbleNavigationChangeListener() {
-            @Override
-            public void onNavigationChanged(View view, int position) {
-                if (viewPager.getCurrentItem() == 0 ) {
+        navBar.setNavigationChangeListener((view, position) -> {
+            if (viewPager.getCurrentItem() == 0 ) {
 //                    TODO: hide fab for time table fragment too
-                    assignmentsFragment.hideFab();
-                }
-                viewPager.setCurrentItem(position);
-                //It shows up as an error for the first instantiation of the fragment
-                try {
-//                    TODO: show fab for time table fragment too
-                    if (viewPager.getCurrentItem() == 0) {
-                        assignmentsFragment.showFab();
-                    }
-                }
-                catch(Exception ignored){ }
-
+                assignmentsFragment.hideFab();
             }
+            viewPager.setCurrentItem(position);
+            //It shows up as an error for the first instantiation of the fragment
+            try {
+//                    TODO: show fab for time table fragment too
+                if (viewPager.getCurrentItem() == 0) {
+                    assignmentsFragment.showFab();
+                }
+            }
+            catch(Exception ignored){ }
+
         });
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override

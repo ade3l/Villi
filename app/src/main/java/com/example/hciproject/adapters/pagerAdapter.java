@@ -1,13 +1,14 @@
-package com.example.hciproject;
+package com.example.hciproject.adapters;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import java.util.List;
+import com.example.hciproject.fragments.assignmentsFragment;
+import com.example.hciproject.fragments.homeFragment;
+import com.example.hciproject.fragments.timetableFragment;
 
 public class pagerAdapter extends FragmentStateAdapter {
 

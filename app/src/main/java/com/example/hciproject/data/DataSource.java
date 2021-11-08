@@ -7,7 +7,6 @@ import android.util.Log;
 
 import com.example.hciproject.objects.Classes;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,6 +32,7 @@ public class DataSource {
             Log.i("mine","SQL error");
             e.printStackTrace();
         }
+        c.close();
     }
 
     public static void addSubject(String subjectName){
@@ -65,6 +65,7 @@ public class DataSource {
             Log.i("mine","SQL error 2");
             e.printStackTrace();
         }
+        c.close();
         return listOfClasses;
     }
 

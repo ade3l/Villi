@@ -4,14 +4,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
@@ -77,7 +75,7 @@ public class addClassActivity extends AppCompatActivity {
     }
 
     private void subjectPickerInit() {
-        ArrayAdapter adapter=new ArrayAdapter(this,R.layout.list_subject, DataSource.getSubjects());
+        ArrayAdapter adapter=new ArrayAdapter<>(this,R.layout.list_subject, DataSource.getSubjects());
         binding.SubjectautoCompleteListView.setAdapter(adapter);
         binding.addSubject.setOnClickListener(view -> createAddSubjectDialog(adapter));
         binding.SubjectautoCompleteListView.setOnItemClickListener((adapterView, view, i, l) -> {
@@ -98,41 +96,35 @@ public class addClassActivity extends AppCompatActivity {
         binding.SubjectautoCompleteListView.setOnFocusChangeListener(focusChangeListener);
     }
 
-    void createAddSubjectDialog(ArrayAdapter adapter){
+    void createAddSubjectDialog(ArrayAdapter<?> adapter){
         AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.dialogTheme);
         builder.setTitle("Enter subject details");
-        View inflatedView= LayoutInflater.from(this).inflate(R.layout.dialog_add_class,(ViewGroup) findViewById(android.R.id.content),false);
+        View inflatedView= LayoutInflater.from(this).inflate(R.layout.dialog_add_class, findViewById(android.R.id.content),false);
         builder.setView(inflatedView);
-        builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+        builder.setPositiveButton("Add", (dialogInterface, i) -> {
 
-            }
         });
         builder.setNegativeButton("Cancel",null);
         AlertDialog dialog=builder.create();
         dialog.show();
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText subjectNameTV= inflatedView.findViewById(R.id.subjectNameIp);
-                String subjectName=subjectNameTV.getText().toString();
-                TextInputLayout subjectNameParent=inflatedView.findViewById(R.id.subjectNameIpLayout);
-                if(subjectName.equals("")){
-                    subjectNameParent.setError("Enter a subject name");
-                }
-                else{
-                    DataSource.addSubject(subjectName);
-                    adapter.notifyDataSetChanged();
-                    dialog.dismiss();
-                    binding.SubjectautoCompleteListView.setText(subjectName);
-                }
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(view -> {
+            EditText subjectNameTV= inflatedView.findViewById(R.id.subjectNameIp);
+            String subjectName=subjectNameTV.getText().toString();
+            TextInputLayout subjectNameParent=inflatedView.findViewById(R.id.subjectNameIpLayout);
+            if(subjectName.equals("")){
+                subjectNameParent.setError("Enter a subject name");
+            }
+            else{
+                DataSource.addSubject(subjectName);
+                adapter.notifyDataSetChanged();
+                dialog.dismiss();
+                binding.SubjectautoCompleteListView.setText(subjectName);
             }
         });
     }
     private void dayPickerInit() {
         AutoCompleteTextView subjectTV= binding.daysAutoCompleteListView;
-        ArrayAdapter adapter=new ArrayAdapter(this,R.layout.list_subject, DataSource.getDays());
+        ArrayAdapter<? extends String> adapter=new ArrayAdapter<>(this,R.layout.list_subject, DataSource.getDays());
         subjectTV.setAdapter(adapter);
     }
     private void timePickerInit() {
@@ -142,7 +134,7 @@ public class addClassActivity extends AppCompatActivity {
         binding.endTime.setOnClickListener(view -> createTimePicker(binding.endTime,"Select end time"));
     }
     private void createTimePicker(EditText editText, String title){
-        int hour=12, minute=10;
+        int hour=00, minute=10;
         if(editText.getText()!=null && !editText.getText().toString().equals("") ){
             hour=Integer.parseInt(editText.getText().toString().split(":")[0]);
             minute=Integer.parseInt(editText.getText().toString().split(":")[1]);
@@ -153,7 +145,7 @@ public class addClassActivity extends AppCompatActivity {
                 .setMinute(minute)
                 .setTitleText(title)
                 .build();
-        picker.addOnPositiveButtonClickListener(view -> editText.setText(String.valueOf(picker.getHour())+":"+String.valueOf(picker.getMinute())));
+        picker.addOnPositiveButtonClickListener(view -> editText.setText(String.format("%02d:%02d", picker.getHour(), picker.getMinute())));
         picker.show(getSupportFragmentManager(),"tag");
     }
     private void formCTAbuttonsinit() {
@@ -161,8 +153,8 @@ public class addClassActivity extends AppCompatActivity {
         binding.addClass.setOnClickListener(view -> {
             String day=binding.daysAutoCompleteListView.getText().toString();
             String subjectName=binding.SubjectautoCompleteListView.getText().toString();
-            String startTime=binding.startTime.getText().toString();
-            String endTime=binding.endTime.getText().toString();
+            String startTime= Objects.requireNonNull(binding.startTime.getText()).toString();
+            String endTime= Objects.requireNonNull(binding.endTime.getText()).toString();
             if(validateForm(day,subjectName,startTime,endTime)){
                 DataSource.addClass(day,subjectName,startTime,endTime);
                 Toast.makeText(this, "Added class", Toast.LENGTH_SHORT).show();
@@ -202,7 +194,7 @@ public class addClassActivity extends AppCompatActivity {
             //Make sure that end time is after start time
             //This is done be converting the times to an integer
             //i.e 08:00 = 0800. Then comparing them
-            if(Integer.parseInt(startTime.replace(":",""))>Integer.parseInt(endTime.replace(":",""))){
+            if(startTime.compareTo(endTime)>0){
                 binding.endTimeTIlayout.setError("End time must be after start time");
                 isValid=false;
             }
@@ -223,27 +215,24 @@ public class addClassActivity extends AppCompatActivity {
         if(
                 binding.SubjectautoCompleteListView.getText().toString().equals("")
                 && binding.daysAutoCompleteListView.getText().toString().equals("")
-                && binding.startTime.getText().toString().equals("")
-                && binding.endTime.getText().toString().equals("")
+                && Objects.requireNonNull(binding.startTime.getText()).toString().equals("")
+                && Objects.requireNonNull(binding.endTime.getText()).toString().equals("")
         ){
             finish();
         }
         else{
             AlertDialog.Builder builder= new MaterialAlertDialogBuilder(this,R.style.cancelDialogTheme)
                     .setTitle("Delete this draft?")
-                    .setMessage("You will lose the class data that you have filled. \n\nNewly created subjects will not be deleted and can be deleted by visiting My Subjects")
+                    .setMessage(R.string.class_activity_cancel)
                     .setPositiveButton("Cancel", null)
                     .setNegativeButton("Ok",  null)
                     ;
             AlertDialog dialog=builder.create();
             dialog.show();
-            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(new View.OnClickListener() {
-                         @Override
-                         public void onClick(View view) {
-                             finish(); dialog.cancel();
-                         }
-                     }
-                    );
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(view -> {
+                finish(); dialog.cancel();
+            }
+            );
         }
     }
 }

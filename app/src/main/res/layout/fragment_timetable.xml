@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/bg"
-    tools:context=".timetableFragment">
+    tools:context=".fragments.timetableFragment">
 
 
     <LinearLayout
@@ -47,7 +47,7 @@
                     android:fontFamily="@font/montserrat"
                     android:text="@string/set_time_table"
                     android:textColor="@color/white"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="bold"
                     android:layout_marginTop="7dp"
                     />
@@ -56,7 +56,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/pick_a_day"
                     android:textColor="@color/white"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
+                    android:textAllCaps="true"
                     android:fontFamily="@font/montserrat"
                     android:layout_marginTop="4dp"/>
 
@@ -82,7 +83,7 @@
                         android:textColor="@drawable/radio_text"
                         android:gravity="center"
                         android:textSize="@dimen/radio_text_size"
-                        android:text="Mon"/>
+                        android:text="@string/mon"/>
 
                     <RadioButton
                         android:id="@+id/tuesday"
@@ -94,7 +95,7 @@
                         android:textColor="@drawable/radio_text"
                         android:gravity="center"
                         android:textSize="@dimen/radio_text_size"
-                        android:text="Tue"/>
+                        android:text="@string/tue"/>
 
                     <RadioButton
                         android:id="@+id/wednesday"
@@ -106,7 +107,7 @@
                         android:textColor="@drawable/radio_text"
                         android:gravity="center"
                         android:textSize="@dimen/radio_text_size"
-                        android:text="Wed"/>
+                        android:text="@string/wed"/>
 
                     <RadioButton
                         android:id="@+id/thursday"
@@ -118,7 +119,7 @@
                         android:textColor="@drawable/radio_text"
                         android:gravity="center"
                         android:textSize="@dimen/radio_text_size"
-                        android:text="Thu"/>
+                        android:text="@string/thu"/>
                     <RadioButton
                         android:id="@+id/friday"
                         android:layout_width="0dp"
@@ -129,7 +130,7 @@
                         android:textColor="@drawable/radio_text"
                         android:gravity="center"
                         android:textSize="@dimen/radio_text_size"
-                        android:text="Fri"/>
+                        android:text="@string/fri"/>
 
                     <RadioButton
                         android:id="@+id/saturday"
@@ -141,7 +142,7 @@
                         android:textColor="@drawable/radio_text"
                         android:gravity="center"
                         android:textSize="@dimen/radio_text_size"
-                        android:text="Sat"/>
+                        android:text="@string/sat"/>
 
                     <RadioButton
                         android:id="@+id/sunday"
@@ -153,7 +154,7 @@
                         android:textColor="@drawable/radio_text"
                         android:gravity="center"
                         android:textSize="@dimen/radio_text_size"
-                    android:text="Sun"/>
+                        android:text="@string/sun"/>
                 </RadioGroup>
 
             </LinearLayout>
@@ -188,7 +189,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:listitem="@layout/item_classes"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:overScrollMode="never"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -196,7 +198,7 @@
         android:id="@+id/add_class"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
+        android:layout_gravity="bottom|end"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="12dp"
         android:src="@drawable/baseline_add_white_24dp"
