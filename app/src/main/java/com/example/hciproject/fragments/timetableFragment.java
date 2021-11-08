@@ -25,6 +25,7 @@ import java.util.List;
 public class timetableFragment extends Fragment {
     static View view;
     private static FragmentTimetableBinding binding;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,6 +38,13 @@ public class timetableFragment extends Fragment {
             setClasses(day);
         });
         return view;
+    }
+
+    public static void hideFab() {
+        binding.addClass.hide();
+    }
+    public static void showFab() {
+        binding.addClass.show();
     }
 
     @Override

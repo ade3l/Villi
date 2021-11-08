@@ -11,6 +11,7 @@ import android.os.Bundle;
 import com.example.hciproject.adapters.pagerAdapter;
 import com.example.hciproject.data.DataSource;
 import com.example.hciproject.fragments.assignmentsFragment;
+import com.example.hciproject.fragments.timetableFragment;
 import com.gauravk.bubblenavigation.BubbleNavigationLinearView;
 
 
@@ -41,15 +42,19 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setUserInputEnabled(false);
         navBar.setNavigationChangeListener((view, position) -> {
             if (viewPager.getCurrentItem() == 0 ) {
-//                    TODO: hide fab for time table fragment too
                 assignmentsFragment.hideFab();
+            }
+            else if(viewPager.getCurrentItem()==1){
+                timetableFragment.hideFab();
             }
             viewPager.setCurrentItem(position);
             //It shows up as an error for the first instantiation of the fragment
             try {
-//                    TODO: show fab for time table fragment too
                 if (viewPager.getCurrentItem() == 0) {
                     assignmentsFragment.showFab();
+                }
+                else if (viewPager.getCurrentItem() == 1) {
+                    timetableFragment.showFab();
                 }
             }
             catch(Exception ignored){ }
