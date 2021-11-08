@@ -7,6 +7,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.hciproject.fragments.assignmentsFragment;
+import com.example.hciproject.fragments.homeFragment;
 
 public class pagerAdapter extends FragmentStateAdapter {
 
