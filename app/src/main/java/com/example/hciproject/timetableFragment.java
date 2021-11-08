@@ -31,12 +31,18 @@ public class timetableFragment extends Fragment {
         binding=FragmentTimetableBinding.inflate(inflater, container, false);
         view=binding.getRoot();
         binding.addClass.setOnClickListener(view -> addClass());
+        setClasses(0);
         binding.dayRadioGrp.setOnCheckedChangeListener((radioGroup, i) -> {
-            RadioButton selected = view.findViewById(i);
             int day=getRadioButton(i);
             setClasses(day);
         });
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setClasses(getRadioButton(binding.dayRadioGrp.getCheckedRadioButtonId()));
     }
 
     private int getRadioButton(int i) {
