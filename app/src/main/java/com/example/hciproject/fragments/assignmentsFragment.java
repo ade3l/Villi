@@ -9,11 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.hciproject.R;
+import com.example.hciproject.databinding.FragmentAssignmentsBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class assignmentsFragment extends Fragment {
-    static FloatingActionButton fab;
-
+    private static FragmentAssignmentsBinding binding;
+    View view;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,17 +23,24 @@ public class assignmentsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        binding=FragmentAssignmentsBinding.inflate(getLayoutInflater(),container,false);
         // Inflate the layout for this fragment
-        View inflatedView=inflater.inflate(R.layout.fragment_assignments, container, false);
-        fab=inflatedView.findViewById(R.id.add_task);
-        fab.show();
+        view=binding.getRoot();
 
-        return inflatedView;
+        binding.addTask.show();
+
+        return view;
     }
     public static void hideFab(){
-        fab.hide();
+        binding.addTask.hide();
     }
     public static void showFab(){
-        fab.show();
+        binding.addTask.show();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding=null;
     }
 }
