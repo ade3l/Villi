@@ -189,7 +189,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:listitem="@layout/item_classes"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:overScrollMode="never"/>
         </LinearLayout>
 
     </LinearLayout>
