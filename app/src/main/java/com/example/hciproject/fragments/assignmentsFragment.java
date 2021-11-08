@@ -1,4 +1,4 @@
-package com.example.hciproject;
+package com.example.hciproject.fragments;
 
 import android.os.Bundle;
 
@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.hciproject.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class assignmentsFragment extends Fragment {
@@ -28,10 +29,10 @@ public class assignmentsFragment extends Fragment {
 
         return inflatedView;
     }
-    static void hideFab(){
+    public static void hideFab(){
         fab.hide();
     }
-    static void showFab(){
+    public static void showFab(){
         fab.show();
     }
 }
