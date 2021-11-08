@@ -1,4 +1,4 @@
-package com.example.hciproject;
+package com.example.hciproject.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,9 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.example.hciproject.R;
 import com.example.hciproject.adapters.classesAdapter;
+import com.example.hciproject.addClassActivity;
 import com.example.hciproject.data.DataSource;
 import com.example.hciproject.databinding.FragmentTimetableBinding;
 import com.example.hciproject.objects.Classes;
@@ -84,7 +86,7 @@ public class timetableFragment extends Fragment {
     }
 
     void addClass(){
-        Intent intent = new Intent(getContext(),addClassActivity.class);
+        Intent intent = new Intent(getContext(), addClassActivity.class);
         intent.putExtra("day",getSelectedDay());
         startActivity(intent);
     }

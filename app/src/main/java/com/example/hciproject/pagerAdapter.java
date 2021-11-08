@@ -8,6 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.hciproject.fragments.assignmentsFragment;
 import com.example.hciproject.fragments.homeFragment;
+import com.example.hciproject.fragments.timetableFragment;
 
 public class pagerAdapter extends FragmentStateAdapter {
 
