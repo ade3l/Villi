@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.example.hciproject.MainActivity;
+import com.example.hciproject.fragments.timetableFragment;
 import com.example.hciproject.objects.Classes;
 
 import java.util.ArrayList;
@@ -76,6 +78,8 @@ public class DataSource {
     }
     public static void delete(String classId){
         classesDb.execSQL("DELETE FROM classes WHERE classId='"+classId+"'");
+//        TODO: Refresh recycler on delete of a class
+//        timetableFragment.listOfClasses=getClasses(days.get(timetableFragment.day));
     }
 
     public static List<String> getSubjects(){

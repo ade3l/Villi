@@ -25,16 +25,16 @@ import java.util.List;
 public class timetableFragment extends Fragment {
     View view;
     private FragmentTimetableBinding binding;
-
+    public static int day=0;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding=FragmentTimetableBinding.inflate(inflater, container, false);
         view=binding.getRoot();
         binding.addClass.setOnClickListener(view -> addClass());
-        setClasses(0);
+        setClasses(day);
         binding.dayRadioGrp.setOnCheckedChangeListener((radioGroup, i) -> {
-            int day=getRadioButton(i);
+            day=getRadioButton(i);
             setClasses(day);
         });
         showFab();
@@ -53,9 +53,7 @@ public class timetableFragment extends Fragment {
         super.onResume();
         setClasses(getRadioButton(binding.dayRadioGrp.getCheckedRadioButtonId()));
     }
-//    public static void refreshClasses() {
-//        getRadioButton(binding.dayRadioGrp.getCheckedRadioButtonId());
-//    }
+
     private int getRadioButton(int i) {
         if (binding.monday.equals(view.findViewById(i))) {
             return 0;
@@ -77,14 +75,14 @@ public class timetableFragment extends Fragment {
         }
         return 6;
     }
-
+    public static List<Classes> listOfClasses;
     void setClasses(int day){
         String dayName= DataSource.getDays().get(day);
         binding.day.setText(dayName);
-        List<Classes> listOfClasses=DataSource.getClasses(dayName);
+        listOfClasses=DataSource.getClasses(dayName);
         binding.numberOfClasses.setText(getString(R.string.numClass,listOfClasses.size()));
-        classesAdapter adapter=new classesAdapter(getContext(),listOfClasses);
-        binding.classesRV.setAdapter(adapter);
+        classesAdapter classAdapter=new classesAdapter(getContext(),listOfClasses);
+        binding.classesRV.setAdapter(classAdapter);
         binding.classesRV.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
