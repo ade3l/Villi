@@ -52,7 +52,6 @@ public class DataSource {
 
     public static List<Classes> getClasses(String day){
         List<Classes> listOfClasses=new ArrayList<>();
-        Log.i("mine",day);
         Cursor c=classesDb.rawQuery("SELECT * FROM classes where day='"+day+"'",null);
         c.moveToFirst();
         int classesIndex=c.getColumnIndex("subjectName");

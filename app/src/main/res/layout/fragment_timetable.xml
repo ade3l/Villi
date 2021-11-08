@@ -159,40 +159,37 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingHorizontal="12dp"
             android:background="@drawable/rounded_rect_classes_layout"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="5dp">
-            <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Monday"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"/>
+            <TextView
+                android:id="@+id/numberOfClasses"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="12dp"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/day"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="Monday"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"/>
-                <TextView
-                    android:id="@+id/numberOfClasses"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:text="5 classes"
-                    android:textColor="@color/white"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/classesRV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:listitem="@layout/item_classes"
-                    android:layout_marginTop="10dp"/>
-            </LinearLayout>
-        </ScrollView>
+                tools:text="5 classes"
+                android:textColor="@color/white"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/classesRV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_classes"
+                android:layout_marginTop="10dp"/>
+        </LinearLayout>
 
     </LinearLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
