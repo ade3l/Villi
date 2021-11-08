@@ -60,7 +60,8 @@ public class classesAdapter extends RecyclerView.Adapter<classesAdapter.classesI
                     public void onClick(DialogInterface dialogInterface, int i) {
                         DataSource.delete(classId);
                         Toast.makeText(context, "Classes deleted", Toast.LENGTH_SHORT).show();
-                        timetableFragment.refreshClasses();
+
+//                        timetableFragment.refreshClasses();
                     }
                 }).create();
         confirmationDialog.show();

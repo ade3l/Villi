@@ -41,23 +41,17 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager.setUserInputEnabled(false);
         navBar.setNavigationChangeListener((view, position) -> {
-            if (viewPager.getCurrentItem() == 0 ) {
-                assignmentsFragment.hideFab();
-            }
-            else if(viewPager.getCurrentItem()==1){
-                timetableFragment.hideFab();
-            }
+//            if (viewPager.getCurrentItem() == 0 ) {
+//                assignmentsFragment.hideFab();
+//            }
             viewPager.setCurrentItem(position);
             //It shows up as an error for the first instantiation of the fragment
-            try {
-                if (viewPager.getCurrentItem() == 0) {
-                    assignmentsFragment.showFab();
-                }
-                else if (viewPager.getCurrentItem() == 1) {
-                    timetableFragment.showFab();
-                }
-            }
-            catch(Exception ignored){ }
+//            try {
+//                if (viewPager.getCurrentItem() == 0) {
+//                    assignmentsFragment.showFab();
+//                }
+//            }
+//            catch(Exception ignored){ }
 
         });
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {

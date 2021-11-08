@@ -75,7 +75,7 @@ public class DataSource {
         return listOfClasses;
     }
     public static void delete(String classId){
-        classesDb.execSQL("DELETE * FROM classes WHERE classId='"+classId+"'");
+        classesDb.execSQL("DELETE FROM classes WHERE classId='"+classId+"'");
     }
 
     public static List<String> getSubjects(){

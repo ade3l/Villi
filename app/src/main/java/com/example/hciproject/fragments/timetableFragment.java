@@ -23,8 +23,8 @@ import com.example.hciproject.objects.Classes;
 import java.util.List;
 
 public class timetableFragment extends Fragment {
-    static View view;
-    private static FragmentTimetableBinding binding;
+    View view;
+    private FragmentTimetableBinding binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -37,13 +37,14 @@ public class timetableFragment extends Fragment {
             int day=getRadioButton(i);
             setClasses(day);
         });
+        showFab();
         return view;
     }
 
-    public static void hideFab() {
+    public void hideFab() {
         binding.addClass.hide();
     }
-    public static void showFab() {
+    public void showFab() {
         binding.addClass.show();
     }
 
@@ -52,10 +53,10 @@ public class timetableFragment extends Fragment {
         super.onResume();
         setClasses(getRadioButton(binding.dayRadioGrp.getCheckedRadioButtonId()));
     }
-    public static void refreshClasses() {
-        getRadioButton(binding.dayRadioGrp.getCheckedRadioButtonId());
-    }
-    private static int getRadioButton(int i) {
+//    public static void refreshClasses() {
+//        getRadioButton(binding.dayRadioGrp.getCheckedRadioButtonId());
+//    }
+    private int getRadioButton(int i) {
         if (binding.monday.equals(view.findViewById(i))) {
             return 0;
         }
@@ -118,6 +119,7 @@ public class timetableFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        hideFab();
         binding=null;
     }
 }

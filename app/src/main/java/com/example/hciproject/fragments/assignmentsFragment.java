@@ -13,7 +13,7 @@ import com.example.hciproject.databinding.FragmentAssignmentsBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class assignmentsFragment extends Fragment {
-    private static FragmentAssignmentsBinding binding;
+    private FragmentAssignmentsBinding binding;
     View view;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,19 +28,21 @@ public class assignmentsFragment extends Fragment {
         view=binding.getRoot();
 
         binding.addTask.show();
-
+        showFab();
         return view;
     }
-    public static void hideFab(){
+    public  void hideFab(){
         binding.addTask.hide();
     }
-    public static void showFab(){
+    public  void showFab(){
         binding.addTask.show();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        hideFab();
         binding=null;
+
     }
 }
