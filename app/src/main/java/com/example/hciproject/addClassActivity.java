@@ -134,7 +134,7 @@ public class addClassActivity extends AppCompatActivity {
         binding.endTime.setOnClickListener(view -> createTimePicker(binding.endTime,"Select end time"));
     }
     private void createTimePicker(EditText editText, String title){
-        int hour=12, minute=10;
+        int hour=00, minute=10;
         if(editText.getText()!=null && !editText.getText().toString().equals("") ){
             hour=Integer.parseInt(editText.getText().toString().split(":")[0]);
             minute=Integer.parseInt(editText.getText().toString().split(":")[1]);
@@ -145,7 +145,7 @@ public class addClassActivity extends AppCompatActivity {
                 .setMinute(minute)
                 .setTitleText(title)
                 .build();
-        picker.addOnPositiveButtonClickListener(view -> editText.setText(String.format("%d:%s", picker.getHour(), picker.getMinute())));
+        picker.addOnPositiveButtonClickListener(view -> editText.setText(String.format("%02d:%02d", picker.getHour(), picker.getMinute())));
         picker.show(getSupportFragmentManager(),"tag");
     }
     private void formCTAbuttonsinit() {
@@ -194,7 +194,7 @@ public class addClassActivity extends AppCompatActivity {
             //Make sure that end time is after start time
             //This is done be converting the times to an integer
             //i.e 08:00 = 0800. Then comparing them
-            if(Integer.parseInt(startTime.replace(":",""))>Integer.parseInt(endTime.replace(":",""))){
+            if(startTime.compareTo(endTime)>0){
                 binding.endTimeTIlayout.setError("End time must be after start time");
                 isValid=false;
             }
