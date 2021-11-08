@@ -1,4 +1,4 @@
-package com.example.hciproject;
+package com.example.hciproject.adapters;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

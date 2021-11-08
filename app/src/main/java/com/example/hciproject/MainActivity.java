@@ -7,12 +7,11 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
-import android.view.View;
 
+import com.example.hciproject.adapters.pagerAdapter;
 import com.example.hciproject.data.DataSource;
 import com.example.hciproject.fragments.assignmentsFragment;
 import com.gauravk.bubblenavigation.BubbleNavigationLinearView;
-import com.gauravk.bubblenavigation.listener.BubbleNavigationChangeListener;
 
 
 public class MainActivity extends AppCompatActivity {
