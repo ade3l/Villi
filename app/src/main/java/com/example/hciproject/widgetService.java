@@ -13,20 +13,9 @@ import com.example.hciproject.objects.Classes;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
 
 public class widgetService extends RemoteViewsService {
-    Day mon=new Day("Monday"),
-        tue=new Day("Tueday"),
-        wed=new Day("Wednesday"),
-        thu=new Day("Thursday"),
-        fri=new Day("Friday"),
-        sat=new Day("Saturday"),
-        sun=new Day("Sunday");
     List<Classes> listOfclasses=new ArrayList<>();
 
     @Override
@@ -34,8 +23,8 @@ public class widgetService extends RemoteViewsService {
         return new widgetFactory(getApplicationContext(), intent);
     }
     class widgetFactory implements RemoteViewsFactory{
-        private Context context;
-        private int appWidgetId;
+        final private Context context;
+        private final int appWidgetId;
         int day;
         SharedPreferences prefs;
 
@@ -72,7 +61,6 @@ public class widgetService extends RemoteViewsService {
         public RemoteViews getViewAt(int i) {
             RemoteViews view=new RemoteViews(context.getPackageName(),R.layout.widget_item);
             day=prefs.getInt("day", 0);
-            LocalTime x;
             Classes myClass=listOfclasses.get(i);
             view.setTextViewText(R.id.subjectName, myClass.getSubject());
             view.setTextViewText(R.id.time,String.format("%s - %s",myClass.getStartTime(),myClass.getEndTime()));
