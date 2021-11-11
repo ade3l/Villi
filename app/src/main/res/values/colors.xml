@@ -9,7 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#2B2F33</color>
 
-    <color name="bg">#12131A</color>
+    <color name="bg">#101010</color>
     <color name="navbarGrey">#21242C</color>
     <color name="selectedBlue">#004DE4</color>
     <color name="default_inactive">#818799</color>
