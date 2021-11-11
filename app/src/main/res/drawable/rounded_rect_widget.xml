@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--Rectangle that be the ng for teh widget body -->
 <shape android:shape="rectangle" xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#B3000000"/>
+    <solid android:color="#101010"/>
     <corners android:radius="@dimen/widget_corners"/>
 </shape>
