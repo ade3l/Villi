@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.assignmentsFragment">
+    tools:context=".fragments.assignmentsFragment"
+    tools:background="@color/bg">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -49,7 +50,7 @@
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_task"
+        android:id="@+id/add_assignment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"

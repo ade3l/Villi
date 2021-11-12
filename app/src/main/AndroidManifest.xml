@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HCIProject">
         <activity
+            android:name=".addAssignmentActivity"
+            android:exported="false" />
+        <activity
             android:name=".addClassActivity"
             android:exported="false" />
         <activity

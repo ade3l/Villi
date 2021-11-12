@@ -1,5 +1,6 @@
 package com.example.hciproject.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.hciproject.R;
+import com.example.hciproject.addAssignmentActivity;
 import com.example.hciproject.databinding.FragmentAssignmentsBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -27,15 +29,22 @@ public class assignmentsFragment extends Fragment {
         // Inflate the layout for this fragment
         view=binding.getRoot();
 
-        binding.addTask.show();
+        binding.addAssignment.show();
+        binding.addAssignment.setOnClickListener(view -> addAssignment());
         showFab();
         return view;
     }
+
+    private void addAssignment() {
+        Intent intent=new Intent(getContext(), addAssignmentActivity.class);
+        startActivity(intent);
+    }
+
     public  void hideFab(){
-        binding.addTask.hide();
+        binding.addAssignment.hide();
     }
     public  void showFab(){
-        binding.addTask.show();
+        binding.addAssignment.show();
     }
 
     @Override
