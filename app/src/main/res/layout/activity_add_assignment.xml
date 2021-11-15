@@ -15,7 +15,10 @@
   <com.google.android.material.textfield.TextInputLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+      android:layout_marginTop="25dp"
+      android:layout_marginHorizontal="10dp"
+      app:errorEnabled="true">
       <androidx.appcompat.widget.AppCompatAutoCompleteTextView
           android:id="@+id/subjectAutoCompleteListView"
           android:layout_width="match_parent"
@@ -33,13 +36,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Assignment name"
+        android:layout_marginTop="25dp"
+        android:layout_marginHorizontal="10dp"
         android:inputType="text"/>
   </com.google.android.material.textfield.TextInputLayout>
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="horizontal"
-      android:weightSum="2">
+      android:layout_marginTop="25dp"
+      android:weightSum="2"
+      android:baselineAligned="false">
       <com.google.android.material.textfield.TextInputLayout
           android:layout_width="0dp"
           android:layout_weight="1"
@@ -48,7 +55,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="due date"/>
+            android:layout_marginHorizontal="10dp"
+            android:hint="Due date"/>
       </com.google.android.material.textfield.TextInputLayout>
       <com.google.android.material.textfield.TextInputLayout
           android:layout_width="0dp"
@@ -58,17 +66,46 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="due time"/>
+            android:layout_marginHorizontal="10dp"
+            android:hint="Due time"/>
       </com.google.android.material.textfield.TextInputLayout>
   </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginTop="25dp"
+        android:layout_marginHorizontal="10dp">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Notes"/>
+<!--        TODO: Make notes text field larger-->
     </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_marginTop="75dp"
+        android:gravity="bottom">
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@android:string/cancel"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_marginHorizontal="10dp"
+            android:textColor="@color/white"/>
+        <Button
+            android:id="@+id/add_class"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Add assignment"
+            android:layout_marginHorizontal="10dp"
+            android:backgroundTint="@color/green_active"/>
+    </LinearLayout>
   </LinearLayout>
