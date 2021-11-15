@@ -15,5 +15,16 @@ public class addAssignmentActivity extends AppCompatActivity {
         binding=ActivityAddAssignmentBinding.inflate(getLayoutInflater());
         View view=binding.getRoot();
         setContentView(view);
+        setUpToolBar();
+    }
+
+    private void setUpToolBar() {
+        setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Add an assignment");
+        binding.toolbar.setNavigationOnClickListener(view ->{
+            //TODO:Back button
+                }
+                );
     }
 }

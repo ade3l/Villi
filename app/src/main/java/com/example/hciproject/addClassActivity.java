@@ -65,11 +65,10 @@ public class addClassActivity extends AppCompatActivity {
         return super.dispatchTouchEvent( event );
     }
     void setUpToolBar(){ 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(binding.toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Add a class");
-        toolbar.setNavigationOnClickListener(view -> {
+        binding.toolbar.setNavigationOnClickListener(view -> {
                     cancel();
                 }
         );
