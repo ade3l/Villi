@@ -3,6 +3,8 @@ package com.example.hciproject.data;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.icu.text.SimpleDateFormat;
+import android.icu.util.Calendar;
 import android.util.Log;
 
 import com.example.hciproject.MainActivity;
@@ -81,7 +83,13 @@ public class DataSource {
 //        TODO: Refresh recycler on delete of a class
 //        timetableFragment.listOfClasses=getClasses(days.get(timetableFragment.day));
     }
-
+    public static String getDateFromMillis(long timeinmillis){
+        String dateFormat="dd-MM-yyyy";
+        SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
+        Calendar calendar=Calendar.getInstance();
+        calendar.setTimeInMillis(timeinmillis);
+        return formatter.format(calendar.getTime());
+    }
     public static List<String> getSubjects(){
         return subs;
     }

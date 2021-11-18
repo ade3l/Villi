@@ -4,7 +4,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +17,12 @@ import android.widget.EditText;
 
 import com.example.hciproject.data.DataSource;
 import com.example.hciproject.databinding.ActivityAddAssignmentBinding;
+import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
+
+import java.util.Calendar;
 
 public class addAssignmentActivity extends AppCompatActivity {
     private ActivityAddAssignmentBinding binding;
@@ -26,6 +33,7 @@ public class addAssignmentActivity extends AppCompatActivity {
         View view=binding.getRoot();
         setContentView(view);
         setUpToolBar();
+        dateTimePickerInit();
     }
 
     private void setUpToolBar() {
@@ -84,4 +92,37 @@ public class addAssignmentActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void dateTimePickerInit() {
+        binding.dueDate.setShowSoftInputOnFocus(false);
+        binding.dueTime.setShowSoftInputOnFocus(false);
+        binding.dueDate.setOnClickListener(view -> {
+            MaterialDatePicker datePicker= MaterialDatePicker.Builder.datePicker()
+                    .setTitleText("Pick a date")
+                    .build();
+            datePicker.addOnPositiveButtonClickListener(selection -> {
+                binding.dueDate.setText(DataSource.getDateFromMillis((Long) selection));
+                    }
+            );
+            datePicker.show(getSupportFragmentManager(), "Tag");
+        });
+        binding.dueTime.setOnClickListener(view ->{
+            int hour=23, minute=59;
+            if(binding.dueTime.getText()!=null && !binding.dueTime.getText().toString().equals("") ){
+                hour=Integer.parseInt(binding.dueTime.getText().toString().split(":")[0]);
+                minute=Integer.parseInt(binding.dueTime.getText().toString().split(":")[1]);
+            }
+            MaterialTimePicker timePicker=new MaterialTimePicker.Builder()
+                    .setTimeFormat(TimeFormat.CLOCK_12H)
+                    .setHour(hour)
+                    .setMinute(minute)
+                    .setTitleText("Select due time")
+                    .build();
+            timePicker.addOnPositiveButtonClickListener(view1 ->
+                    binding.dueTime.setText(String.format("%02d:%02d", timePicker.getHour(), timePicker.getMinute()))
+            );
+            timePicker.show(getSupportFragmentManager(), "tag");
+        });
+    }
+
 }
