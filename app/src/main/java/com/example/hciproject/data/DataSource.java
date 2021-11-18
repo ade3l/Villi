@@ -7,8 +7,6 @@ import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.util.Log;
 
-import com.example.hciproject.MainActivity;
-import com.example.hciproject.fragments.timetableFragment;
 import com.example.hciproject.objects.Classes;
 
 import java.util.ArrayList;
@@ -17,7 +15,7 @@ import java.util.List;
 
 public class DataSource {
     static List<String> subs=new ArrayList<>();
-    private static SQLiteDatabase subjectsDb, classesDb;
+    private static SQLiteDatabase subjectsDb, classesDb, assignmentsDb;
     public static void initSubjects(Context context){
         subs.clear();
         subjectsDb = context.openOrCreateDatabase("subjects",Context.MODE_PRIVATE,null);
@@ -43,15 +41,19 @@ public class DataSource {
         subs.add(subjectName);
     }
 
+    public static List<String> getSubjects(){
+        return subs;
+    }
+
     public static void initClasses(Context context){
         classesDb= context.openOrCreateDatabase("classes",Context.MODE_PRIVATE,null);
         classesDb.execSQL("CREATE TABLE IF NOT EXISTS classes(classId VARCHAR,day VARCHAR, subjectName VARCHAR, startTime INTEGER, endTime INTEGER)");
     }
+
     public static boolean addClass(String classId,String day, String subjectName, String startTime, String endTime){
         classesDb.execSQL("INSERT INTO classes VALUES('"+classId+"','"+day+"','"+subjectName+"','"+startTime+"','"+endTime+"')");
         return true;
     }
-
 
     public static List<Classes> getClasses(String day){
         List<Classes> listOfClasses=new ArrayList<>();
@@ -90,12 +92,22 @@ public class DataSource {
         calendar.setTimeInMillis(timeinmillis);
         return formatter.format(calendar.getTime());
     }
-    public static List<String> getSubjects(){
-        return subs;
-    }
+
     static List<String> days= Arrays.asList("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday");
 
     public static List<String> getDays(){
         return days;
+    }
+    public static void initAssignments(Context context){
+        assignmentsDb=context.openOrCreateDatabase("assignments",Context.MODE_PRIVATE,null);
+        assignmentsDb.execSQL("CREATE TABLE IF NOT EXISTS assignments(assignmentId VARCHAR, subjectName VARCHAR,assignmentName VARCHAR, dueDate VARCHAR, dueTime VARCHAR, notes VARCHAR)");
+    }
+    public static boolean addAssignment(String assignmentId, String subject, String name, String dueDate, String dueTime, String notes) {
+        try {
+            assignmentsDb.execSQL("INSERT INTO assignments VALUES('"+assignmentId+"','"+subject+"','"+name+"','"+dueDate+"','"+dueTime+"','"+notes+"')");
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 }

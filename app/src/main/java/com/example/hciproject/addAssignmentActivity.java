@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.hciproject.data.DataSource;
 import com.example.hciproject.databinding.ActivityAddAssignmentBinding;
@@ -26,14 +28,17 @@ import java.util.Calendar;
 
 public class addAssignmentActivity extends AppCompatActivity {
     private ActivityAddAssignmentBinding binding;
+    SharedPreferences pref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityAddAssignmentBinding.inflate(getLayoutInflater());
         View view=binding.getRoot();
+        pref=getSharedPreferences("com.example.villi",Context.MODE_PRIVATE);
         setContentView(view);
         setUpToolBar();
         dateTimePickerInit();
+        formCTAButtonsInit();
     }
 
     private void setUpToolBar() {
@@ -125,4 +130,75 @@ public class addAssignmentActivity extends AppCompatActivity {
         });
     }
 
+    private void formCTAButtonsInit(){
+        binding.cancel.setOnClickListener(view -> cancel());
+        binding.addAssignment.setOnClickListener(view -> {
+            //Get the data from the form
+            String subject=binding.subjectAutoCompleteListView.getText().toString();
+            String name=binding.nameTextView.getText().toString();
+            String dueDate=binding.dueDate.getText().toString();
+            String dueTime=binding.dueTime.getText().toString();
+            String notes=binding.notes.getText().toString();
+            Log.i("mine","Here 1");
+            if(validateForm(subject,name,dueDate,dueTime)){
+                Log.i("mine","Here 2");
+                int assignmentId=pref.getInt("assignment id",1000);
+                if(DataSource.addAssignment(String.valueOf(assignmentId),subject,name,dueDate,dueTime,notes)) {
+                    pref.edit().putInt("assignment id", assignmentId + 1).apply();
+                    Toast.makeText(this, "Assignment added", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(this, "Assignment add failed", Toast.LENGTH_SHORT).show();
+                }
+                finish();
+            }
+        });
+    }
+
+    private boolean validateForm(String subject, String name, String dueDate, String dueTime) {
+        boolean isValid=true;
+        if(subject.equals("")){
+            binding.subjectAutoCompleteListView.setError("Enter a subject");
+            isValid=false;
+        }
+        else if(!DataSource.getSubjects().contains(subject)){
+            binding.subjectAutoCompleteListView.setError("Subject not found");
+            isValid=false;
+        }
+        if(name.equals("")){
+            binding.nameTextView.setError("Enter a name");
+            isValid=false;
+        }
+        if(dueDate.equals("")){
+            binding.dueDate.setError("Enter a due date");
+            isValid=false;
+        }
+        if(dueTime.equals("")){
+            binding.dueTime.setError("Enter a due time");
+            isValid=false;
+        }
+        return isValid;
+    }
+
+    private void cancel() {
+        if(binding.subjectAutoCompleteListView.getText().toString().equals("")
+                && binding.nameTextView.getText().toString().equals("")
+                && binding.dueDate.getText().toString().equals("")
+                && binding.dueTime.getText().toString().equals("")
+        ){
+            finish();
+        }
+        else{
+            AlertDialog.Builder builder=new AlertDialog.Builder(this,R.style.cancelDialogTheme)
+                    .setTitle("Delete this draft?")
+                    .setMessage("Are you sure you want to delete this draft?")
+                    .setPositiveButton("Cancel", null)
+                    .setNegativeButton("Ok", null);
+            AlertDialog dialog=builder.create();
+            dialog.show();
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(view -> {
+                finish();
+            });
+        }
+    }
 }
