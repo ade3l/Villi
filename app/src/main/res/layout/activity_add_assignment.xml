@@ -47,13 +47,15 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginTop="25dp"
-      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+      android:layout_marginHorizontal="10dp"
+      app:errorEnabled="true">
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/nameTextView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Assignment name"
-        android:layout_marginHorizontal="10dp"
+        app:errorEnabled="true"
         android:inputType="text"/>
   </com.google.android.material.textfield.TextInputLayout>
   <LinearLayout
@@ -67,22 +69,36 @@
           android:layout_width="0dp"
           android:layout_weight="1"
           android:layout_height="wrap_content"
-          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+          android:layout_marginHorizontal="10dp"
+          app:errorEnabled="true">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/dueDate"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="10dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:inputType="date"
+            android:textIsSelectable="false"
+            android:focusable="false"
             android:hint="Due date"/>
       </com.google.android.material.textfield.TextInputLayout>
       <com.google.android.material.textfield.TextInputLayout
           android:layout_width="0dp"
           android:layout_weight="1"
           android:layout_height="wrap_content"
-          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+          android:layout_marginHorizontal="10dp"
+          app:errorEnabled="true">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/dueTime"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="10dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:inputType="date"
+            android:textIsSelectable="false"
+            android:focusable="false"
             android:hint="Due time"/>
       </com.google.android.material.textfield.TextInputLayout>
   </LinearLayout>
@@ -94,6 +110,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginHorizontal="10dp">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/notes"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Notes"/>
@@ -116,7 +133,7 @@
             android:layout_marginHorizontal="10dp"
             android:textColor="@color/white"/>
         <Button
-            android:id="@+id/add_class"
+            android:id="@+id/add_assignment"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"

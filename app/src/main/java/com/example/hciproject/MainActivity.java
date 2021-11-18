@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         DataSource.initSubjects(this);
         DataSource.initClasses(this);
+        DataSource.initAssignments(this);
         setUpNavigation();
     }
 
