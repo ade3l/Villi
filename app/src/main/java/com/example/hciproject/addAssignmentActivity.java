@@ -151,11 +151,7 @@ public class addAssignmentActivity extends AppCompatActivity {
 
     private boolean validateForm(String subject, String name, String dueDate, String dueTime) {
         boolean isValid=true;
-        if(subject.equals("")){
-            binding.subjectAutoCompleteListView.setError("Enter a subject");
-            isValid=false;
-        }
-        else if(!DataSource.getSubjects().contains(subject)){
+        if(!DataSource.getSubjects().contains(subject) && !subject.equals("")){
             binding.subjectAutoCompleteListView.setError("Subject not found");
             isValid=false;
         }
