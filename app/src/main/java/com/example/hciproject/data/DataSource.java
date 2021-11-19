@@ -100,11 +100,11 @@ public class DataSource {
     }
     public static void initAssignments(Context context){
         assignmentsDb=context.openOrCreateDatabase("assignments",Context.MODE_PRIVATE,null);
-        assignmentsDb.execSQL("CREATE TABLE IF NOT EXISTS assignments(assignmentId VARCHAR, subjectName VARCHAR,assignmentName VARCHAR, dueDate VARCHAR, dueTime VARCHAR, notes VARCHAR)");
+        assignmentsDb.execSQL("CREATE TABLE IF NOT EXISTS assignments(assignmentId VARCHAR, subjectName VARCHAR,assignmentName VARCHAR, dueDate VARCHAR, dueTime VARCHAR, notes VARCHAR,completed VARCHAR)");
     }
     public static boolean addAssignment(String assignmentId, String subject, String name, String dueDate, String dueTime, String notes) {
         try {
-            assignmentsDb.execSQL("INSERT INTO assignments VALUES('"+assignmentId+"','"+subject+"','"+name+"','"+dueDate+"','"+dueTime+"','"+notes+"')");
+            assignmentsDb.execSQL("INSERT INTO assignments VALUES('"+assignmentId+"','"+subject+"','"+name+"','"+dueDate+"','"+dueTime+"','"+notes+"','F')");
             return true;
         }catch (Exception e){
             return false;
