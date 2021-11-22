@@ -17,7 +17,9 @@
             android:layout_height="wrap_content"
             tools:text="CAO"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:visibility="gone"
+            tools:visibility="visible"/>
         <TextView
             android:id="@+id/assignment_name"
             android:layout_width="match_parent"

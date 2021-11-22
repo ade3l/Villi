@@ -11,13 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.hciproject.R;
 import com.example.hciproject.objects.Assignment;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 public class assignmentsAdapter extends RecyclerView.Adapter<assignmentsAdapter.itemViewHolder> {
     List<Assignment> assignments;
 
+    public assignmentsAdapter(List<Assignment> assignments) {
+        this.assignments = assignments;
+    }
 
     @NonNull
     @Override
@@ -30,7 +31,10 @@ public class assignmentsAdapter extends RecyclerView.Adapter<assignmentsAdapter.
     @Override
     public void onBindViewHolder(@NonNull itemViewHolder holder, int position) {
         Assignment assignment = assignments.get(position);
-        holder.subTV.setText(assignment.getSubject());
+        if(!assignment.getSubject().equals("")){
+            holder.subTV.setText(assignment.getSubject());
+            holder.subTV.setVisibility(View.VISIBLE);
+        }
         holder.nameTV.setText(assignment.getName());
         holder.dueDateTV.setText(assignment.getDueDate());
         holder.dueTimeTV.setText(assignment.getDueTime());
