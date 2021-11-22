@@ -7,6 +7,7 @@ import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.util.Log;
 
+import com.example.hciproject.objects.Assignment;
 import com.example.hciproject.objects.Classes;
 
 import java.util.ArrayList;
@@ -109,5 +110,35 @@ public class DataSource {
         }catch (Exception e){
             return false;
         }
+    }
+
+    public static List<Assignment> getPendingAssignments(){
+        Cursor c=assignmentsDb.rawQuery("SELECT * FROM assignments where completed='F' ORDER BY dueDate",null);
+        c.moveToFirst();
+        int subName=c.getColumnIndex("subjectName");
+        int name=c.getColumnIndex("assignmentName");
+        int dueDate=c.getColumnIndex("dueDate");
+        int dueTime=c.getColumnIndex("dueTime");
+        int notes=c.getColumnIndex("notes");
+        int id=c.getColumnIndex("assignmentId");
+        List<Assignment> listOfAssignments=new ArrayList<>();
+        try {
+            while (!c.isAfterLast()) {
+                String subjectName=c.getString(subName),
+                        assignmentName=c.getString(name),
+                        dueDateString=c.getString(dueDate),
+                        dueTimeString=c.getString(dueTime),
+                        notesString=c.getString(notes),
+                        assignmentId=c.getString(id);
+                listOfAssignments.add(new Assignment(subjectName,assignmentName,dueDateString,dueTimeString,notesString,assignmentId));
+                c.moveToNext();
+            }
+        }
+        catch (Exception e){
+            Log.i("mine","SQL error 2");
+            e.printStackTrace();
+        }
+        c.close();
+        return listOfAssignments;
     }
 }
