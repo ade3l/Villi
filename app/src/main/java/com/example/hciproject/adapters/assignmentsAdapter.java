@@ -40,6 +40,7 @@ public class assignmentsAdapter extends RecyclerView.Adapter<assignmentsAdapter.
         holder.nameTV.setText(assignment.getName());
         if(submitted){
             holder.dueOrSubTV.setText("Submitted on: ");
+            holder.dueTimeTV.setVisibility(View.GONE);
         }
         else{
             holder.dueOrSubTV.setText("Due on: ");
