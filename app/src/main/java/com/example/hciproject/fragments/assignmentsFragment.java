@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ import java.util.List;
 public class assignmentsFragment extends Fragment {
     private FragmentAssignmentsBinding binding;
     View view;
+    Boolean isExpanded = false;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +36,25 @@ public class assignmentsFragment extends Fragment {
 
         binding.addAssignment.show();
         binding.addAssignment.setOnClickListener(view -> addAssignment());
+        binding.submittedDropDown.setOnClickListener(view -> expandOrCollapse());
         showFab();
         return view;
+    }
+
+    private void expandOrCollapse() {
+        if(isExpanded){
+            TransitionManager.beginDelayedTransition(binding.submittedAssignmentsContainer,new AutoTransition());
+            binding.submittedAssignmentsRV.setVisibility(View.GONE);
+            binding.submittedDropDown.animate().rotation(0);
+            isExpanded=false;
+        }
+        else{
+            TransitionManager.beginDelayedTransition(binding.submittedAssignmentsContainer,new AutoTransition());
+            binding.submittedAssignmentsRV.setVisibility(View.VISIBLE);
+            binding.submittedDropDown.animate().rotation(180);
+            isExpanded=true;
+        }
+
     }
 
     private void initAssignmentsRecycler() {
@@ -77,5 +97,6 @@ public class assignmentsFragment extends Fragment {
     public void onResume() {
         super.onResume();
         initAssignmentsRecycler();
+        isExpanded= binding.submittedAssignmentsRV.getVisibility() == View.VISIBLE;
     }
 }
