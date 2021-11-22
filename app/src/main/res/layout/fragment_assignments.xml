@@ -83,11 +83,11 @@
                             android:textStyle="bold"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"/>
                         <LinearLayout
-                            android:id="@+id/SubmittedRVlayout"
+                            android:id="@+id/submittedRVlayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                             <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/SubmmitedAssignmentsRV"
+                                android:id="@+id/submittedAssignmentsRV"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 tools:listitem="@layout/item_assignment"

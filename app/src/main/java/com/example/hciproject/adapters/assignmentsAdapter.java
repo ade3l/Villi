@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hciproject.R;
+import com.example.hciproject.data.DataSource;
 import com.example.hciproject.objects.Assignment;
 
 import java.util.List;
@@ -43,7 +44,7 @@ public class assignmentsAdapter extends RecyclerView.Adapter<assignmentsAdapter.
         else{
             holder.dueOrSubTV.setText("Due on: ");
         }
-        holder.dueDateTV.setText(assignment.getDueDate()+" ");
+        holder.dueDateTV.setText(DataSource.getDateFromMillis(Long.parseLong(assignment.getDueDate()))+" ");
         holder.dueTimeTV.setText(assignment.getDueTime());
     }
 

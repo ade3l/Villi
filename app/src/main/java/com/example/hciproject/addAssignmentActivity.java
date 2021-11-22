@@ -23,6 +23,7 @@ import com.google.android.material.timepicker.TimeFormat;
 public class addAssignmentActivity extends AppCompatActivity {
     private ActivityAddAssignmentBinding binding;
     SharedPreferences pref;
+    Long dateInMillis;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +101,7 @@ public class addAssignmentActivity extends AppCompatActivity {
                     .setTitleText("Pick a date")
                     .build();
             datePicker.addOnPositiveButtonClickListener(selection -> {
+                dateInMillis= (Long) selection;
                 binding.dueDate.setText(DataSource.getDateFromMillis((Long) selection));
                     }
             );
@@ -130,7 +132,7 @@ public class addAssignmentActivity extends AppCompatActivity {
             //Get the data from the form
             String subject=binding.subjectAutoCompleteListView.getText().toString();
             String name=binding.nameTextView.getText().toString();
-            String dueDate=binding.dueDate.getText().toString();
+            String dueDate= String.valueOf(dateInMillis);
             String dueTime=binding.dueTime.getText().toString();
             String notes=binding.notes.getText().toString();
             Log.i("mine","Here 1");
