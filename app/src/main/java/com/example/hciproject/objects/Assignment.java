@@ -7,14 +7,18 @@ public class Assignment {
     String dueTime;
     String description;
     String assignmentID;
+    String submittedDate;
+    String submittedTime;
 
-    public Assignment(String subject,String name, String dueDate,String dueTime ,String description, String assignmentID) {
+    public Assignment(String subject,String name, String dueDate,String dueTime ,String description, String assignmentID, String submittedDate, String submittedTime) {
         this.name = name;
         this.description = description;
         this.dueDate = dueDate;
         this.subject = subject;
         this.assignmentID = assignmentID;
         this.dueTime = dueTime;
+        this.submittedDate = submittedDate;
+        this.submittedTime = submittedTime;
     }
 
     public String getName() {

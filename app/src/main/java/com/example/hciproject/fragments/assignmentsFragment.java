@@ -46,6 +46,12 @@ public class assignmentsFragment extends Fragment {
         }else{
             binding.numberOfAssignments.setText(assignments.size()+" assignments");
         }
+
+        //Subitted recycler view init
+        List<Assignment> submittedAssignments=DataSource.getSubmittedAssignments();
+        binding.submittedAssignmentsRV.setAdapter(new assignmentsAdapter(submittedAssignments,true));
+        binding.submittedAssignmentsRV.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(getContext()));
+
     }
 
     private void addAssignment() {
