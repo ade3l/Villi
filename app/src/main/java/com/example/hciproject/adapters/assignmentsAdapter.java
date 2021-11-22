@@ -9,15 +9,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hciproject.R;
+import com.example.hciproject.data.DataSource;
 import com.example.hciproject.objects.Assignment;
 
 import java.util.List;
 
 public class assignmentsAdapter extends RecyclerView.Adapter<assignmentsAdapter.itemViewHolder> {
     List<Assignment> assignments;
-
-    public assignmentsAdapter(List<Assignment> assignments) {
+    Boolean submitted;
+    public assignmentsAdapter(List<Assignment> assignments, Boolean submitted){
         this.assignments = assignments;
+        this.submitted = submitted;
     }
 
     @NonNull
@@ -36,7 +38,14 @@ public class assignmentsAdapter extends RecyclerView.Adapter<assignmentsAdapter.
             holder.subTV.setVisibility(View.VISIBLE);
         }
         holder.nameTV.setText(assignment.getName());
-        holder.dueDateTV.setText(assignment.getDueDate());
+        if(submitted){
+            holder.dueOrSubTV.setText("Submitted on: ");
+            holder.dueTimeTV.setVisibility(View.GONE);
+        }
+        else{
+            holder.dueOrSubTV.setText("Due on: ");
+        }
+        holder.dueDateTV.setText(DataSource.getDateFromMillis(Long.parseLong(assignment.getDueDate()))+" ");
         holder.dueTimeTV.setText(assignment.getDueTime());
     }
 
@@ -46,13 +55,14 @@ public class assignmentsAdapter extends RecyclerView.Adapter<assignmentsAdapter.
     }
 
     public class itemViewHolder extends RecyclerView.ViewHolder {
-        TextView subTV, nameTV, dueDateTV, dueTimeTV;
+        TextView subTV, nameTV, dueDateTV, dueTimeTV, dueOrSubTV;
         public itemViewHolder(View itemView) {
             super(itemView);
             subTV= itemView.findViewById(R.id.subject_name);
             nameTV= itemView.findViewById(R.id.assignment_name);
             dueDateTV= itemView.findViewById(R.id.due_date);
             dueTimeTV= itemView.findViewById(R.id.due_time);
+            dueOrSubTV= itemView.findViewById(R.id.dueOrSubmitText);
         }
     }
 }

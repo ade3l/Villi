@@ -93,7 +93,14 @@ public class DataSource {
         calendar.setTimeInMillis(timeinmillis);
         return formatter.format(calendar.getTime());
     }
-
+    //get time in 24 hour format from milliseconds in the format hh:mm
+    public static String getTimeFromMillis(long timeinmillis){
+        String dateFormat="HH:mm";
+        SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
+        Calendar calendar=Calendar.getInstance();
+        calendar.setTimeInMillis(timeinmillis);
+        return formatter.format(calendar.getTime());
+    }
     static List<String> days= Arrays.asList("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday");
 
     public static List<String> getDays(){
@@ -101,13 +108,15 @@ public class DataSource {
     }
     public static void initAssignments(Context context){
         assignmentsDb=context.openOrCreateDatabase("assignments",Context.MODE_PRIVATE,null);
-        assignmentsDb.execSQL("CREATE TABLE IF NOT EXISTS assignments(assignmentId VARCHAR, subjectName VARCHAR,assignmentName VARCHAR, dueDate VARCHAR, dueTime VARCHAR, notes VARCHAR,completed VARCHAR)");
+        assignmentsDb.execSQL("CREATE TABLE IF NOT EXISTS assignments(assignmentId VARCHAR, subjectName VARCHAR,assignmentName VARCHAR, dueDate VARCHAR, dueTime VARCHAR, notes VARCHAR,completed VARCHAR, submittedDate VARCHAR, submittedTime VARCHAR)");
     }
     public static boolean addAssignment(String assignmentId, String subject, String name, String dueDate, String dueTime, String notes) {
         try {
-            assignmentsDb.execSQL("INSERT INTO assignments VALUES('"+assignmentId+"','"+subject+"','"+name+"','"+dueDate+"','"+dueTime+"','"+notes+"','F')");
+            assignmentsDb.execSQL("INSERT INTO assignments VALUES('"+assignmentId+"','"+subject+"','"+name+"','"+dueDate+"','"+dueTime+"','"+notes+"','F','','')");
             return true;
         }catch (Exception e){
+            Log.i("mine","Adding assignment failed");
+            e.printStackTrace();
             return false;
         }
     }
@@ -130,11 +139,53 @@ public class DataSource {
                         dueTimeString=c.getString(dueTime),
                         notesString=c.getString(notes),
                         assignmentId=c.getString(id);
-                listOfAssignments.add(new Assignment(subjectName,assignmentName,dueDateString,dueTimeString,notesString,assignmentId));
+                listOfAssignments.add(new Assignment(subjectName,assignmentName,dueDateString,dueTimeString,notesString,assignmentId,"",""));
                 c.moveToNext();
             }
         }
         catch (Exception e){
+            Log.i("mine","SQL error 2");
+            e.printStackTrace();
+        }
+        c.close();
+        return listOfAssignments;
+    }
+    //Set an assignment as completed
+    //Then set the submitted date and time
+    public static void completeAssignment(String assignmentId){
+        String time= String.valueOf(System.currentTimeMillis());
+        assignmentsDb.execSQL("UPDATE assignments SET completed='T', submittedDate='"+String.valueOf(System.currentTimeMillis())+"', submittedTime='"+String.valueOf(System.currentTimeMillis())+"' WHERE assignmentId='"+assignmentId+"'");
+    }
+
+    //get submitted assignments
+    public static List<Assignment> getSubmittedAssignments(){
+        Cursor c=assignmentsDb.rawQuery("SELECT * FROM assignments where completed='T' ORDER BY submittedDate",null);
+        c.moveToFirst();
+        int subName=c.getColumnIndex("subjectName");
+        int name=c.getColumnIndex("assignmentName");
+        int dueDate=c.getColumnIndex("dueDate");
+        int dueTime=c.getColumnIndex("dueTime");
+        int notes=c.getColumnIndex("notes");
+        int id=c.getColumnIndex("assignmentId");
+        int submittedDate=c.getColumnIndex("submittedDate");
+        int submittedTime=c.getColumnIndex("submittedTime");
+        List<Assignment> listOfAssignments=new ArrayList<>();
+        try {
+            while (!c.isAfterLast()) {
+                String subjectName=c.getString(subName),
+                        assignmentName=c.getString(name),
+                        dueDateString=c.getString(dueDate),
+                        dueTimeString=c.getString(dueTime),
+                        notesString=c.getString(notes),
+                        assignmentId=c.getString(id),
+                        submittedDateString=c.getString(submittedDate),
+                        submittedTimeString=c.getString(submittedTime);
+                listOfAssignments.add(new Assignment(subjectName,assignmentName,dueDateString,dueTimeString,notesString,assignmentId,submittedDateString,submittedTimeString));
+                c.moveToNext();
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
             Log.i("mine","SQL error 2");
             e.printStackTrace();
         }

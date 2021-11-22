@@ -8,15 +8,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
-import com.example.hciproject.R;
 import com.example.hciproject.adapters.assignmentsAdapter;
 import com.example.hciproject.addAssignmentActivity;
 import com.example.hciproject.data.DataSource;
 import com.example.hciproject.databinding.FragmentAssignmentsBinding;
 import com.example.hciproject.objects.Assignment;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -43,13 +39,19 @@ public class assignmentsFragment extends Fragment {
 
     private void initAssignmentsRecycler() {
         List<Assignment> assignments= DataSource.getPendingAssignments();
-        binding.assignmentsRV.setAdapter(new assignmentsAdapter(assignments));
+        binding.assignmentsRV.setAdapter(new assignmentsAdapter(assignments,false));
         binding.assignmentsRV.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(getContext()));
         if(assignments.size()==1){
             binding.numberOfAssignments.setText("1 assignment");
         }else{
             binding.numberOfAssignments.setText(assignments.size()+" assignments");
         }
+
+        //Subitted recycler view init
+        List<Assignment> submittedAssignments=DataSource.getSubmittedAssignments();
+        binding.submittedAssignmentsRV.setAdapter(new assignmentsAdapter(submittedAssignments,true));
+        binding.submittedAssignmentsRV.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(getContext()));
+
     }
 
     private void addAssignment() {
