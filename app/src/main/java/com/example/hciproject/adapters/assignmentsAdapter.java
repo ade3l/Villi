@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hciproject.MainActivity;
@@ -57,11 +58,19 @@ public class assignmentsAdapter extends RecyclerView.Adapter<assignmentsAdapter.
         holder.dueDateTV.setText(DataSource.getDateFromMillis(Long.parseLong(assignment.getDueDate()))+" ");
         holder.dueTimeTV.setText(assignment.getDueTime());
         holder.nameTV.setTransitionName("detailsTransition");
-        holder.nameTV.setOnClickListener(v -> {
+        holder.cardView.setOnClickListener(v -> {
             Intent intent= new Intent(context, assignmentDetailsActivity.class);
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,
                     holder.nameTV, "detailsTransition");
             intent.putExtra("assignment name", assignment.getName());
+            intent.putExtra("assignment subject", assignment.getSubject());
+            intent.putExtra("assignment due date", assignment.getDueDate());
+            intent.putExtra("assignment due time", assignment.getDueTime());
+            intent.putExtra("assignment description", assignment.getDescription());
+            intent.putExtra("assignment id", assignment.getAssignmentID());
+            intent.putExtra("assignment submitted", assignment.getSubmittedDate());
+            intent.putExtra("assignment submitted time", assignment.getSubmittedTime());
+
             context.startActivity(intent, options.toBundle());
         });
     }
@@ -73,6 +82,7 @@ public class assignmentsAdapter extends RecyclerView.Adapter<assignmentsAdapter.
 
     public class itemViewHolder extends RecyclerView.ViewHolder {
         TextView subTV, nameTV, dueDateTV, dueTimeTV, dueOrSubTV;
+        CardView cardView;
         public itemViewHolder(View itemView) {
             super(itemView);
             subTV= itemView.findViewById(R.id.subject_name);
@@ -80,6 +90,7 @@ public class assignmentsAdapter extends RecyclerView.Adapter<assignmentsAdapter.
             dueDateTV= itemView.findViewById(R.id.due_date);
             dueTimeTV= itemView.findViewById(R.id.due_time);
             dueOrSubTV= itemView.findViewById(R.id.dueOrSubmitText);
+            cardView= itemView.findViewById(R.id.assignment_item);
         }
     }
 }

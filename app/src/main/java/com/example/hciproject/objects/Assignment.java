@@ -44,4 +44,12 @@ public class Assignment {
     public String getDueTime() {
         return dueTime;
     }
+
+    public String getSubmittedDate() {
+        return submittedDate;
+    }
+
+    public String getSubmittedTime() {
+        return submittedTime;
+    }
 }

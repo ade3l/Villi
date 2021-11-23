@@ -21,8 +21,13 @@ public class assignmentDetailsActivity extends AppCompatActivity {
         window.setSharedElementEnterTransition(new MaterialContainerTransform().addTarget(android.R.id.content).setDuration(500));
         window.setSharedElementReturnTransition(new MaterialContainerTransform().addTarget(android.R.id.content).setDuration(250));
         setContentView(R.layout.activity_assignment_details);
-        TextView name=findViewById(R.id.assignment_name);
-        name.setText(getIntent().getStringExtra("assignment name"));
+        initToolbar();
+    }
+
+    private void initToolbar() {
+        setSupportActionBar(findViewById(R.id.toolbar));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(getIntent().getStringExtra("assignment name"));
     }
 
 }
