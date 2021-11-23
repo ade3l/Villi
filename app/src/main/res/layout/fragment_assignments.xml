@@ -59,9 +59,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-<!--                Submitted assignements card-->
+
+<!--                Pending assignments card-->
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/submittedAssignmentsContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="12dp"
@@ -69,49 +69,55 @@
                     android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    app:cardCornerRadius="6dp">
+                    app:cardCornerRadius="10dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/rounded_rect_classes_layout"
+                        android:orientation="vertical">
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/rounded_rect_classes_layout"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:background="@drawable/rounded_rect_blue"
                             android:padding="10dp"
-                            android:orientation="vertical">
-                            <LinearLayout
+                            >
+                            <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:layout_height="wrap_content"
-                                    android:text="Submitted assignments"
-                                    android:textColor="@color/white"
-                                    android:textStyle="bold"
-                                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"/>
-                                <ImageButton
-                                    android:id="@+id/submittedDropDown"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="10dp"
-                                    android:background="?actionBarItemBackground"
-                                    android:src="@drawable/baseline_keyboard_arrow_down_black_24dp"
-                                    android:layout_gravity="center"
-                                    app:tint="@color/white" />
-                            </LinearLayout>
+                                android:text="Pending assignments"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"/>
+                            <TextView
+                                android:id="@+id/numberOfAssignments"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:text="5 assignments"
+                                android:textColor="@color/white"
+                                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/RVlayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp">
                             <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/submittedAssignmentsRV"
+                                android:id="@+id/assignmentsRV"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 tools:listitem="@layout/item_assignment"
                                 android:layout_marginTop="10dp"
-                                android:visibility="gone"
-                                android:overScrollMode="never"/>
-                    </LinearLayout>
+                                android:overScrollMode="never"
+                                />
+                        </LinearLayout>
 
+                    </LinearLayout>
                 </androidx.cardview.widget.CardView>
-<!--                End of submitted assignments cards-->
-<!--                Pending assignments card-->
+<!--                End of pending assignments card-->
+<!--                Submitted assignements card-->
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/submittedAssignmentsContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="12dp"
@@ -126,37 +132,40 @@
                         android:background="@drawable/rounded_rect_classes_layout"
                         android:padding="10dp"
                         android:orientation="vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Pending assignments"
-                            android:textColor="@color/white"
-                            android:textStyle="bold"
-                            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"/>
-                        <TextView
-                            android:id="@+id/numberOfAssignments"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            tools:text="You have 5 pending assignments"
-                            android:textColor="@color/white"
-                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
                         <LinearLayout
-                            android:id="@+id/RVlayout"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/assignmentsRV"
-                                android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
                                 android:layout_height="wrap_content"
-                                tools:listitem="@layout/item_assignment"
-                                android:layout_marginTop="10dp"
-                                android:overScrollMode="never"
-                                />
+                                android:text="Submitted assignments"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"/>
+                            <ImageButton
+                                android:id="@+id/submittedDropDown"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="10dp"
+                                android:background="?actionBarItemBackground"
+                                android:src="@drawable/baseline_keyboard_arrow_down_black_24dp"
+                                android:layout_gravity="center"
+                                app:tint="@color/white" />
                         </LinearLayout>
-
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/submittedAssignmentsRV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:listitem="@layout/item_assignment"
+                            android:layout_marginTop="10dp"
+                            android:visibility="gone"
+                            android:overScrollMode="never"/>
                     </LinearLayout>
+
                 </androidx.cardview.widget.CardView>
-<!--                End of pending assignments card-->
+                <!--                End of submitted assignments cards-->
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
