@@ -37,6 +37,7 @@ public class assignmentsFragment extends Fragment {
         binding.addAssignment.show();
         binding.addAssignment.setOnClickListener(view -> addAssignment());
         binding.submittedDropDown.setOnClickListener(view -> expandOrCollapse());
+        binding.submmittedAssignmentsText.setOnClickListener(view -> expandOrCollapse());
         showFab();
         return view;
     }
