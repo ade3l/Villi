@@ -1,6 +1,7 @@
 package com.example.hciproject;
 
 import android.os.Bundle;
+import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -11,12 +12,17 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.hciproject.adapters.pagerAdapter;
 import com.example.hciproject.data.DataSource;
 import com.gauravk.bubblenavigation.BubbleNavigationLinearView;
+import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback;
 
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Window window = getWindow();
+        window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
+        setExitSharedElementCallback(new MaterialContainerTransformSharedElementCallback());
+        window.setSharedElementsUseOverlay(false);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
