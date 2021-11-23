@@ -28,7 +28,8 @@
             android:layout_height="wrap_content"
             tools:text="Digital Assignment 1"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:clickable="true"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

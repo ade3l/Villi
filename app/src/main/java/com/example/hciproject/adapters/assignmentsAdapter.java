@@ -1,14 +1,21 @@
 package com.example.hciproject.adapters;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.hciproject.MainActivity;
 import com.example.hciproject.R;
+import com.example.hciproject.assignmentDetailsActivity;
 import com.example.hciproject.data.DataSource;
 import com.example.hciproject.objects.Assignment;
 
@@ -17,9 +24,11 @@ import java.util.List;
 public class assignmentsAdapter extends RecyclerView.Adapter<assignmentsAdapter.itemViewHolder> {
     List<Assignment> assignments;
     Boolean submitted;
-    public assignmentsAdapter(List<Assignment> assignments, Boolean submitted){
+    Context context;
+    public assignmentsAdapter(List<Assignment> assignments, Boolean submitted, Context context) {
         this.assignments = assignments;
         this.submitted = submitted;
+        this.context = context;
     }
 
     @NonNull
@@ -47,6 +56,14 @@ public class assignmentsAdapter extends RecyclerView.Adapter<assignmentsAdapter.
         }
         holder.dueDateTV.setText(DataSource.getDateFromMillis(Long.parseLong(assignment.getDueDate()))+" ");
         holder.dueTimeTV.setText(assignment.getDueTime());
+        holder.nameTV.setTransitionName("detailsTransition");
+        holder.nameTV.setOnClickListener(v -> {
+            Intent intent= new Intent(context, assignmentDetailsActivity.class);
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,
+                    holder.nameTV, "detailsTransition");
+            intent.putExtra("assignment name", assignment.getName());
+            context.startActivity(intent, options.toBundle());
+        });
     }
 
     @Override

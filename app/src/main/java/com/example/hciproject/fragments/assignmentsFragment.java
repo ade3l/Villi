@@ -60,7 +60,7 @@ public class assignmentsFragment extends Fragment {
 
     private void initAssignmentsRecycler() {
         List<Assignment> assignments= DataSource.getPendingAssignments();
-        binding.assignmentsRV.setAdapter(new assignmentsAdapter(assignments,false));
+        binding.assignmentsRV.setAdapter(new assignmentsAdapter(assignments,false,getContext()));
         binding.assignmentsRV.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(getContext()));
         if(assignments.size()==1){
             binding.numberOfAssignments.setText("1 assignment");
@@ -70,7 +70,7 @@ public class assignmentsFragment extends Fragment {
 
         //Subitted recycler view init
         List<Assignment> submittedAssignments=DataSource.getSubmittedAssignments();
-        binding.submittedAssignmentsRV.setAdapter(new assignmentsAdapter(submittedAssignments,true));
+        binding.submittedAssignmentsRV.setAdapter(new assignmentsAdapter(submittedAssignments,true,getContext()));
         binding.submittedAssignmentsRV.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(getContext()));
 
     }
