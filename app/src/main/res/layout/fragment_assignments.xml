@@ -162,6 +162,7 @@
                             tools:listitem="@layout/item_assignment"
                             android:layout_marginTop="10dp"
                             android:visibility="gone"
+                            tools:visibility="visible"
                             android:overScrollMode="never"/>
                     </LinearLayout>
 

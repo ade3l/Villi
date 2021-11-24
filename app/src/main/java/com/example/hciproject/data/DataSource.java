@@ -101,6 +101,11 @@ public class DataSource {
         calendar.setTimeInMillis(timeinmillis);
         return formatter.format(calendar.getTime());
     }
+    public static String getDayFromMillis(long millis) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(millis);
+        return new SimpleDateFormat("EEEE").format(calendar.getTime());
+    }
     static List<String> days= Arrays.asList("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday");
 
     public static List<String> getDays(){
@@ -139,7 +144,7 @@ public class DataSource {
                         dueTimeString=c.getString(dueTime),
                         notesString=c.getString(notes),
                         assignmentId=c.getString(id);
-                listOfAssignments.add(new Assignment(subjectName,assignmentName,dueDateString,dueTimeString,notesString,assignmentId,"",""));
+                listOfAssignments.add(new Assignment(subjectName,assignmentName,dueDateString,dueTimeString,notesString,assignmentId,"","",Boolean.FALSE));
                 c.moveToNext();
             }
         }
@@ -150,14 +155,8 @@ public class DataSource {
         c.close();
         return listOfAssignments;
     }
-    //Set an assignment as completed
-    //Then set the submitted date and time
-    public static void completeAssignment(String assignmentId){
-        String time= String.valueOf(System.currentTimeMillis());
-        assignmentsDb.execSQL("UPDATE assignments SET completed='T', submittedDate='"+String.valueOf(System.currentTimeMillis())+"', submittedTime='"+String.valueOf(System.currentTimeMillis())+"' WHERE assignmentId='"+assignmentId+"'");
-    }
-
     //get submitted assignments
+
     public static List<Assignment> getSubmittedAssignments(){
         Cursor c=assignmentsDb.rawQuery("SELECT * FROM assignments where completed='T' ORDER BY submittedDate",null);
         c.moveToFirst();
@@ -180,7 +179,7 @@ public class DataSource {
                         assignmentId=c.getString(id),
                         submittedDateString=c.getString(submittedDate),
                         submittedTimeString=c.getString(submittedTime);
-                listOfAssignments.add(new Assignment(subjectName,assignmentName,dueDateString,dueTimeString,notesString,assignmentId,submittedDateString,submittedTimeString));
+                listOfAssignments.add(new Assignment(subjectName,assignmentName,dueDateString,dueTimeString,notesString,assignmentId,submittedDateString,submittedTimeString,Boolean.TRUE));
                 c.moveToNext();
             }
         }
@@ -191,5 +190,44 @@ public class DataSource {
         }
         c.close();
         return listOfAssignments;
+    }
+
+    //Set an assignment as completed
+    //Then set the submitted date and time
+    public static void completeAssignment(String assignmentId){
+        String time= String.valueOf(System.currentTimeMillis());
+        assignmentsDb.execSQL("UPDATE assignments SET completed='T', submittedDate='"+String.valueOf(System.currentTimeMillis())+"', submittedTime='"+getTimeFromMillis(System.currentTimeMillis())+"' WHERE assignmentId='"+assignmentId+"'");
+    }
+
+    //set an assignment as not completed
+    public static void uncompleteAssignment(String assignmentId){
+        assignmentsDb.execSQL("UPDATE assignments SET completed='F' WHERE assignmentId='"+assignmentId+"'");
+    }
+
+    //get assignment by id
+    public static Assignment getAssignmentById(String assignmentId){
+        Cursor c=assignmentsDb.rawQuery("SELECT * FROM assignments WHERE assignmentId='"+assignmentId+"'",null);
+        c.moveToFirst();
+        int subName=c.getColumnIndex("subjectName");
+        int name=c.getColumnIndex("assignmentName");
+        int dueDate=c.getColumnIndex("dueDate");
+        int dueTime=c.getColumnIndex("dueTime");
+        int notes=c.getColumnIndex("notes");
+        int completed=c.getColumnIndex("completed");
+        int submittedDate=c.getColumnIndex("submittedDate");
+        int submittedTime=c.getColumnIndex("submittedTime");
+        String subjectName=c.getString(subName),
+                assignmentName=c.getString(name),
+                dueDateString=c.getString(dueDate),
+                dueTimeString=c.getString(dueTime),
+                notesString=c.getString(notes),
+                submittedDateString=c.getString(submittedDate),
+                completedString=c.getString(completed),
+                submittedTimeString=c.getString(submittedTime);
+        c.close();
+        if(completedString.equals("T")){
+            return new Assignment(subjectName,assignmentName,dueDateString,dueTimeString,notesString,assignmentId,submittedDateString,submittedTimeString,Boolean.TRUE);
+        }
+        return new Assignment(subjectName,assignmentName,dueDateString,dueTimeString,notesString,assignmentId,submittedDateString,submittedTimeString,Boolean.FALSE);
     }
 }

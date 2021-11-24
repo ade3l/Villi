@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/assignment_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="5dp"
-    app:cardCornerRadius="3dp">
+    app:cardCornerRadius="3dp"
+    android:clickable="true">
 <!--    TODO:Margins-->
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +31,7 @@
             tools:text="Digital Assignment 1"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
             android:textColor="@color/white"
-            android:clickable="true"/>
+            android:clickable="false"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
