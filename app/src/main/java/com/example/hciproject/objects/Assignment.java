@@ -9,8 +9,9 @@ public class Assignment {
     String assignmentID;
     String submittedDate;
     String submittedTime;
+    Boolean completed;
 
-    public Assignment(String subject,String name, String dueDate,String dueTime ,String description, String assignmentID, String submittedDate, String submittedTime) {
+    public Assignment(String subject,String name, String dueDate,String dueTime ,String description, String assignmentID, String submittedDate, String submittedTime, Boolean completed) {
         this.name = name;
         this.description = description;
         this.dueDate = dueDate;
@@ -19,6 +20,7 @@ public class Assignment {
         this.dueTime = dueTime;
         this.submittedDate = submittedDate;
         this.submittedTime = submittedTime;
+        this.completed = completed;
     }
 
     public String getName() {
@@ -51,5 +53,9 @@ public class Assignment {
 
     public String getSubmittedTime() {
         return submittedTime;
+    }
+
+    public Boolean isCompleted() {
+        return completed;
     }
 }

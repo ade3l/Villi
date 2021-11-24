@@ -62,15 +62,15 @@ public class assignmentsAdapter extends RecyclerView.Adapter<assignmentsAdapter.
             Intent intent= new Intent(context, assignmentDetailsActivity.class);
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,
                     holder.nameTV, "detailsTransition");
-            intent.putExtra("assignment name", assignment.getName());
-            intent.putExtra("assignment subject", assignment.getSubject());
-            intent.putExtra("assignment due date", assignment.getDueDate());
-            intent.putExtra("assignment due time", assignment.getDueTime());
-            intent.putExtra("assignment description", assignment.getDescription());
-            intent.putExtra("assignment id", assignment.getAssignmentID());
-            intent.putExtra("assignment submitted", assignment.getSubmittedDate());
-            intent.putExtra("assignment submitted time", assignment.getSubmittedTime());
-
+            intent.putExtra("name", assignment.getName());
+            intent.putExtra("subject", assignment.getSubject());
+            intent.putExtra("due date", assignment.getDueDate());
+            intent.putExtra("due time", assignment.getDueTime());
+            intent.putExtra("description", assignment.getDescription());
+            intent.putExtra("id", assignment.getAssignmentID());
+            intent.putExtra("submitted date", assignment.getSubmittedDate());
+            intent.putExtra("submitted time", assignment.getSubmittedTime());
+            intent.putExtra("completed", assignment.isCompleted());
             context.startActivity(intent, options.toBundle());
         });
     }
