@@ -14,7 +14,8 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -27,13 +28,13 @@
                     android:src="@drawable/baseline_edit_black_24dp"
                     android:background="?actionBarItemBackground"
                     app:tint="?attr/colorControlNormal"
-                    android:layout_marginEnd="12dp"/>
+                    android:layout_marginEnd="24dp"/>
 
                 <ImageButton
                     android:id="@+id/deleteAssignment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/baseline_more_vert_black_24dp"
+                    android:src="@drawable/baseline_delete_black_24dp"
                     android:background="?actionBarItemBackground"
                     app:tint="?attr/colorControlNormal"
                     android:layout_marginEnd="12dp"
@@ -45,8 +46,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingHorizontal="16dp"
-            android:layout_marginTop="8dp">
+            android:paddingHorizontal="32dp"
+            android:layout_marginTop="8dp"
+            >
             <TextView
                 android:id="@+id/assignment_name"
                 android:layout_width="match_parent"
@@ -106,5 +108,6 @@
             android:clickable="true"
             android:layout_marginHorizontal="16dp"
             />
+
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

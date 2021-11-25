@@ -83,7 +83,7 @@ public class assignmentDetailsActivity extends AppCompatActivity {
     private void initToolbar() {
         setSupportActionBar(findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(getIntent().getStringExtra(""));
+//        getSupportActionBar().setTitle(assignment.getName());
     }
 
     private void completeAssignment(){
