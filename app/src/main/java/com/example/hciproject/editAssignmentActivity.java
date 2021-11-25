@@ -129,6 +129,7 @@ public class editAssignmentActivity extends AppCompatActivity {
                 assignment.setName(name);
                 assignment.setDueDate(dueDate);
                 assignment.setDueTime(dueTime);
+                assignment.setDescription(notes);
                 DataSource.updateAssignment(assignment);
             }
         });
