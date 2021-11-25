@@ -234,4 +234,8 @@ public class DataSource {
     public static void deleteAssignment(String id) {
         assignmentsDb.execSQL("DELETE FROM assignments WHERE assignmentId='"+id+"'");
     }
+
+    public static void updateAssignment(String assignmentID) {
+
+    }
 }

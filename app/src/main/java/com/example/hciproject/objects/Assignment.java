@@ -62,4 +62,24 @@ public class Assignment {
     public String getId() {
         return assignmentID;
     }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public void setDueTime(String dueTime) {
+        this.dueTime = dueTime;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

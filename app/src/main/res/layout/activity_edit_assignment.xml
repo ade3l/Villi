@@ -1,9 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".editAssignmentActivity">
+    tools:context=".addAssignmentActivity"
+    android:background="@color/bg"
+    android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_marginTop="25dp"
+        android:layout_marginHorizontal="10dp"
+        app:errorEnabled="true">
+        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+            android:id="@+id/subjectAutoCompleteListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Subject(Optional)"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/addSubject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_a_new_subject"
+        android:layout_marginEnd="10dp"
+        android:padding="5dp"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_gravity="end"
+        android:textColor="@color/white"
+        app:icon="@drawable/baseline_add_white_24dp"
+        app:iconTint="@color/selectedBlue"
+        app:rippleColor="#3D3D3D"
+        />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginHorizontal="10dp"
+        app:errorEnabled="true">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Assignment name"
+            app:errorEnabled="true"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="25dp"
+        android:weightSum="2"
+        android:baselineAligned="false">
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginHorizontal="10dp"
+            app:errorEnabled="true">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dueDate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:inputType="date"
+                android:textIsSelectable="false"
+                android:focusable="false"
+                android:hint="Due date"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginHorizontal="10dp"
+            app:errorEnabled="true">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dueTime"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:inputType="date"
+                android:textIsSelectable="false"
+                android:focusable="false"
+                android:hint="Due time"/>
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginTop="25dp"
+        android:layout_marginHorizontal="10dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/notes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Notes"/>
+        <!--        TODO: Make notes text field larger-->
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_marginTop="75dp"
+        android:gravity="bottom">
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@android:string/cancel"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_marginHorizontal="10dp"
+            android:textColor="@color/white"/>
+        <Button
+            android:id="@+id/save"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:layout_marginHorizontal="10dp"
+            android:backgroundTint="@color/green_active"/>
+    </LinearLayout>
+</LinearLayout>
