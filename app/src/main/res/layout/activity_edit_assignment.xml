@@ -119,7 +119,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/notes"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:maxHeight="250dp"
                 android:hint="Notes"/>
             <!--        TODO: Make notes text field larger-->
         </com.google.android.material.textfield.TextInputLayout>
