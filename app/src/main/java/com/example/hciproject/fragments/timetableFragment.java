@@ -1,5 +1,7 @@
 package com.example.hciproject.fragments;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -89,7 +91,9 @@ public class timetableFragment extends Fragment {
     void addClass(){
         Intent intent = new Intent(getContext(), addClassActivity.class);
         intent.putExtra("day",getSelectedDay());
-        startActivity(intent);
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) getContext(),
+                binding.addClass, "addClassTransition");
+        startActivity(intent, options.toBundle());
     }
 
     private int getSelectedDay() {
