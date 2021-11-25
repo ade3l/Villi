@@ -182,6 +182,7 @@
         app:fabSize="auto"
         app:backgroundTint="@color/selectedBlue"
         app:tint="@color/white"
+        android:transitionName="addAssignmentTransition"
          />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
