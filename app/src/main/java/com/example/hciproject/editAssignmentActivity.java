@@ -124,7 +124,6 @@ public class editAssignmentActivity extends AppCompatActivity {
             String notes=binding.notes.getText().toString();
             Log.i("mine","Here 1");
             if(validateForm(subject,name,dueDate,dueTime)){
-                //TODO: Edit the assignment
                 assignment.setSubject(subject);
                 assignment.setName(name);
                 assignment.setDueDate(dueDate);
@@ -184,19 +183,19 @@ public class editAssignmentActivity extends AppCompatActivity {
     private boolean validateForm(String subject, String name, String dueDate, String dueTime) {
         boolean isValid=true;
         if(!DataSource.getSubjects().contains(subject) && !subject.equals("")){
-            binding.subjectAutoCompleteListView.setError("Subject not found");
+            binding.subjectAutoCompleteListViewLayout.setError("Subject not found");
             isValid=false;
         }
         if(name.equals("")){
-            binding.nameTextView.setError("Enter a name");
+            binding.nameTextViewLayout.setError("Enter a name");
             isValid=false;
         }
         if(dueDate.equals("")){
-            binding.dueDate.setError("Enter a due date");
+            binding.dueDateLayout.setError("Enter a due date");
             isValid=false;
         }
         if(dueTime.equals("")){
-            binding.dueTime.setError("Enter a due time");
+            binding.dueTimeLayout.setError("Enter a due time");
             isValid=false;
         }
         return isValid;
