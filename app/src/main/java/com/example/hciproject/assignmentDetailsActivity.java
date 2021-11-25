@@ -34,6 +34,9 @@ public class assignmentDetailsActivity extends AppCompatActivity {
         initToolbar();
         initDetails();
         binding.markAsDone.setOnClickListener(v -> completeAssignment());
+        binding.editAssignment.setOnClickListener(v -> {
+            Toast.makeText(this,"Edit Assignment",Toast.LENGTH_SHORT).show();
+        });
     }
 
     private void initDetails() {
