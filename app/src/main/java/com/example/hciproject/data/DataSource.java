@@ -235,7 +235,7 @@ public class DataSource {
         assignmentsDb.execSQL("DELETE FROM assignments WHERE assignmentId='"+id+"'");
     }
 
-    public static void updateAssignment(String assignmentID) {
-
+    public static void updateAssignment(Assignment assignment) {
+        assignmentsDb.execSQL("UPDATE assignments SET subjectName='"+assignment.getSubject()+"', assignmentName='"+assignment.getName()+"', dueDate='"+assignment.getDueDate()+"', dueTime='"+assignment.getDueTime()+"', notes='"+assignment.getDescription()+"' WHERE assignmentId='"+assignment.getAssignmentID()+"'");
     }
 }

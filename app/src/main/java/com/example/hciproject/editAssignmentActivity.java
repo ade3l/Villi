@@ -129,24 +129,23 @@ public class editAssignmentActivity extends AppCompatActivity {
                 assignment.setName(name);
                 assignment.setDueDate(dueDate);
                 assignment.setDueTime(dueTime);
-//                DataSource.updateAssignment(assignment.getAssignmentID());
+                DataSource.updateAssignment(assignment);
             }
         });
     }
     private void cancel() {
-        if(binding.subjectAutoCompleteListView.getText().toString().equals("")
-                && binding.nameTextView.getText().toString().equals("")
-                && binding.dueDate.getText().toString().equals("")
-                && binding.dueTime.getText().toString().equals("")
+        if(binding.subjectAutoCompleteListView.getText().toString().equals(assignment.getSubject())
+                && binding.nameTextView.getText().toString().equals(assignment.getName())
+                && binding.dueDate.getText().toString().equals(DataSource.getDateFromMillis(Long.parseLong(assignment.getDueDate())))
+                && binding.dueTime.getText().toString().equals(assignment.getDueTime())
         ){
             finish();
         }
         else{
             AlertDialog.Builder builder=new AlertDialog.Builder(this,R.style.cancelDialogTheme)
-                    .setTitle("Delete this draft?")
-                    .setMessage("Are you sure you want to delete this draft?")
-                    .setPositiveButton("Cancel", null)
-                    .setNegativeButton("Ok", null);
+                    .setMessage("Discard changes to this assignment?")
+                    .setPositiveButton("Keep editing", null)
+                    .setNegativeButton("Discard", null);
             AlertDialog dialog=builder.create();
             dialog.show();
             dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(view -> {
