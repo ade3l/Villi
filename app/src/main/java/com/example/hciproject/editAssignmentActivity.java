@@ -142,7 +142,8 @@ public class editAssignmentActivity extends AppCompatActivity {
         }
         else{
             AlertDialog.Builder builder=new AlertDialog.Builder(this,R.style.cancelDialogTheme)
-                    .setMessage("Discard changes to this assignment?")
+                    .setTitle("Discard changes to this assignment?")
+                    .setMessage("You will lose all changes")
                     .setPositiveButton("Keep editing", null)
                     .setNegativeButton("Discard", null);
             AlertDialog dialog=builder.create();
