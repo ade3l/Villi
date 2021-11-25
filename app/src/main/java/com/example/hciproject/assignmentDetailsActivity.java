@@ -20,7 +20,7 @@ import com.google.android.material.transition.platform.MaterialContainerTransfor
 
 public class assignmentDetailsActivity extends AppCompatActivity {
     private ActivityAssignmentDetailsBinding binding;
-    Assignment assignment;
+    static Assignment assignment;
     Window window;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,18 +41,8 @@ public class assignmentDetailsActivity extends AppCompatActivity {
 
     private void edit() {
         Intent intent = new Intent(this, editAssignmentActivity.class);
-        intent.putExtra("subject", assignment.getSubject());
-        intent.putExtra("name", assignment.getName());
-        intent.putExtra("due date", assignment.getDueDate());
-        intent.putExtra("due time", assignment.getDueTime());
-        intent.putExtra("description", assignment.getDescription());
-        intent.putExtra("id", assignment.getId());
-        intent.putExtra("submitted date", assignment.getSubmittedDate());
-        intent.putExtra("submitted time", assignment.getSubmittedTime());
-        intent.putExtra("completed", assignment.isCompleted());
         startActivity(intent);
     }
-
     private void setUpTransitions() {
         findViewById(android.R.id.content).setTransitionName("detailsTransition");
         setEnterSharedElementCallback(new MaterialContainerTransformSharedElementCallback());
@@ -135,5 +125,11 @@ public class assignmentDetailsActivity extends AppCompatActivity {
         });
         builder.create();
         builder.show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initDetails();
     }
 }

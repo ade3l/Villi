@@ -1,5 +1,7 @@
 package com.example.hciproject;
 
+import static com.example.hciproject.assignmentDetailsActivity.assignment;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,16 +25,13 @@ import com.google.android.material.timepicker.TimeFormat;
 public class editAssignmentActivity extends AppCompatActivity {
     ActivityEditAssignmentBinding binding;
     View view;
-    Assignment assignment;
-    Long dateInMillis;
+    Long dateInMillis= Long.valueOf(assignment.getDueDate());
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityEditAssignmentBinding.inflate(getLayoutInflater());
         view = binding.getRoot();
         setContentView(view);
-        assignment=new Assignment(getIntent().getStringExtra("subject"),getIntent().getStringExtra("name"),getIntent().getStringExtra("due date"), getIntent().getStringExtra("due time"),
-                getIntent().getStringExtra("description"),getIntent().getStringExtra("id"),getIntent().getStringExtra("submitted date"),getIntent().getStringExtra("submitted time"),getIntent().getBooleanExtra("completed",false));
         setUpToolBar();
         initViews();
         dateTimePickerInit();
@@ -122,14 +121,14 @@ public class editAssignmentActivity extends AppCompatActivity {
             String dueDate= String.valueOf(dateInMillis);
             String dueTime=binding.dueTime.getText().toString();
             String notes=binding.notes.getText().toString();
-            Log.i("mine","Here 1");
             if(validateForm(subject,name,dueDate,dueTime)){
                 assignment.setSubject(subject);
                 assignment.setName(name);
-                assignment.setDueDate(dueDate);
+                assignment.setDueDate(String.valueOf(dateInMillis));
                 assignment.setDueTime(dueTime);
                 assignment.setDescription(notes);
                 DataSource.updateAssignment(assignment);
+                finish();
             }
         });
     }

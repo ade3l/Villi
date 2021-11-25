@@ -173,7 +173,7 @@ public class addAssignmentActivity extends AppCompatActivity {
                 else{
                     Toast.makeText(this, "Assignment add failed", Toast.LENGTH_SHORT).show();
                 }
-                finish();
+                finishAfterTransition();
             }
         });
     }
@@ -205,7 +205,7 @@ public class addAssignmentActivity extends AppCompatActivity {
                 && binding.dueDate.getText().toString().equals("")
                 && binding.dueTime.getText().toString().equals("")
         ){
-            finish();
+            finishAfterTransition();
         }
         else{
             AlertDialog.Builder builder=new AlertDialog.Builder(this,R.style.cancelDialogTheme)
@@ -216,7 +216,7 @@ public class addAssignmentActivity extends AppCompatActivity {
             AlertDialog dialog=builder.create();
             dialog.show();
             dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(view -> {
-                finish();
+                finishAfterTransition();
             });
         }
     }
