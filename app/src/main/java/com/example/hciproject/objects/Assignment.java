@@ -58,4 +58,8 @@ public class Assignment {
     public Boolean isCompleted() {
         return completed;
     }
+
+    public String getId() {
+        return assignmentID;
+    }
 }

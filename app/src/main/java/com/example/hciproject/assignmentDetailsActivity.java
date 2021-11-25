@@ -1,5 +1,6 @@
 package com.example.hciproject;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import com.example.hciproject.data.DataSource;
 import com.example.hciproject.databinding.ActivityAssignmentDetailsBinding;
 import com.example.hciproject.objects.Assignment;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.transition.platform.MaterialContainerTransform;
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback;
 
@@ -37,6 +39,15 @@ public class assignmentDetailsActivity extends AppCompatActivity {
         binding.editAssignment.setOnClickListener(v -> {
             Toast.makeText(this,"Edit Assignment",Toast.LENGTH_SHORT).show();
         });
+        binding.deleteAssignment.setOnClickListener(v -> {
+            deleteAssignment();
+        });
+    }
+
+    private void initToolbar() {
+        setSupportActionBar(findViewById(R.id.toolbar));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setTitle(assignment.getName());
     }
 
     private void initDetails() {
@@ -80,12 +91,6 @@ public class assignmentDetailsActivity extends AppCompatActivity {
 
     }
 
-    private void initToolbar() {
-        setSupportActionBar(findViewById(R.id.toolbar));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setTitle(assignment.getName());
-    }
-
     private void completeAssignment(){
         Log.i("mine","clicked");
         if(assignment.isCompleted()){
@@ -98,5 +103,21 @@ public class assignmentDetailsActivity extends AppCompatActivity {
         }
         assignment=DataSource.getAssignmentById(getIntent().getStringExtra("id"));
         initDetails();
+    }
+
+    private void deleteAssignment() {
+        AlertDialog.Builder builder=new MaterialAlertDialogBuilder(this,R.style.cancelDialogTheme);
+        builder.setTitle("Delete Assignment");
+        builder.setMessage("Are you sure you want to delete this assignment?");
+        builder.setPositiveButton("No", (dialog, which) -> {
+            dialog.dismiss();
+        });
+        builder.setNegativeButton("Yes", (dialog, which) -> {
+            DataSource.deleteAssignment(assignment.getId());
+            finish();
+
+        });
+        builder.create();
+        builder.show();
     }
 }
