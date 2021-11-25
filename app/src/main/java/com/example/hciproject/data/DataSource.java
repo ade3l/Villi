@@ -230,4 +230,8 @@ public class DataSource {
         }
         return new Assignment(subjectName,assignmentName,dueDateString,dueTimeString,notesString,assignmentId,submittedDateString,submittedTimeString,Boolean.FALSE);
     }
+
+    public static void deleteAssignment(String id) {
+        assignmentsDb.execSQL("DELETE FROM assignments WHERE assignmentId='"+id+"'");
+    }
 }
