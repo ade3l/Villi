@@ -33,10 +33,7 @@ public class addAssignmentActivity extends AppCompatActivity {
         window = getWindow();
         window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
         super.onCreate(savedInstanceState);
-        findViewById(android.R.id.content).setTransitionName("addAssignmentTransition");
-        setEnterSharedElementCallback(new MaterialContainerTransformSharedElementCallback());
-        window.setSharedElementEnterTransition(new MaterialContainerTransform().addTarget(android.R.id.content).setDuration(500));
-        window.setSharedElementReturnTransition(new MaterialContainerTransform().addTarget(android.R.id.content).setDuration(250));
+        setUpTransition();
         binding=ActivityAddAssignmentBinding.inflate(getLayoutInflater());
         View view=binding.getRoot();
         pref=getSharedPreferences("com.example.villi",Context.MODE_PRIVATE);
@@ -46,13 +43,20 @@ public class addAssignmentActivity extends AppCompatActivity {
         formCTAButtonsInit();
     }
 
+    private void setUpTransition() {
+        findViewById(android.R.id.content).setTransitionName("addAssignmentTransition");
+        setEnterSharedElementCallback(new MaterialContainerTransformSharedElementCallback());
+        window.setSharedElementEnterTransition(new MaterialContainerTransform().addTarget(android.R.id.content).setDuration(500));
+        window.setSharedElementReturnTransition(new MaterialContainerTransform().addTarget(android.R.id.content).setDuration(250));
+    }
+
 
     private void setUpToolBar() {
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Add an assignment");
         binding.toolbar.setNavigationOnClickListener(view ->{
-            //TODO:Back button
+            cancel();
                 }
                 );
         subjectPickerInit();

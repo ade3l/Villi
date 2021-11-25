@@ -35,15 +35,13 @@ import java.util.Objects;
 public class addClassActivity extends AppCompatActivity {
     private ActivityAddClassBinding binding;
     SharedPreferences pref;
+    Window window;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Window window = getWindow();
+        window = getWindow();
         window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
         super.onCreate(savedInstanceState);
-        findViewById(android.R.id.content).setTransitionName("addClassTransition");
-        setEnterSharedElementCallback(new MaterialContainerTransformSharedElementCallback());
-        window.setSharedElementEnterTransition(new MaterialContainerTransform().addTarget(android.R.id.content).setDuration(500));
-        window.setSharedElementReturnTransition(new MaterialContainerTransform().addTarget(android.R.id.content).setDuration(250));
+        setUpTransitions();
         binding = ActivityAddClassBinding.inflate(getLayoutInflater());
         View view=binding.getRoot();
         pref=this.getSharedPreferences("com.example.villi",Context.MODE_PRIVATE);
@@ -56,6 +54,14 @@ public class addClassActivity extends AppCompatActivity {
 
 
     }
+
+    private void setUpTransitions() {
+        findViewById(android.R.id.content).setTransitionName("addClassTransition");
+        setEnterSharedElementCallback(new MaterialContainerTransformSharedElementCallback());
+        window.setSharedElementEnterTransition(new MaterialContainerTransform().addTarget(android.R.id.content).setDuration(500));
+        window.setSharedElementReturnTransition(new MaterialContainerTransform().addTarget(android.R.id.content).setDuration(250));
+    }
+
     //Code to remove focus from the edit texts when clicked outside
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
