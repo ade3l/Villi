@@ -3,6 +3,7 @@ package com.example.hciproject;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.transition.Transition;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
+import com.google.android.material.transition.platform.MaterialArcMotion;
 import com.google.android.material.transition.platform.MaterialContainerTransform;
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback;
 
@@ -46,8 +48,18 @@ public class addAssignmentActivity extends AppCompatActivity {
     private void setUpTransition() {
         findViewById(android.R.id.content).setTransitionName("addAssignmentTransition");
         setEnterSharedElementCallback(new MaterialContainerTransformSharedElementCallback());
-        window.setSharedElementEnterTransition(new MaterialContainerTransform().addTarget(android.R.id.content).setDuration(500));
-        window.setSharedElementReturnTransition(new MaterialContainerTransform().addTarget(android.R.id.content).setDuration(250));
+
+        Transition enterTransition = new MaterialContainerTransform();
+        enterTransition.setPathMotion(new MaterialArcMotion());
+        enterTransition.addTarget(android.R.id.content);
+        enterTransition.setDuration(500);
+        window.setSharedElementEnterTransition(enterTransition);
+
+        Transition exitTransition = new MaterialContainerTransform();
+        exitTransition.setPathMotion(new MaterialArcMotion());
+        exitTransition.addTarget(android.R.id.content);
+        exitTransition.setDuration(250);
+        window.setSharedElementReturnTransition(exitTransition);
     }
 
 

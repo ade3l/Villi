@@ -20,16 +20,14 @@ import com.google.android.material.transition.platform.MaterialContainerTransfor
 public class assignmentDetailsActivity extends AppCompatActivity {
     private ActivityAssignmentDetailsBinding binding;
     Assignment assignment;
+    Window window;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Window window = this.getWindow();
+        window = this.getWindow();
         window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
         super.onCreate(savedInstanceState);
         binding = ActivityAssignmentDetailsBinding.inflate(getLayoutInflater());
-        findViewById(android.R.id.content).setTransitionName("detailsTransition");
-        setEnterSharedElementCallback(new MaterialContainerTransformSharedElementCallback());
-        window.setSharedElementEnterTransition(new MaterialContainerTransform().addTarget(android.R.id.content).setDuration(500));
-        window.setSharedElementReturnTransition(new MaterialContainerTransform().addTarget(android.R.id.content).setDuration(250));
+        setUpTransitions();
         setContentView(binding.getRoot());
         assignment=new Assignment(getIntent().getStringExtra("subject"),getIntent().getStringExtra("name"),getIntent().getStringExtra("due date"), getIntent().getStringExtra("due time"),
                 getIntent().getStringExtra("description"),getIntent().getStringExtra("id"),getIntent().getStringExtra("submitted date"),getIntent().getStringExtra("submitted time"),getIntent().getBooleanExtra("completed",false));
@@ -42,6 +40,13 @@ public class assignmentDetailsActivity extends AppCompatActivity {
         binding.deleteAssignment.setOnClickListener(v -> {
             deleteAssignment();
         });
+    }
+
+    private void setUpTransitions() {
+        findViewById(android.R.id.content).setTransitionName("detailsTransition");
+        setEnterSharedElementCallback(new MaterialContainerTransformSharedElementCallback());
+        window.setSharedElementEnterTransition(new MaterialContainerTransform().addTarget(android.R.id.content).setDuration(500));
+        window.setSharedElementReturnTransition(new MaterialContainerTransform().addTarget(android.R.id.content).setDuration(350));
     }
 
     private void initToolbar() {
