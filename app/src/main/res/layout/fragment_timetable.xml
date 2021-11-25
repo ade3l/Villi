@@ -210,5 +210,6 @@
         app:fabSize="auto"
         app:backgroundTint="@color/selectedBlue"
         app:tint="@color/white"
+        android:transitionName="addClassTransition"
         />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

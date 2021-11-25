@@ -1,5 +1,7 @@
 package com.example.hciproject.fragments;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -77,7 +79,9 @@ public class assignmentsFragment extends Fragment {
 
     private void addAssignment() {
         Intent intent=new Intent(getContext(), addAssignmentActivity.class);
-        startActivity(intent);
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) getContext(),
+                binding.addAssignment, "addAssignmentTransition");
+        startActivity(intent,options.toBundle());
     }
 
     public  void hideFab(){

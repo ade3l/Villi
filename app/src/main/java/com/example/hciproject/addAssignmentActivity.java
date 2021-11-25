@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,14 +20,23 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
+import com.google.android.material.transition.platform.MaterialContainerTransform;
+import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback;
 
 public class addAssignmentActivity extends AppCompatActivity {
     private ActivityAddAssignmentBinding binding;
     SharedPreferences pref;
     Long dateInMillis;
+    Window window;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        window = getWindow();
+        window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
         super.onCreate(savedInstanceState);
+        findViewById(android.R.id.content).setTransitionName("addAssignmentTransition");
+        setEnterSharedElementCallback(new MaterialContainerTransformSharedElementCallback());
+        window.setSharedElementEnterTransition(new MaterialContainerTransform().addTarget(android.R.id.content).setDuration(500));
+        window.setSharedElementReturnTransition(new MaterialContainerTransform().addTarget(android.R.id.content).setDuration(250));
         binding=ActivityAddAssignmentBinding.inflate(getLayoutInflater());
         View view=binding.getRoot();
         pref=getSharedPreferences("com.example.villi",Context.MODE_PRIVATE);
@@ -35,6 +45,7 @@ public class addAssignmentActivity extends AppCompatActivity {
         dateTimePickerInit();
         formCTAButtonsInit();
     }
+
 
     private void setUpToolBar() {
         setSupportActionBar(binding.toolbar);
