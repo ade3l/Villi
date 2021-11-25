@@ -14,7 +14,35 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
+<!--            Linear layout with 2 image buttons-->
+<!--            First image button is for editing the assignment-->
+<!--            Second one is to delete it-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end">
+                <ImageButton
+                    android:id="@+id/editAssignment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_edit_black_24dp"
+                    android:background="?actionBarItemBackground"
+                    app:tint="?attr/colorControlNormal"
+                    android:layout_marginEnd="12dp"/>
+
+                <ImageButton
+                    android:id="@+id/deleteAssignment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_more_vert_black_24dp"
+                    android:background="?actionBarItemBackground"
+                    app:tint="?attr/colorControlNormal"
+                    android:layout_marginEnd="12dp"
+                    />
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
 
         <LinearLayout
             android:layout_width="match_parent"
