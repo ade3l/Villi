@@ -8,14 +8,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
 public class widgetProvider extends AppWidgetProvider {
     private static final String GO_LEFT_TAG = "Left click";
     private static final String GO_RIGHT_TAG = "Right click";
+    private static final String GO_TO_TT_TAG = "Go to timetable";
+    private static final String GO_TO_ASSIGNMENTS_TAG = "Go to assignments";
+    public static final String MODE_TIMETABLE = "timetable";
+    public static final String MODE_ASSIGNMENTS = "assignments";
     private static int day;
     SharedPreferences prefs;
     String daysList[] = {"Monday", "Tuesday", "Wednesday",
@@ -35,6 +37,8 @@ public class widgetProvider extends AppWidgetProvider {
             views.setRemoteAdapter(R.id.listView,serviceIntent);
             views.setOnClickPendingIntent(R.id.left,getPendingSelfIntent(context, GO_LEFT_TAG));
             views.setOnClickPendingIntent(R.id.right,getPendingSelfIntent(context, GO_RIGHT_TAG));
+            views.setOnClickPendingIntent(R.id.option_timetable,getPendingSelfIntent(context, GO_TO_TT_TAG));
+            views.setOnClickPendingIntent(R.id.option_assignment,getPendingSelfIntent(context, GO_TO_ASSIGNMENTS_TAG));
             views.setEmptyView(R.id.listView,R.id.emptyTextView);
             appWidgetManager.updateAppWidget(appWidgetId, views);
         }
@@ -50,17 +54,23 @@ public class widgetProvider extends AppWidgetProvider {
             if(day==0) day=6;
             else day--;
             prefs.edit().putInt("day", day).commit();
-            updateTT(context, intent);
+            updateTT(context, intent, MODE_TIMETABLE);
         }
         else if( intent.getAction().equals(GO_RIGHT_TAG)){
             if(day==6) day=0;
             else day++;
             prefs.edit().putInt("day", day).commit();
-            updateTT(context,intent);
+            updateTT(context,intent, MODE_ASSIGNMENTS);
 
         }
+        else if(intent.getAction().equals(GO_TO_TT_TAG)){
+            updateTT(context,intent, MODE_TIMETABLE);
+        }
+        else if(intent.getAction().equals(GO_TO_ASSIGNMENTS_TAG)){
+            updateTT(context,intent, MODE_ASSIGNMENTS);
+        }
     }
-    void updateTT(Context context, Intent intent){
+    void updateTT(Context context, Intent intent, String mode){
 
         RemoteViews views=new RemoteViews(context.getPackageName(),R.layout.widget_layout);
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
@@ -70,9 +80,17 @@ public class widgetProvider extends AppWidgetProvider {
         serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,appWidgetIds[0]);
         serviceIntent.putExtra("Day",day);
         serviceIntent.setData(Uri.parse(serviceIntent.toUri(Intent.URI_INTENT_SCHEME)));
-
         views.setRemoteAdapter(R.id.listView,serviceIntent);
         views.setTextViewText(R.id.day, daysList[day]);
+        if(mode.equals("timetable")){
+            views.setViewVisibility(R.id.day_layout, View.VISIBLE);
+            serviceIntent.putExtra("mode", MODE_TIMETABLE);
+        }
+        else if(mode.equals("assignments")){
+            views.setViewVisibility(R.id.day_layout, View.GONE);
+            serviceIntent.putExtra("mode", MODE_ASSIGNMENTS);
+        }
+
         appWidgetManager.updateAppWidget(appWidgetIds, views);
     }
 
