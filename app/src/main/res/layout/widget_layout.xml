@@ -130,7 +130,7 @@
             android:paddingHorizontal="12dp"
             android:paddingTop="5dp"
             android:scrollbars="none"
-            tools:listitem="@layout/widget_item"
+            tools:listitem="@layout/widget_class_item"
             />
 
         <TextView
