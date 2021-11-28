@@ -20,15 +20,18 @@
             android:id="@+id/option_timetable"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:padding="10dp"
             android:layout_weight="1"
             android:gravity="center"
             android:background="@drawable/rounded_rect_widget_option"
-            android:layout_marginRight="3dp">
+            android:layout_marginRight="3dp"
+            android:clickable="true"
+            >
             <ImageView
+                android:id="@+id/timetable_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/timetable_icon"
+                android:background="@android:color/transparent"
                 />
         </LinearLayout>
         <LinearLayout
@@ -43,6 +46,7 @@
             android:clickable="true">
 
             <ImageView
+                android:id="@+id/assignment_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/icon_assignment_grey"
@@ -52,6 +56,7 @@
 
     </LinearLayout>
     <RelativeLayout
+        android:id="@+id/day_layout"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@drawable/rounded_rect_widget_day"
@@ -125,7 +130,7 @@
             android:paddingHorizontal="12dp"
             android:paddingTop="5dp"
             android:scrollbars="none"
-            tools:listitem="@layout/widget_item"
+            tools:listitem="@layout/widget_class_item"
             />
 
         <TextView
