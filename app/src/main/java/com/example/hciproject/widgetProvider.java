@@ -87,6 +87,10 @@ public class widgetProvider extends AppWidgetProvider {
         serviceIntent.setData(Uri.parse(serviceIntent.toUri(Intent.URI_INTENT_SCHEME)));
         views.setRemoteAdapter(R.id.listView,serviceIntent);
         views.setTextViewText(R.id.day, daysList[day]);
+        views.setOnClickPendingIntent(R.id.left,getPendingSelfIntent(context, GO_LEFT_TAG));
+        views.setOnClickPendingIntent(R.id.right,getPendingSelfIntent(context, GO_RIGHT_TAG));
+        views.setOnClickPendingIntent(R.id.option_timetable,getPendingSelfIntent(context, GO_TO_TT_TAG));
+        views.setOnClickPendingIntent(R.id.option_assignment,getPendingSelfIntent(context, GO_TO_ASSIGNMENTS_TAG));
         if(mode.equals(MODE_TIMETABLE)){
             views.setViewVisibility(R.id.day_layout, View.VISIBLE);
             Log.i("mine","mode");
