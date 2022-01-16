@@ -12,7 +12,7 @@
         android:icon="@drawable/baseline_calendar_view_week_black_24dp"/>
     <item
         android:id="@+id/page_preferences"
-        android:title="Preferences"
-        android:icon="@drawable/baseline_settings_black_24dp"/>
+        android:title="Dashboard"
+        android:icon="@drawable/baseline_dashboard_black_24dp"/>
 
 </menu>
