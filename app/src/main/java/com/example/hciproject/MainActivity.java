@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     void setUpNavigation(){
         ViewPager2 viewPager = findViewById(R.id.content_frame);
         BottomNavigationView navBar=findViewById(R.id.navigation_bar);
-//        navBar.setCurrentActiveItem(1);
 
         FragmentManager manager=getSupportFragmentManager();
         FragmentStateAdapter adapter = new pagerAdapter(manager,getLifecycle());
@@ -69,14 +68,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-//                navBar.setCurrentActiveItem(position);
-
-            }
-        });
     }
 }
