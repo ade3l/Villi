@@ -22,9 +22,9 @@ public class pagerAdapter extends FragmentStateAdapter {
         switch (position) {
             case 0:
                 return new assignmentsFragment();
-            case 1:
-                return new homeFragment();
             case 2:
+                return new homeFragment();
+            case 1:
                 return new timetableFragment();
         }
         return null;

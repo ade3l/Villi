@@ -1,8 +1,10 @@
 package com.example.hciproject;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.Window;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.FragmentManager;
@@ -11,7 +13,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.hciproject.adapters.pagerAdapter;
 import com.example.hciproject.data.DataSource;
-import com.gauravk.bubblenavigation.BubbleNavigationLinearView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback;
 
 
@@ -35,35 +38,43 @@ public class MainActivity extends AppCompatActivity {
 
     void setUpNavigation(){
         ViewPager2 viewPager = findViewById(R.id.content_frame);
-        BubbleNavigationLinearView navBar=findViewById(R.id.navigation_bar);
-        navBar.setCurrentActiveItem(1);
+        BottomNavigationView navBar=findViewById(R.id.navigation_bar);
+//        navBar.setCurrentActiveItem(1);
 
         FragmentManager manager=getSupportFragmentManager();
         FragmentStateAdapter adapter = new pagerAdapter(manager,getLifecycle());
 
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(1,false);
-
+        navBar.setSelectedItemId(R.id.page_timetable);
         viewPager.setUserInputEnabled(false);
-        navBar.setNavigationChangeListener((view, position) -> {
-//            if (viewPager.getCurrentItem() == 0 ) {
-//                assignmentsFragment.hideFab();
-//            }
-            viewPager.setCurrentItem(position);
-            //It shows up as an error for the first instantiation of the fragment
-//            try {
-//                if (viewPager.getCurrentItem() == 0) {
-//                    assignmentsFragment.showFab();
-//                }
-//            }
-//            catch(Exception ignored){ }
 
+        navBar.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                item.setChecked(true);
+                switch (item.getItemId()){
+                    case R.id.page_assignments:
+                        viewPager.setCurrentItem(0,true);
+                        break;
+                    case R.id.page_timetable:
+                        viewPager.setCurrentItem(1,true);
+                        break;
+                    case R.id.page_preferences:
+                        viewPager.setCurrentItem(2,true);
+                        break;
+
+                }
+                return false;
+            }
         });
+
+
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                navBar.setCurrentActiveItem(position);
+//                navBar.setCurrentActiveItem(position);
 
             }
         });
